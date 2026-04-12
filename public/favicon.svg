@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
+  <!-- Background circle -->
+  <circle cx="24" cy="24" r="24" fill="#2563eb"/>
+  <!-- "11" text -->
+  <text x="24" y="33" text-anchor="middle" font-family="Poppins, Arial, sans-serif" font-weight="800" font-size="28" fill="white">11</text>
+  <!-- Small accent dot -->
+  <circle cx="38" cy="12" r="4" fill="#f97316"/>
+</svg>
