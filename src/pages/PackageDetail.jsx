@@ -10,6 +10,7 @@ import {
   CheckCircle,
   UtensilsCrossed,
   Zap,
+  Tag,
 } from 'lucide-react';
 import { getPackageBySlug, PACKAGES } from '../data/packages';
 import Button from '../components/ui/Button';
@@ -269,6 +270,54 @@ function PackageDetailPage() {
           )}
         </div>
       </section>
+
+      {/* Pricing Tiers Table (if available) */}
+      {pkg.pricingTiers && pkg.pricingTiers.length > 0 && (
+        <section className="py-20 bg-gray-50">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <SectionHeading
+              eyebrow="Pilihan Paket"
+              title="Pilih Paket Sesuai Budget"
+              subtitle="Semua paket sudah termasuk transportasi, makan, dan tiket wisata."
+              center={false}
+            />
+            <div className="overflow-x-auto rounded-2xl shadow-md">
+              <table className="w-full text-sm text-left">
+                <thead className="bg-primary-600 text-white">
+                  <tr>
+                    <th className="px-4 py-3 font-semibold">Paket</th>
+                    <th className="px-4 py-3 font-semibold">Hotel</th>
+                    <th className="px-4 py-3 font-semibold">Armada</th>
+                    <th className="px-4 py-3 font-semibold text-right">Harga/pax</th>
+                    <th className="px-4 py-3 font-semibold text-center">Min. Pax</th>
+                  </tr>
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-100">
+                  {pkg.pricingTiers.map((t, idx) => (
+                    <tr key={idx} className="hover:bg-primary-50 transition-colors">
+                      <td className="px-4 py-3">
+                        <span className="inline-flex items-center gap-1.5 font-semibold text-gray-900">
+                          <Tag className="w-4 h-4 text-accent-500" />
+                          {t.tier}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3 text-gray-700">{t.hotel}</td>
+                      <td className="px-4 py-3 text-gray-700">{t.vehicle}</td>
+                      <td className="px-4 py-3 text-right font-bold text-accent-600">
+                        {formatRupiah(t.price)}
+                      </td>
+                      <td className="px-4 py-3 text-center text-gray-600">{t.minPax} orang</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-4 text-sm text-gray-500 italic">
+              * Semua paket sudah termasuk: sarapan 2x, makan siang 2x, makan malam 1x.
+            </p>
+          </div>
+        </section>
+      )}
 
       {/* Other packages */}
       {otherPackages.length > 0 && (
