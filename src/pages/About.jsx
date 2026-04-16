@@ -4,6 +4,7 @@ import SectionHeading from '../components/ui/SectionHeading';
 import CTASection from '../components/sections/CTASection';
 import PageHero from '../components/sections/PageHero';
 import SEO from '../components/SEO';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const TEAM = [
   { name: 'Ahmad Fauzi', role: 'Founder & CEO', desc: 'Visioner di balik Eleven Trans Holiday. Berpengalaman 10+ tahun di industri travel.' },
@@ -13,25 +14,24 @@ const TEAM = [
 ];
 
 export default function About() {
+  const { t, td } = useLanguage();
   return (
     <>
       <SEO
-        title="Tentang Kami"
-        description="Kenali Eleven Trans Holiday — tim berpengalaman di balik layanan travel terbaik di Bandung. Cerita kami, visi & misi."
+        title={t('about.eyebrow')}
+        description="Kenali Eleven Trans Holiday — tim berpengalaman di balik layanan travel terbaik di Bandung."
         path="/about"
       />
       {/* Hero */}
       <PageHero>
         <span className="text-accent-300 font-semibold text-xs uppercase tracking-wider">
-          Tentang Kami
+          {t('about.eyebrow')}
         </span>
         <h1 className="text-3xl md:text-4xl font-extrabold mt-2 mb-4 leading-tight text-white">
-          Lebih dari Sekadar Travel — Kami Adalah Teman Perjalananmu
+          {t('about.heroTitle')}
         </h1>
         <p className="text-base text-white/80 leading-relaxed">
-          Eleven Trans Holiday lahir dari passion sederhana: bikin liburan jadi lebih asyik.
-          Kami percaya bahwa perjalanan terbaik bukan soal destinasi, tapi soal pengalaman dan
-          cerita yang kamu bawa pulang.
+          {t('about.heroDesc')}
         </p>
       </PageHero>
 
@@ -45,22 +45,11 @@ export default function About() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Cerita Kami</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">{t('about.storyTitle')}</h2>
               <div className="space-y-4 text-gray-600 leading-relaxed">
-                <p>
-                  Berawal dari sebuah mobil rental kecil di Bandung tahun 2015, Eleven Trans Holiday
-                  tumbuh menjadi travel organizer yang dipercaya ratusan perusahaan, komunitas, dan
-                  keluarga di Indonesia.
-                </p>
-                <p>
-                  Nama &ldquo;Eleven&rdquo; bukan sekadar angka — ini simbol dari philosophy kami:
-                  selalu berusaha memberikan yang lebih (above & beyond). Setiap trip, setiap acara,
-                  setiap momen — kami ingin hasilnya selalu di atas ekspektasi.
-                </p>
-                <p>
-                  Dengan tim yang passionate, armada yang terawat, dan konsep acara yang selalu
-                  fresh — kami siap menjadi teman perjalanan terbaik kamu.
-                </p>
+                <p>{t('about.storyP1')}</p>
+                <p>{t('about.storyP2')}</p>
+                <p>{t('about.storyP3')}</p>
               </div>
             </motion.div>
 
@@ -85,7 +74,7 @@ export default function About() {
       {/* Vision & Mission */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeading eyebrow="Visi & Misi" title="Arah & Tujuan Kami" />
+          <SectionHeading eyebrow={t('about.vmEyebrow')} title={t('about.vmTitle')} />
 
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <motion.div
@@ -98,10 +87,9 @@ export default function About() {
               <div className="w-14 h-14 bg-primary-100 rounded-xl flex items-center justify-center mb-5">
                 <Eye className="w-7 h-7 text-primary-600" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Visi</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">{t('about.visionTitle')}</h3>
               <p className="text-gray-600 leading-relaxed">
-                Menjadi travel organizer #1 di Indonesia yang dikenal karena pengalaman perjalanan
-                yang menyenangkan, personal, dan penuh cerita.
+                {t('about.visionText')}
               </p>
             </motion.div>
 
@@ -115,23 +103,23 @@ export default function About() {
               <div className="w-14 h-14 bg-accent-100 rounded-xl flex items-center justify-center mb-5">
                 <Target className="w-7 h-7 text-accent-600" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Misi</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">{t('about.missionTitle')}</h3>
               <ul className="text-gray-600 space-y-2">
                 <li className="flex items-start gap-2">
                   <span className="text-accent-500 mt-1">•</span>
-                  Memberikan layanan travel yang personal dan ramah
+                  {t('about.m1')}
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-accent-500 mt-1">•</span>
-                  Merancang konsep acara yang kreatif dan memorable
+                  {t('about.m2')}
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-accent-500 mt-1">•</span>
-                  Mengutamakan keamanan dan kenyamanan pelanggan
+                  {t('about.m3')}
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-accent-500 mt-1">•</span>
-                  Berinovasi dalam pengalaman wisata Indonesia
+                  {t('about.m4')}
                 </li>
               </ul>
             </motion.div>
@@ -143,9 +131,9 @@ export default function About() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            eyebrow="Tim Kami"
-            title="Orang-Orang di Balik Layar"
-            subtitle="Tim kecil tapi solid — setiap orang punya passion untuk memberikan yang terbaik."
+            eyebrow={t('about.teamEyebrow')}
+            title={t('about.teamTitle')}
+            subtitle={t('about.teamSubtitle')}
           />
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -163,16 +151,14 @@ export default function About() {
                 </div>
                 <h4 className="font-bold text-gray-900">{member.name}</h4>
                 <p className="text-sm text-accent-600 font-medium mb-2">{member.role}</p>
-                <p className="text-sm text-gray-500">{member.desc}</p>
+                <p className="text-sm text-gray-500">{td(member.desc)}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      <CTASection
-        waMessage="Halo Eleven Trans! 👋 Saya baru baca tentang kalian. Boleh tanya-tanya soal trip?"
-      />
+      <CTASection />
     </>
   );
 }

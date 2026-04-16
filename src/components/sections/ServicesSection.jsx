@@ -3,17 +3,19 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Compass, Users, Mountain, Building2 } from 'lucide-react';
 import SectionHeading from '../ui/SectionHeading';
 import { SERVICES } from '../../data/services';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const ICON_MAP = { Compass, Users, Mountain, Building2 };
 
 export default function ServicesSection() {
+  const { t, td } = useLanguage();
   return (
     <section className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          eyebrow="Layanan Kami"
-          title="Pengalaman yang Dirancang Khusus"
-          subtitle="Dari private trip hingga industrial visit — setiap perjalanan kami rancang dengan cinta dan perhatian penuh."
+          eyebrow={t('services.eyebrow')}
+          title={t('services.title')}
+          subtitle={t('services.subtitle')}
         />
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -35,13 +37,13 @@ export default function ServicesSection() {
                     <Icon className="w-7 h-7 text-primary-600 group-hover:text-accent-600 transition-colors" />
                   </div>
                   <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors">
-                    {service.title}
+                    {td(service.title)}
                   </h3>
                   <p className="text-sm text-gray-600 leading-relaxed mb-4">
-                    {service.short}
+                    {td(service.short)}
                   </p>
                   <span className="inline-flex items-center gap-1 text-sm font-semibold text-primary-600 group-hover:text-accent-500 transition-colors">
-                    Selengkapnya
+                    {t('services.more')}
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </span>
                 </Link>

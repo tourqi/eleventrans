@@ -2,33 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import SectionHeading from '../ui/SectionHeading';
-
-const FAQS = [
-  {
-    q: 'Berapa harga paket trip di Eleven Trans Holiday?',
-    a: 'Harga bervariasi tergantung tujuan, jumlah peserta, dan fasilitas yang dipilih. Mulai dari Rp 150.000/orang untuk day trip. Hubungi kami via WhatsApp untuk penawaran terbaik!',
-  },
-  {
-    q: 'Apakah bisa request custom trip sesuai keinginan?',
-    a: 'Tentu! Kami sangat fleksibel. Kamu bisa tentukan destinasi, jadwal, dan aktivitas sesuai kebutuhan. Tim kami akan bantu susun itinerary-nya.',
-  },
-  {
-    q: 'Kendaraan apa saja yang tersedia?',
-    a: 'Kami punya armada lengkap: Toyota Avanza (4-6 orang), HiAce Premio (12-15 orang), Elf Long (17-19 orang), Medium Bus (27-31 orang), dan Big Bus (45-50 orang). Semua terawat dan ber-AC.',
-  },
-  {
-    q: 'Apakah ada asuransi perjalanan?',
-    a: 'Ya, semua peserta trip kami dilindungi asuransi perjalanan. Keselamatan dan kenyamanan pelanggan adalah prioritas utama kami.',
-  },
-  {
-    q: 'Berapa minimal peserta untuk booking?',
-    a: 'Tidak ada minimal! Untuk private trip bisa mulai dari 2 orang. Untuk gathering dan adventure trip, biasanya lebih seru kalau 10 orang ke atas.',
-  },
-  {
-    q: 'Bagaimana cara booking dan pembayaran?',
-    a: 'Cukup hubungi kami via WhatsApp, diskusikan kebutuhan trip, lalu kami kirimkan invoice. Pembayaran via transfer bank dengan DP 50% untuk konfirmasi booking.',
-  },
-];
+import { useLanguage } from '../../contexts/LanguageContext';
 
 function FAQItem({ faq, isOpen, onToggle }) {
   return (
@@ -69,14 +43,24 @@ function FAQItem({ faq, isOpen, onToggle }) {
 
 export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState(0);
+  const { t } = useLanguage();
+
+  const FAQS = [
+    { q: t('faq.q1'), a: t('faq.a1') },
+    { q: t('faq.q2'), a: t('faq.a2') },
+    { q: t('faq.q3'), a: t('faq.a3') },
+    { q: t('faq.q4'), a: t('faq.a4') },
+    { q: t('faq.q5'), a: t('faq.a5') },
+    { q: t('faq.q6'), a: t('faq.a6') },
+  ];
 
   return (
     <section className="py-20 bg-white">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           label="FAQ"
-          title="Pertanyaan yang Sering Ditanyakan"
-          subtitle="Belum nemu jawabannya? Chat kami langsung via WhatsApp!"
+          title={t('faq.title')}
+          subtitle={t('faq.subtitle')}
         />
         <div className="mt-12 bg-gray-50 rounded-2xl p-6 md:p-8">
           {FAQS.map((faq, idx) => (

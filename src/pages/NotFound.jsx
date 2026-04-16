@@ -2,8 +2,10 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Home, ArrowLeft } from 'lucide-react';
 import SEO from '../components/SEO';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function NotFound() {
+  const { t } = useLanguage();
   return (
     <section className="min-h-[80vh] flex items-center justify-center px-4 relative overflow-hidden">
       <SEO title="404 — Halaman Tidak Ditemukan" description="Halaman yang kamu cari tidak ditemukan." />
@@ -25,12 +27,11 @@ export default function NotFound() {
         </h1>
 
         <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mt-2 mb-4 font-[Poppins]">
-          Halaman Tidak Ditemukan
+          {t('notFound.title')}
         </h2>
 
         <p className="text-gray-500 mb-8 leading-relaxed">
-          Sepertinya kamu tersesat! Halaman yang kamu cari tidak ada atau sudah dipindahkan. 
-          Yuk kembali dan temukan petualangan seru bersama kami.
+          {t('notFound.desc')}
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -39,7 +40,7 @@ export default function NotFound() {
             className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/25"
           >
             <Home className="w-5 h-5" />
-            Kembali ke Beranda
+            {t('notFound.home')}
           </Link>
 
           <button
@@ -47,7 +48,7 @@ export default function NotFound() {
             className="inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-gray-200 text-gray-700 font-semibold rounded-xl hover:border-gray-300 hover:bg-gray-50 transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
-            Halaman Sebelumnya
+            {t('notFound.back')}
           </button>
         </div>
       </motion.div>

@@ -22,23 +22,25 @@ import CTASection from '../components/sections/CTASection';
 import PageHero from '../components/sections/PageHero';
 import SEO from '../components/SEO';
 import { buildWhatsAppLink, formatRupiah } from '../utils/helpers';
+import { useLanguage } from '../contexts/LanguageContext';
 
 /* Packages list */
 function PackagesList() {
+  const { t } = useLanguage();
   return (
     <>
       <SEO
-        title="Paket Wisata"
-        description="Pilih paket wisata terbaik dari Eleven Trans Holiday — rafting, city tour, adventure trip, dan custom trip sesuai kebutuhan kamu."
+        title={t('pkg.eyebrow')}
+        description="Pilih paket wisata terbaik dari Eleven Trans Holiday."
         path="/packages"
       />
       <PageHero>
         <span className="text-accent-300 font-semibold text-xs uppercase tracking-wider">
-          Paket Wisata
+          {t('pkg.eyebrow')}
         </span>
-        <h1 className="text-3xl md:text-4xl font-extrabold mt-2 mb-4 text-white">Paket Pengalaman</h1>
+        <h1 className="text-3xl md:text-4xl font-extrabold mt-2 mb-4 text-white">{t('pkg.title')}</h1>
         <p className="text-base text-white/80">
-          Pilih paket yang sesuai — atau request custom trip sesuai kebutuhan kamu.
+          {t('pkg.desc')}
         </p>
       </PageHero>
 
@@ -53,9 +55,8 @@ function PackagesList() {
       </section>
 
       <CTASection
-        title="Tidak menemukan paket yang cocok?"
-        subtitle="Tenang, kami bisa buatkan paket custom sesuai kebutuhan dan budget kamu."
-        waMessage="Halo Eleven Trans! Saya ingin request custom trip. Bisa bantu?"
+        title={t('pkg.noMatchTitle')}
+        subtitle={t('pkg.noMatchSub')}
       />
     </>
   );
@@ -65,13 +66,14 @@ function PackagesList() {
 function PackageDetailPage() {
   const { slug } = useParams();
   const pkg = getPackageBySlug(slug);
+  const { t, td } = useLanguage();
 
   if (!pkg) {
     return (
       <div className="pt-32 pb-20 text-center">
-        <h1 className="text-2xl font-bold text-gray-900 mb-4">Paket tidak ditemukan</h1>
+        <h1 className="text-2xl font-bold text-gray-900 mb-4">{t('pkg.notFound')}</h1>
         <Link to="/packages" className="text-primary-600 hover:underline">
-          ← Lihat semua paket
+          {t('pkg.backLink')}
         </Link>
       </div>
     );
@@ -82,8 +84,8 @@ function PackageDetailPage() {
   return (
     <>
       <SEO
-        title={pkg.title}
-        description={pkg.excerpt}
+        title={td(pkg.title)}
+        description={td(pkg.excerpt)}
         image={pkg.images[0]}
         path={`/packages/${pkg.slug}`}
       />
@@ -93,26 +95,26 @@ function PackageDetailPage() {
           to="/packages"
           className="inline-flex items-center gap-1 text-white/70 hover:text-white text-sm mb-4 transition-colors"
         >
-          <ChevronLeft className="w-4 h-4" /> Semua Paket
+          <ChevronLeft className="w-4 h-4" /> {t('pkg.allPackages')}
         </Link>
 
         <Badge variant="accent" className="mb-3">
-          {pkg.tagline}
+          {td(pkg.tagline)}
         </Badge>
         <h1 className="text-3xl md:text-4xl font-extrabold mb-4 leading-tight text-white">
-          {pkg.title}
+          {td(pkg.title)}
         </h1>
-        <p className="text-base text-white/80 leading-relaxed mb-6">{pkg.excerpt}</p>
+        <p className="text-base text-white/80 leading-relaxed mb-6">{td(pkg.excerpt)}</p>
 
         {/* Quick facts */}
         <div className="flex flex-wrap gap-5 mb-6 text-sm">
           <div className="flex items-center gap-2 text-white/70">
             <Clock className="w-5 h-5 text-accent-300" />
-            <span>{pkg.meta.duration}</span>
+            <span>{td(pkg.meta.duration)}</span>
           </div>
           <div className="flex items-center gap-2 text-white/70">
             <Users className="w-5 h-5 text-accent-300" />
-            <span>{pkg.meta.groupSize}</span>
+            <span>{td(pkg.meta.groupSize)}</span>
           </div>
           <div className="flex items-center gap-2 text-white/70">
             <MapPin className="w-5 h-5 text-accent-300" />
@@ -120,7 +122,7 @@ function PackageDetailPage() {
           </div>
           <div className="flex items-center gap-2 text-white/70">
             <Shield className="w-5 h-5 text-accent-300" />
-            <span>{pkg.meta.difficulty}</span>
+            <span>{td(pkg.meta.difficulty)}</span>
           </div>
         </div>
 
@@ -131,11 +133,11 @@ function PackageDetailPage() {
             href={buildWhatsAppLink(pkg.ctaPrefill)}
           >
             <Phone className="w-5 h-5" />
-            Booking Sekarang
+            {t('pkg.bookNow')}
           </Button>
           {pkg.priceFrom && (
             <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-lg px-5 py-3">
-              <span className="text-sm text-white/60">Mulai dari</span>
+              <span className="text-sm text-white/60">{t('pkg.startFrom')}</span>
               <span className="text-xl font-bold text-accent-300">
                 {formatRupiah(pkg.priceFrom)}
               </span>
@@ -149,8 +151,8 @@ function PackageDetailPage() {
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            eyebrow="Bayangkan Ini..."
-            title="Pengalaman yang Menanti Kamu"
+            eyebrow={t('pkg.storyEyebrow')}
+            title={t('pkg.storyTitle')}
             center={false}
           />
           <div className="space-y-5 text-gray-700 leading-relaxed text-lg">
@@ -162,7 +164,7 @@ function PackageDetailPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
               >
-                {para}
+                {td(para)}
               </motion.p>
             ))}
           </div>
@@ -196,9 +198,9 @@ function PackageDetailPage() {
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            eyebrow="Itinerary"
-            title="Rangkaian Acara"
-            subtitle="Timeline kegiatan dari pagi sampai sore."
+            eyebrow={t('pkg.itineraryEyebrow')}
+            title={t('pkg.itineraryTitle')}
+            subtitle={t('pkg.itinerarySub')}
             center={false}
           />
           <Timeline steps={pkg.itinerary} />
@@ -209,34 +211,32 @@ function PackageDetailPage() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-10">
-            {/* Activities */}
             <div className="bg-white rounded-2xl p-8 shadow-md">
               <div className="flex items-center gap-3 mb-6">
                 <Zap className="w-6 h-6 text-accent-500" />
-                <h3 className="text-xl font-bold text-gray-900">Aktivitas</h3>
+                <h3 className="text-xl font-bold text-gray-900">{t('pkg.activitiesTitle')}</h3>
               </div>
               <ul className="space-y-3">
                 {pkg.activities.map((act) => (
                   <li key={act} className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-primary-500 shrink-0" />
-                    <span className="text-gray-700">{act}</span>
+                    <span className="text-gray-700">{td(act)}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Menu */}
             {pkg.menu.length > 0 && (
               <div className="bg-white rounded-2xl p-8 shadow-md">
                 <div className="flex items-center gap-3 mb-6">
                   <UtensilsCrossed className="w-6 h-6 text-accent-500" />
-                  <h3 className="text-xl font-bold text-gray-900">Menu Makan</h3>
+                  <h3 className="text-xl font-bold text-gray-900">{t('pkg.menuTitle')}</h3>
                 </div>
                 <ul className="space-y-3">
                   {pkg.menu.map((item) => (
                     <li key={item} className="flex items-center gap-3">
                       <span className="text-accent-400">🍽</span>
-                      <span className="text-gray-700">{item}</span>
+                      <span className="text-gray-700">{td(item)}</span>
                     </li>
                   ))}
                 </ul>
@@ -250,8 +250,8 @@ function PackageDetailPage() {
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            eyebrow="Sudah Termasuk"
-            title="Apa yang Kamu Dapat"
+            eyebrow={t('pkg.highlightsEyebrow')}
+            title={t('pkg.highlightsTitle')}
             center={false}
           />
           <div className="grid sm:grid-cols-2 gap-4">
@@ -261,12 +261,12 @@ function PackageDetailPage() {
                 className="flex items-start gap-3 bg-primary-50 rounded-xl p-4"
               >
                 <CheckCircle className="w-5 h-5 text-primary-600 mt-0.5 shrink-0" />
-                <span className="text-gray-800 font-medium">{h}</span>
+                <span className="text-gray-800 font-medium">{td(h)}</span>
               </div>
             ))}
           </div>
           {pkg.priceNote && (
-            <p className="mt-6 text-sm text-gray-500 italic">* {pkg.priceNote}</p>
+            <p className="mt-6 text-sm text-gray-500 italic">* {td(pkg.priceNote)}</p>
           )}
         </div>
       </section>
@@ -276,44 +276,44 @@ function PackageDetailPage() {
         <section className="py-20 bg-gray-50">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <SectionHeading
-              eyebrow="Pilihan Paket"
-              title="Pilih Paket Sesuai Budget"
-              subtitle="Semua paket sudah termasuk transportasi, makan, dan tiket wisata."
+              eyebrow={t('pkg.pricingEyebrow')}
+              title={t('pkg.pricingTitle')}
+              subtitle={t('pkg.pricingSub')}
               center={false}
             />
             <div className="overflow-x-auto rounded-2xl shadow-md">
               <table className="w-full text-sm text-left">
                 <thead className="bg-primary-600 text-white">
                   <tr>
-                    <th className="px-4 py-3 font-semibold">Paket</th>
-                    <th className="px-4 py-3 font-semibold">Hotel</th>
-                    <th className="px-4 py-3 font-semibold">Armada</th>
-                    <th className="px-4 py-3 font-semibold text-right">Harga/pax</th>
-                    <th className="px-4 py-3 font-semibold text-center">Min. Pax</th>
+                    <th className="px-4 py-3 font-semibold">{t('pkg.thTier')}</th>
+                    <th className="px-4 py-3 font-semibold">{t('pkg.thHotel')}</th>
+                    <th className="px-4 py-3 font-semibold">{t('pkg.thVehicle')}</th>
+                    <th className="px-4 py-3 font-semibold text-right">{t('pkg.thPrice')}</th>
+                    <th className="px-4 py-3 font-semibold text-center">{t('pkg.thMinPax')}</th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-100">
-                  {pkg.pricingTiers.map((t, idx) => (
+                  {pkg.pricingTiers.map((tier, idx) => (
                     <tr key={idx} className="hover:bg-primary-50 transition-colors">
                       <td className="px-4 py-3">
                         <span className="inline-flex items-center gap-1.5 font-semibold text-gray-900">
                           <Tag className="w-4 h-4 text-accent-500" />
-                          {t.tier}
+                          {tier.tier}
                         </span>
                       </td>
-                      <td className="px-4 py-3 text-gray-700">{t.hotel}</td>
-                      <td className="px-4 py-3 text-gray-700">{t.vehicle}</td>
+                      <td className="px-4 py-3 text-gray-700">{tier.hotel}</td>
+                      <td className="px-4 py-3 text-gray-700">{tier.vehicle}</td>
                       <td className="px-4 py-3 text-right font-bold text-accent-600">
-                        {formatRupiah(t.price)}
+                        {formatRupiah(tier.price)}
                       </td>
-                      <td className="px-4 py-3 text-center text-gray-600">{t.minPax} orang</td>
+                      <td className="px-4 py-3 text-center text-gray-600">{tier.minPax} {t('pkg.orang')}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
             <p className="mt-4 text-sm text-gray-500 italic">
-              * Semua paket sudah termasuk: sarapan 2x, makan siang 2x, makan malam 1x.
+              {t('pkg.pricingNote')}
             </p>
           </div>
         </section>
@@ -323,7 +323,7 @@ function PackageDetailPage() {
       {otherPackages.length > 0 && (
         <section className="py-20 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <SectionHeading eyebrow="Paket Lainnya" title="Mungkin Kamu Juga Suka" />
+            <SectionHeading eyebrow={t('pkg.otherEyebrow')} title={t('pkg.otherTitle')} />
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {otherPackages.map((p) => (
                 <PackageCard key={p.id} pkg={p} />
@@ -334,9 +334,7 @@ function PackageDetailPage() {
       )}
 
       <CTASection
-        title={`Tertarik ${pkg.title}?`}
-        subtitle="Hubungi kami sekarang untuk booking atau tanya-tanya dulu."
-        waMessage={pkg.ctaPrefill}
+        title={`${t('pkg.interested')} ${td(pkg.title)}?`}
       />
     </>
   );

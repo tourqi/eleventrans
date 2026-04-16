@@ -7,22 +7,22 @@ import PageHero from '../components/sections/PageHero';
 import SEO from '../components/SEO';
 import { COMPANY } from '../data/constants';
 import { buildWhatsAppLink } from '../utils/helpers';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function Contact() {
-  const [status, setStatus] = useState('idle'); // idle | sending | success | error
+  const [status, setStatus] = useState('idle');
+  const { t } = useLanguage();
 
   async function handleSubmit(e) {
     e.preventDefault();
     setStatus('sending');
     const formData = new FormData(e.target);
 
-    // Honeypot check
     if (formData.get('website')) {
       setStatus('idle');
       return;
     }
 
-    // Build WhatsApp link as fallback
     const name = formData.get('name');
     const phone = formData.get('phone');
     const message = formData.get('message');
@@ -31,43 +31,37 @@ export default function Contact() {
 
     const waText = `Halo Eleven Trans! 👋\n\nNama: ${name}\nNo HP: ${phone}\nJenis Trip: ${tripType}\nJumlah Orang: ${pax}\n\nPesan:\n${message}`;
 
-    // For MVP: open WhatsApp with form data
     window.open(buildWhatsAppLink(waText), '_blank');
     setStatus('success');
     e.target.reset();
-
-    // Reset after 5 sec
     setTimeout(() => setStatus('idle'), 5000);
   }
 
   return (
     <>
       <SEO
-        title="Kontak"
+        title={t('contact.eyebrow')}
         description="Hubungi Eleven Trans Holiday via WhatsApp, telepon, atau email. Konsultasi gratis untuk trip impianmu!"
         path="/contact"
       />
-      {/* Hero */}
       <PageHero>
         <span className="text-accent-300 font-semibold text-xs uppercase tracking-wider">
-          Kontak
+          {t('contact.eyebrow')}
         </span>
         <h1 className="text-3xl md:text-4xl font-extrabold mt-2 mb-4 text-white">
-          Ceritakan Rencana Trip Kamu
+          {t('contact.title')}
         </h1>
         <p className="text-base text-white/80">
-          Isi form di bawah atau langsung chat via WhatsApp. Konsultasi gratis — tanpa
-          komitmen!
+          {t('contact.desc')}
         </p>
       </PageHero>
 
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-5 gap-12">
-            {/* Form */}
             <div className="lg:col-span-3">
               <div className="bg-white rounded-2xl shadow-md p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Request Custom Trip</h2>
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">{t('contact.formTitle')}</h2>
 
                 {status === 'success' ? (
                   <motion.div
@@ -76,128 +70,74 @@ export default function Contact() {
                     className="text-center py-12"
                   >
                     <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">Terima kasih! 🎉</h3>
-                    <p className="text-gray-600">
-                      Pesan kamu sudah kami terima. Tim kami akan menghubungi kamu segera via
-                      WhatsApp.
-                    </p>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">{t('contact.thankYou')}</h3>
+                    <p className="text-gray-600">{t('contact.thankYouMsg')}</p>
                   </motion.div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-5">
-                    {/* Honeypot */}
                     <input type="text" name="website" className="hidden" tabIndex={-1} autoComplete="off" />
 
                     <div className="grid sm:grid-cols-2 gap-5">
                       <div>
-                        <label className="form-label">
-                          Nama Lengkap *
-                        </label>
-                        <input
-                          name="name"
-                          required
-                          placeholder="Nama kamu"
-                          className="form-input"
-                        />
+                        <label className="form-label">{t('contact.nameLabel')}</label>
+                        <input name="name" required placeholder={t('contact.namePlaceholder')} className="form-input" />
                       </div>
                       <div>
-                        <label className="form-label">
-                          No. WhatsApp *
-                        </label>
-                        <input
-                          name="phone"
-                          required
-                          placeholder="08xxxxxxxxxx"
-                          className="form-input"
-                        />
+                        <label className="form-label">{t('contact.whatsappLabel')}</label>
+                        <input name="phone" required placeholder="08xxxxxxxxxx" className="form-input" />
                       </div>
                     </div>
 
                     <div className="grid sm:grid-cols-2 gap-5">
                       <div>
-                        <label className="form-label">
-                          Jenis Trip
-                        </label>
-                        <select
-                          name="tripType"
-                          className="form-input"
-                        >
-                          <option value="">Pilih jenis trip</option>
+                        <label className="form-label">{t('contact.tripTypeLabel')}</label>
+                        <select name="tripType" className="form-input">
+                          <option value="">{t('contact.tripTypePlaceholder')}</option>
                           <option value="Private Trip">Private Trip</option>
                           <option value="Family Gathering">Family Gathering</option>
                           <option value="Adventure Trip">Adventure Trip</option>
                           <option value="Industrial Visit">Industrial Visit</option>
-                          <option value="Custom">Lainnya / Custom</option>
+                          <option value="Custom">{t('contact.tripCustom')}</option>
                         </select>
                       </div>
                       <div>
-                        <label className="form-label">
-                          Jumlah Orang
-                        </label>
-                        <input
-                          name="pax"
-                          type="number"
-                          min="1"
-                          placeholder="Perkiraan jumlah peserta"
-                          className="form-input"
-                        />
+                        <label className="form-label">{t('contact.paxLabel')}</label>
+                        <input name="pax" type="number" min="1" placeholder={t('contact.paxPlaceholder')} className="form-input" />
                       </div>
                     </div>
 
                     <div>
-                      <label className="form-label">
-                        Ceritakan Rencana Trip Kamu
-                      </label>
-                      <textarea
-                        name="message"
-                        rows={4}
-                        placeholder="Mau ke mana? Kapan? Budget berapa? Ceritakan sebanyak mungkin..."
-                        className="form-input resize-none"
-                      />
+                      <label className="form-label">{t('contact.messageLabel')}</label>
+                      <textarea name="message" rows={4} placeholder={t('contact.messagePlaceholder')} className="form-input resize-none" />
                     </div>
 
-                    <Button
-                      type="submit"
-                      variant="primary"
-                      size="lg"
-                      className="w-full"
-                      disabled={status === 'sending'}
-                    >
+                    <Button type="submit" variant="primary" size="lg" className="w-full" disabled={status === 'sending'}>
                       <Send className="w-5 h-5" />
-                      {status === 'sending' ? 'Mengirim...' : 'Kirim & Chat via WhatsApp'}
+                      {status === 'sending' ? t('contact.sending') : t('contact.submit')}
                     </Button>
                   </form>
                 )}
               </div>
             </div>
 
-            {/* Contact info */}
             <div className="lg:col-span-2 space-y-6">
-              {/* WhatsApp CTA */}
               <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8 border border-green-200">
-                <h3 className="text-xl font-bold text-gray-900 mb-3">Chat Langsung 💬</h3>
-                <p className="text-gray-600 text-sm mb-5">
-                  Cara tercepat untuk menghubungi kami. Respon dalam hitungan menit!
-                </p>
-                <Button
-                  variant="whatsapp"
-                  size="lg"
-                  href={buildWhatsAppLink('Halo Eleven Trans! Saya mau tanya tentang trip.')}
-                  className="w-full"
-                >
+                <h3 className="text-xl font-bold text-gray-900 mb-3">{t('contact.chatDirect')}</h3>
+                <p className="text-gray-600 text-sm mb-5">{t('contact.chatDirectDesc')}</p>
+                <Button variant="whatsapp" size="lg" href={buildWhatsAppLink('Halo Eleven Trans! Saya mau tanya tentang trip.')} className="w-full">
                   <Phone className="w-5 h-5" />
-                  Chat via WhatsApp
+                  {t('contact.chatWA')}
                 </Button>
               </div>
 
-              {/* Contact details */}
               <div className="bg-white rounded-2xl shadow-md p-8 space-y-5">
-                <h3 className="text-lg font-bold text-gray-900">Info Kontak</h3>
+                <h3 className="text-lg font-bold text-gray-900">{t('contact.infoTitle')}</h3>
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center shrink-0">
                     <Phone className="w-5 h-5 text-primary-600" />
                   </div>
                   <div>
-                    <div className="text-sm font-medium text-gray-900">Telepon / WhatsApp</div>
+                    <div className="text-sm font-medium text-gray-900">{t('contact.phoneLabel')}</div>
                     <div className="text-sm text-gray-600">{COMPANY.phone}</div>
                   </div>
                 </div>
@@ -206,7 +146,7 @@ export default function Contact() {
                     <Mail className="w-5 h-5 text-primary-600" />
                   </div>
                   <div>
-                    <div className="text-sm font-medium text-gray-900">Email</div>
+                    <div className="text-sm font-medium text-gray-900">{t('contact.emailLabel')}</div>
                     <div className="text-sm text-gray-600">{COMPANY.email}</div>
                   </div>
                 </div>
@@ -215,26 +155,25 @@ export default function Contact() {
                     <MapPin className="w-5 h-5 text-primary-600" />
                   </div>
                   <div>
-                    <div className="text-sm font-medium text-gray-900">Alamat</div>
+                    <div className="text-sm font-medium text-gray-900">{t('contact.addressLabel')}</div>
                     <div className="text-sm text-gray-600">{COMPANY.address}</div>
                   </div>
                 </div>
               </div>
 
-              {/* Business hours */}
               <div className="bg-white rounded-2xl shadow-md p-8">
-                <h3 className="text-lg font-bold text-gray-900 mb-3">Jam Operasional</h3>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">{t('contact.hoursTitle')}</h3>
                 <div className="space-y-2 text-sm text-gray-600">
                   <div className="flex justify-between">
-                    <span>Senin - Jumat</span>
+                    <span>{t('contact.monFri')}</span>
                     <span className="font-medium text-gray-900">08:00 - 21:00</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Sabtu</span>
+                    <span>{t('contact.sat')}</span>
                     <span className="font-medium text-gray-900">08:00 - 18:00</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Minggu</span>
+                    <span>{t('contact.sun')}</span>
                     <span className="font-medium text-gray-900">09:00 - 15:00</span>
                   </div>
                 </div>
@@ -244,11 +183,10 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Google Maps */}
       <section className="pb-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Lokasi Kami</h2>
-          <p className="text-gray-500 text-sm mb-6">Kunjungi kantor kami di Bandung</p>
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">{t('contact.locationTitle')}</h2>
+          <p className="text-gray-500 text-sm mb-6">{t('contact.locationSub')}</p>
         </div>
         <div className="w-full h-[400px] bg-gray-100">
           <iframe

@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 export default function PageLoader() {
+  const { t } = useLanguage();
   return (
     <div className="min-h-[60vh] flex items-center justify-center">
       <motion.div
@@ -24,7 +26,7 @@ export default function PageLoader() {
             />
           ))}
         </div>
-        <p className="text-sm text-gray-400 font-medium">Memuat halaman...</p>
+        <p className="text-sm text-gray-400 font-medium">{t('loader.text')}</p>
       </motion.div>
     </div>
   );

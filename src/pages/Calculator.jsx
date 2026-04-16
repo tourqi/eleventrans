@@ -24,6 +24,7 @@ import {
   ADDITIONAL_OPTIONS,
 } from '../data/calculator';
 import { formatRupiah, buildWhatsAppLink } from '../utils/helpers';
+import { useLanguage } from '../contexts/LanguageContext';
 
 /* ── tiny helpers ── */
 const card = 'bg-white rounded-2xl shadow-md p-6 md:p-8';
@@ -32,6 +33,7 @@ const select =
   'w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm text-gray-800 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition';
 
 export default function CalculatorPage() {
+  const { t, td } = useLanguage();
   /* ── state ── */
   const [armada, setArmada] = useState('');
   const [penginapan, setPenginapan] = useState('');
@@ -149,21 +151,20 @@ export default function CalculatorPage() {
   return (
     <>
       <SEO
-        title="Kalkulator Estimasi Biaya"
+        title={t('calc.eyebrow')}
         description="Hitung estimasi biaya trip bersama Eleven Trans Holiday. Pilih armada, penginapan, lokasi, makan, dan kegiatan sesuai kebutuhan."
         path="/calculator"
       />
 
       <PageHero>
         <span className="text-accent-300 font-semibold text-xs uppercase tracking-wider">
-          Kalkulator
+          {t('calc.eyebrow')}
         </span>
         <h1 className="text-3xl md:text-4xl font-extrabold mt-2 mb-4 text-white">
-          Estimasi Biaya Trip
+          {t('calc.title')}
         </h1>
         <p className="text-base text-white/80">
-          Pilih armada, penginapan, destinasi, dan kegiatan — dapatkan estimasi biaya trip kamu
-          secara instan.
+          {t('calc.desc')}
         </p>
       </PageHero>
 
@@ -181,10 +182,10 @@ export default function CalculatorPage() {
               >
                 <div className="flex items-center gap-3 mb-4">
                   <Users className="w-5 h-5 text-primary-600" />
-                  <h3 className="text-lg font-bold text-gray-900">Jumlah Peserta</h3>
+                  <h3 className="text-lg font-bold text-gray-900">{t('calc.paxTitle')}</h3>
                 </div>
                 <label className={label}>
-                  Jumlah Orang
+                  {t('calc.paxLabel')}
                 </label>
                 <input
                   type="number"
@@ -205,11 +206,11 @@ export default function CalculatorPage() {
               >
                 <div className="flex items-center gap-3 mb-4">
                   <Bus className="w-5 h-5 text-primary-600" />
-                  <h3 className="text-lg font-bold text-gray-900">Armada</h3>
+                  <h3 className="text-lg font-bold text-gray-900">{t('calc.armadaTitle')}</h3>
                 </div>
-                <label className={label}>Pilih Kendaraan</label>
+                <label className={label}>{t('calc.armadaLabel')}</label>
                 <select value={armada} onChange={(e) => setArmada(e.target.value)} className={select}>
-                  <option value="">— Pilih Armada —</option>
+                  <option value="">{t('calc.armadaPlaceholder')}</option>
                   {ARMADA_OPTIONS.map((a) => (
                     <option key={a.id} value={a.id}>
                       {a.name} ({a.capacity}) — {formatRupiah(a.price)}/hari
@@ -227,17 +228,17 @@ export default function CalculatorPage() {
               >
                 <div className="flex items-center gap-3 mb-4">
                   <Hotel className="w-5 h-5 text-primary-600" />
-                  <h3 className="text-lg font-bold text-gray-900">Penginapan</h3>
+                  <h3 className="text-lg font-bold text-gray-900">{t('calc.hotelTitle')}</h3>
                 </div>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <label className={label}>Tipe Hotel</label>
+                    <label className={label}>{t('calc.hotelLabel')}</label>
                     <select
                       value={penginapan}
                       onChange={(e) => setPenginapan(e.target.value)}
                       className={select}
                     >
-                      <option value="">— Pilih Penginapan —</option>
+                      <option value="">{t('calc.hotelPlaceholder')}</option>
                       {PENGINAPAN_OPTIONS.map((p) => (
                         <option key={p.id} value={p.id}>
                           {p.label} — {formatRupiah(p.pricePerNight)}/malam
@@ -246,7 +247,7 @@ export default function CalculatorPage() {
                     </select>
                   </div>
                   <div>
-                    <label className={label}>Jumlah Malam</label>
+                    <label className={label}>{t('calc.nightLabel')}</label>
                     <input
                       type="number"
                       min={0}
@@ -268,9 +269,9 @@ export default function CalculatorPage() {
               >
                 <div className="flex items-center gap-3 mb-4">
                   <MapPin className="w-5 h-5 text-primary-600" />
-                  <h3 className="text-lg font-bold text-gray-900">Lokasi Wisata</h3>
+                  <h3 className="text-lg font-bold text-gray-900">{t('calc.lokasiTitle')}</h3>
                 </div>
-                <label className={label}>Pilih Destinasi</label>
+                <label className={label}>{t('calc.lokasiLabel')}</label>
                 <select
                   value={lokasi}
                   onChange={(e) => {
@@ -279,7 +280,7 @@ export default function CalculatorPage() {
                   }}
                   className={select}
                 >
-                  <option value="">— Pilih Lokasi —</option>
+                  <option value="">{t('calc.lokasiPlaceholder')}</option>
                   {LOKASI_OPTIONS.map((l) => (
                     <option key={l.id} value={l.id}>
                       {l.name} — {l.location} ({l.duration})
@@ -297,11 +298,11 @@ export default function CalculatorPage() {
               >
                 <div className="flex items-center gap-3 mb-4">
                   <UtensilsCrossed className="w-5 h-5 text-primary-600" />
-                  <h3 className="text-lg font-bold text-gray-900">Paket Makan</h3>
+                  <h3 className="text-lg font-bold text-gray-900">{t('calc.makanTitle')}</h3>
                 </div>
-                <label className={label}>Pilih Paket</label>
+                <label className={label}>{t('calc.makanLabel')}</label>
                 <select value={makan} onChange={(e) => setMakan(e.target.value)} className={select}>
-                  <option value="">— Pilih Paket Makan —</option>
+                  <option value="">{t('calc.makanPlaceholder')}</option>
                   {MAKAN_OPTIONS.map((m) => (
                     <option key={m.id} value={m.id}>
                       {m.label} — {formatRupiah(m.pricePerPax)}/orang
@@ -322,12 +323,12 @@ export default function CalculatorPage() {
               >
                 <div className="flex items-center gap-3 mb-4">
                   <Activity className="w-5 h-5 text-primary-600" />
-                  <h3 className="text-lg font-bold text-gray-900">Kegiatan</h3>
+                  <h3 className="text-lg font-bold text-gray-900">{t('calc.kegiatanTitle')}</h3>
                 </div>
                 <p className="text-sm text-gray-500 mb-3">
                   {lokasi
-                    ? 'Pilih kegiatan yang tersedia di lokasi ini.'
-                    : 'Pilih lokasi dulu untuk melihat kegiatan yang tersedia.'}
+                    ? t('calc.kegiatanHint')
+                    : t('calc.kegiatanHintEmpty')}
                 </p>
                 <div className="space-y-3">
                   {availableKegiatan.map((k) => (
@@ -361,7 +362,7 @@ export default function CalculatorPage() {
               >
                 <div className="flex items-center gap-3 mb-4">
                   <CheckSquare className="w-5 h-5 text-primary-600" />
-                  <h3 className="text-lg font-bold text-gray-900">Biaya Tambahan</h3>
+                  <h3 className="text-lg font-bold text-gray-900">{t('calc.additionalTitle')}</h3>
                 </div>
                 <div className="space-y-3">
                   {ADDITIONAL_OPTIONS.map((opt) => {
@@ -390,10 +391,10 @@ export default function CalculatorPage() {
                             <p className="text-xs text-gray-500 mt-0.5">{opt.description}</p>
                           )}
                           {opt.busOnly && (
-                            <p className="text-xs text-amber-600 mt-0.5">* Hanya untuk Bus</p>
+                            <p className="text-xs text-amber-600 mt-0.5">{t('calc.busOnly')}</p>
                           )}
                           {opt.busOrRequest && (
-                            <p className="text-xs text-blue-600 mt-0.5">* Untuk Bus / atas permintaan</p>
+                            <p className="text-xs text-blue-600 mt-0.5">{t('calc.busOrReq')}</p>
                           )}
                         </div>
                         <span className="text-xs text-gray-500 whitespace-nowrap">
@@ -418,12 +419,12 @@ export default function CalculatorPage() {
                 >
                   <div className="flex items-center gap-3 mb-5">
                     <CalcIcon className="w-5 h-5 text-primary-600" />
-                    <h3 className="text-lg font-bold text-gray-900">Ringkasan Estimasi</h3>
+                    <h3 className="text-lg font-bold text-gray-900">{t('calc.summaryTitle')}</h3>
                   </div>
 
                   {breakdown.items.length === 0 ? (
                     <p className="text-sm text-gray-400 text-center py-8">
-                      Pilih opsi di samping untuk melihat estimasi biaya.
+                      {t('calc.summaryEmpty')}
                     </p>
                   ) : (
                     <>
@@ -440,12 +441,12 @@ export default function CalculatorPage() {
 
                       <div className="border-t border-gray-200 pt-4 space-y-2">
                         <div className="flex justify-between text-base font-bold">
-                          <span className="text-gray-800">Total Estimasi</span>
+                          <span className="text-gray-800">{t('calc.total')}</span>
                           <span className="text-primary-600">{formatRupiah(breakdown.total)}</span>
                         </div>
                         <div className="flex justify-between text-sm">
                           <span className="text-gray-500">
-                            Per Orang ({breakdown.pax} pax)
+                            {t('calc.perPax')} ({breakdown.pax} pax)
                           </span>
                           <span className="font-semibold text-accent-600">
                             {formatRupiah(breakdown.perPax)}
@@ -456,7 +457,7 @@ export default function CalculatorPage() {
                   )}
 
                   <p className="text-[11px] text-gray-400 mt-4 leading-relaxed">
-                    * Harga bersifat estimasi dan dapat berubah. Hubungi kami untuk penawaran final.
+                    {t('calc.note')}
                   </p>
                 </motion.div>
 
@@ -474,10 +475,10 @@ export default function CalculatorPage() {
                       className="w-full justify-center gap-2"
                     >
                       <Send className="w-4 h-4" />
-                      Kirim ke WhatsApp
+                      {t('calc.sendWA')}
                     </Button>
                     <p className="text-xs text-gray-400 text-center mt-2">
-                      Detail estimasi akan dikirim otomatis
+                      {t('calc.sendWANote')}
                     </p>
                   </motion.div>
                 )}

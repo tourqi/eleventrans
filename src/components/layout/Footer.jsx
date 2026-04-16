@@ -3,30 +3,32 @@ import { Phone, Mail, MapPin } from 'lucide-react';
 import { COMPANY } from '../../data/constants';
 import { buildWhatsAppLink } from '../../utils/helpers';
 import { DEFAULT_WA_MESSAGE } from '../../data/constants';
+import { useLanguage } from '../../contexts/LanguageContext';
 import logo from '../../assets/logo.webp';
 
-const footerLinks = [
-  {
-    title: 'Layanan',
-    links: [
-      { label: 'Private Trip', to: '/services/private-trip' },
-      { label: 'Family Gathering', to: '/services/family-gathering' },
-      { label: 'Adventure Trip', to: '/services/adventure-trip' },
-      { label: 'Industrial Visit', to: '/services/industrial-visit' },
-    ],
-  },
-  {
-    title: 'Perusahaan',
-    links: [
-      { label: 'Tentang Kami', to: '/about' },
-      { label: 'Armada', to: '/fleet' },
-      { label: 'Gallery', to: '/gallery' },
-      { label: 'Kontak', to: '/contact' },
-    ],
-  },
-];
-
 export default function Footer() {
+  const { t } = useLanguage();
+
+  const footerLinks = [
+    {
+      title: t('footer.services'),
+      links: [
+        { label: 'Private Trip', to: '/services/private-trip' },
+        { label: 'Family Gathering', to: '/services/family-gathering' },
+        { label: 'Adventure Trip', to: '/services/adventure-trip' },
+        { label: 'Industrial Visit', to: '/services/industrial-visit' },
+      ],
+    },
+    {
+      title: t('footer.company'),
+      links: [
+        { label: t('footer.aboutUs'), to: '/about' },
+        { label: t('nav.fleet'), to: '/fleet' },
+        { label: 'Gallery', to: '/gallery' },
+        { label: t('footer.contact'), to: '/contact' },
+      ],
+    },
+  ];
   return (
     <footer className="bg-gray-900 text-gray-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -43,8 +45,7 @@ export default function Footer() {
               </div>
             </Link>
             <p className="text-sm text-gray-400 leading-relaxed mb-6">
-              {COMPANY.tagline}. Kami menghadirkan pengalaman perjalanan yang menyenangkan, aman,
-              dan tak terlupakan.
+              {COMPANY.tagline}{t('footer.taglineSuffix')}
             </p>
             <div className="flex gap-3">
               <a
@@ -89,7 +90,7 @@ export default function Footer() {
 
           {/* Contact info */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Hubungi Kami</h4>
+            <h4 className="text-white font-semibold mb-4">{t('footer.contactUs')}</h4>
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-3">
                 <Phone className="w-4 h-4 mt-0.5 text-accent-400 shrink-0" />
@@ -125,7 +126,7 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Eleven Trans Holiday. All rights reserved.
           </p>
           <p className="text-xs text-gray-600">
-            Bikin Liburan Makin Asyik 🎉
+            {t('footer.motto')}
           </p>
         </div>
       </div>

@@ -3,9 +3,11 @@ import { ArrowRight, Phone } from 'lucide-react';
 import Button from '../ui/Button';
 import { buildWhatsAppLink } from '../../utils/helpers';
 import { DEFAULT_WA_MESSAGE } from '../../data/constants';
+import { useLanguage } from '../../contexts/LanguageContext';
 import heroModel from '../../assets/hero-model.webp';
 
 export default function HeroSection() {
+  const { t } = useLanguage();
   return (
     <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-black">
       {/* Hero image background */}
@@ -31,21 +33,19 @@ export default function HeroSection() {
             transition={{ duration: 0.7 }}
           >
             <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white/90 text-sm font-medium px-4 py-1.5 rounded-full mb-6">
-              🎉 Travel with Fun
+              {t('hero.badge')}
             </span>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] mb-6">
-              Bikin Liburan
+              {t('hero.title1')}
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-300 to-accent-500">
-                Makin Asyik
+                {t('hero.title2')}
               </span>
             </h1>
 
             <p className="text-lg sm:text-xl text-blue-100 leading-relaxed max-w-xl mb-8">
-              Private trip, family gathering, adventure trip & industrial visit —
-              semua dirancang khusus untuk pengalaman tak terlupakan. Aman, seru,
-              dan penuh cerita.
+              {t('hero.subtitle')}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
@@ -55,10 +55,10 @@ export default function HeroSection() {
                 href={buildWhatsAppLink(DEFAULT_WA_MESSAGE)}
               >
                 <Phone className="w-5 h-5" />
-                Chat via WhatsApp
+                {t('hero.cta')}
               </Button>
               <Button variant="outline" size="lg" to="/packages" className="border-white/30 text-white hover:bg-white/10">
-                Lihat Paket
+                {t('hero.cta2')}
                 <ArrowRight className="w-5 h-5" />
               </Button>
             </div>
@@ -76,7 +76,7 @@ export default function HeroSection() {
                 ))}
               </div>
               <div className="text-sm text-blue-200">
-                <span className="text-white font-semibold">500+</span> pelanggan puas
+                <span className="text-white font-semibold">500+</span> {t('hero.social')}
               </div>
             </div>
           </motion.div>

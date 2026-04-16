@@ -8,24 +8,25 @@ import PageHero from '../components/sections/PageHero';
 import SEO from '../components/SEO';
 import { FLEET } from '../data/fleet';
 import { buildWhatsAppLink } from '../utils/helpers';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function Fleet() {
+  const { t, td } = useLanguage();
   return (
     <>
       <SEO
-        title="Armada"
+        title={t('fleet.eyebrow')}
         description="Armada kendaraan Eleven Trans Holiday — HiAce, Elf, Bus Medium, Big Bus, dan MPV. Terawat, nyaman, dan siap antar ke mana saja."
         path="/fleet"
       />
       {/* Hero */}
       <PageHero>
         <span className="text-accent-300 font-semibold text-xs uppercase tracking-wider">
-          Armada
+          {t('fleet.eyebrow')}
         </span>
-        <h1 className="text-3xl md:text-4xl font-extrabold mt-2 mb-4 text-white">Armada Kami</h1>
+        <h1 className="text-3xl md:text-4xl font-extrabold mt-2 mb-4 text-white">{t('fleet.title')}</h1>
         <p className="text-base text-white/80">
-          Kendaraan terawat, bersih, dan nyaman untuk setiap perjalanan. Semua dilengkapi AC,
-          audio, dan driver berpengalaman.
+          {t('fleet.desc')}
         </p>
       </PageHero>
 
@@ -51,20 +52,20 @@ export default function Fleet() {
                   />
                   {vehicle.popular && (
                     <div className="absolute top-3 left-3">
-                      <Badge variant="accent">⭐ Favorit</Badge>
+                      <Badge variant="accent">{t('fleet.favorite')}</Badge>
                     </div>
                   )}
                 </div>
                 <div className="p-6">
                   <div className="flex items-center gap-2 mb-1">
-                    <Badge variant="neutral">{vehicle.type}</Badge>
+                    <Badge variant="neutral">{td(vehicle.type)}</Badge>
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mt-2">{vehicle.name}</h3>
                   <div className="flex items-center gap-2 text-sm text-gray-500 mt-1 mb-3">
                     <UsersIcon className="w-4 h-4" />
-                    <span>{vehicle.capacity}</span>
+                    <span>{td(vehicle.capacity)}</span>
                   </div>
-                  <p className="text-sm text-gray-600 mb-4">{vehicle.description}</p>
+                  <p className="text-sm text-gray-600 mb-4">{td(vehicle.description)}</p>
 
                   {/* Facilities */}
                   <div className="flex flex-wrap gap-2 mb-5">
@@ -86,7 +87,7 @@ export default function Fleet() {
                     )}
                     className="w-full"
                   >
-                    Tanya Harga
+                    {t('fleet.askPrice')}
                   </Button>
                 </div>
               </motion.div>
@@ -96,9 +97,8 @@ export default function Fleet() {
       </section>
 
       <CTASection
-        title="Butuh Kendaraan untuk Trip?"
-        subtitle="Kami sediakan armada sesuai kebutuhan grup kamu."
-        waMessage="Halo Eleven Trans! 👋 Saya mau tanya soal sewa kendaraan untuk rombongan. Bisa info armada & harga?"
+        title={t('fleet.ctaTitle')}
+        subtitle={t('fleet.ctaSub')}
       />
     </>
   );

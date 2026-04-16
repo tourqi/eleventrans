@@ -1,8 +1,10 @@
 import { MessageCircle } from 'lucide-react';
 import { buildWhatsAppLink } from '../../utils/helpers';
 import { DEFAULT_WA_MESSAGE } from '../../data/constants';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 export default function FloatingWhatsApp({ message }) {
+  const { t } = useLanguage();
   const href = buildWhatsAppLink(message || DEFAULT_WA_MESSAGE);
 
   return (
@@ -16,7 +18,7 @@ export default function FloatingWhatsApp({ message }) {
       <div className="relative flex items-center">
         {/* Tooltip */}
         <span className="hidden md:block absolute right-full mr-3 bg-gray-900 text-white text-sm px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-          Chat via WhatsApp
+          {t('wa.tooltip')}
         </span>
 
         {/* Button */}

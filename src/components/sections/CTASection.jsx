@@ -2,13 +2,17 @@ import { Phone, ArrowRight } from 'lucide-react';
 import Button from '../ui/Button';
 import { buildWhatsAppLink } from '../../utils/helpers';
 import { DEFAULT_WA_MESSAGE } from '../../data/constants';
+import { useLanguage } from '../../contexts/LanguageContext';
 import confusedWoman from '../../assets/confused-woman.webp';
 
 export default function CTASection({
-  title = 'Siap Bikin Liburan Makin Asyik?',
-  subtitle = 'Konsultasi GRATIS — ceritakan rencana trip kamu, dan kami bantu wujudkan.',
+  title,
+  subtitle,
   waMessage,
 }) {
+  const { t } = useLanguage();
+  const displayTitle = title || t('cta.title');
+  const displaySubtitle = subtitle || t('cta.subtitle');
   return (
     <section className="relative overflow-hidden bg-slate-950">
       {/* Rotating calm blue gradient orbs */}
@@ -23,10 +27,10 @@ export default function CTASection({
           {/* Left — Text Content */}
           <div className="text-center lg:text-left">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-6">
-              {title}
+              {displayTitle}
             </h2>
             <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-xl mx-auto lg:mx-0">
-              {subtitle}
+              {displaySubtitle}
             </p>
             <div className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4">
               <Button
@@ -35,7 +39,7 @@ export default function CTASection({
                 href={buildWhatsAppLink(waMessage || DEFAULT_WA_MESSAGE)}
               >
                 <Phone className="w-5 h-5" />
-                Chat via WhatsApp
+                {t('cta.wa')}
               </Button>
               <Button
                 variant="outline"
@@ -43,7 +47,7 @@ export default function CTASection({
                 to="/contact"
                 className="border-white/20 text-white hover:bg-white/10"
               >
-                Isi Form Request
+                {t('cta.form')}
                 <ArrowRight className="w-5 h-5" />
               </Button>
             </div>

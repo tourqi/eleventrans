@@ -4,22 +4,41 @@ import { Menu, X, Phone } from 'lucide-react';
 import Button from '../ui/Button';
 import { buildWhatsAppLink } from '../../utils/helpers';
 import { DEFAULT_WA_MESSAGE } from '../../data/constants';
+import { useLanguage } from '../../contexts/LanguageContext';
 import logo from '../../assets/logo.webp';
 
-const NAV_LINKS = [
-  { label: 'Home', to: '/' },
-  { label: 'About', to: '/about' },
-  { label: 'Services', to: '/services' },
-  { label: 'Packages', to: '/packages' },
-  { label: 'Fleet', to: '/fleet' },
-  { label: 'Gallery', to: '/gallery' },
-  { label: 'Calculator', to: '/calculator' },
-  { label: 'Contact', to: '/contact' },
+/* Inline SVG flags — render on all platforms */
+const FlagID = ({ className = 'w-5 h-3.5' }) => (
+  <svg viewBox="0 0 640 480" className={className} aria-hidden="true">
+    <path fill="#e70011" d="M0 0h640v240H0z" />
+    <path fill="#fff" d="M0 240h640v240H0z" />
+  </svg>
+);
+const FlagGB = ({ className = 'w-5 h-3.5' }) => (
+  <svg viewBox="0 0 640 480" className={className} aria-hidden="true">
+    <path fill="#012169" d="M0 0h640v480H0z" />
+    <path fill="#FFF" d="m75 0 244 181L562 0h78v62L400 241l240 178v61h-80L320 301 81 480H0v-60l239-178L0 64V0z" />
+    <path fill="#C8102E" d="m424 281 216 159v40L369 281zm-184 20 6 35L54 480H0zM640 0v3L391 191l2-44L590 0zM0 0l239 176h-60L0 42z" />
+    <path fill="#FFF" d="M241 0v480h160V0zM0 160v160h640V160z" />
+    <path fill="#C8102E" d="M0 193v96h640v-96zM273 0v480h96V0z" />
+  </svg>
+);
+
+const NAV_KEYS = [
+  { key: 'nav.home', to: '/' },
+  { key: 'nav.about', to: '/about' },
+  { key: 'nav.services', to: '/services' },
+  { key: 'nav.packages', to: '/packages' },
+  { key: 'nav.fleet', to: '/fleet' },
+  { key: 'nav.gallery', to: '/gallery' },
+  { key: 'nav.calculator', to: '/calculator' },
+  { key: 'nav.contact', to: '/contact' },
 ];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { t, toggleLang, lang } = useLanguage();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -55,15 +74,25 @@ export default function Navbar() {
 
           {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-8">
-            {NAV_LINKS.map((link) => (
+            {NAV_KEYS.map((link) => (
               <NavLink key={link.to} to={link.to} className={linkClass} end={link.to === '/'}>
-                {link.label}
+                {t(link.key)}
               </NavLink>
             ))}
           </div>
 
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-3">
+            <button
+              onClick={toggleLang}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors"
+              aria-label="Toggle language"
+            >
+              <span className="inline-flex rounded overflow-hidden shadow-sm border border-gray-200">
+                {lang === 'id' ? <FlagID /> : <FlagGB />}
+              </span>
+              {lang.toUpperCase()}
+            </button>
             <Button
               variant="whatsapp"
               size="sm"
@@ -88,7 +117,7 @@ export default function Navbar() {
         {open && (
           <div className="lg:hidden pb-4 border-t border-gray-100">
             <div className="flex flex-col gap-1 pt-3">
-              {NAV_LINKS.map((link) => (
+              {NAV_KEYS.map((link) => (
                 <NavLink
                   key={link.to}
                   to={link.to}
@@ -102,9 +131,18 @@ export default function Navbar() {
                   end={link.to === '/'}
                   onClick={() => setOpen(false)}
                 >
-                  {link.label}
+                  {t(link.key)}
                 </NavLink>
               ))}
+              <button
+                onClick={toggleLang}
+                className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+              >
+                <span className="inline-flex rounded overflow-hidden shadow-sm border border-gray-200">
+                  {lang === 'id' ? <FlagGB /> : <FlagID />}
+                </span>
+                {lang === 'id' ? 'English' : 'Bahasa Indonesia'}
+              </button>
               <div className="mt-3 px-4">
                 <Button
                   variant="whatsapp"

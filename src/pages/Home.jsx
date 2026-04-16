@@ -7,8 +7,10 @@ import CTASection from '../components/sections/CTASection';
 import FAQSection from '../components/sections/FAQSection';
 import SEO from '../components/SEO';
 import { CLIENTS } from '../data/clients';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function Home() {
+  const { t } = useLanguage();
   return (
     <>
       <SEO
@@ -26,7 +28,7 @@ export default function Home() {
       <section className="py-14 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-center text-sm text-gray-400 font-medium uppercase tracking-wider mb-10">
-            Dipercaya oleh
+            {t('home.trustedBy')}
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-6">
             {CLIENTS.map((client) => (

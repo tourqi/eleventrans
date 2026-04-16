@@ -3,9 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Star, Quote } from 'lucide-react';
 import SectionHeading from '../ui/SectionHeading';
 import { TESTIMONIALS } from '../../data/testimonials';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 export default function TestimonialSection() {
   const [current, setCurrent] = useState(0);
+  const { t, td } = useLanguage();
 
   const prev = () => setCurrent((c) => (c === 0 ? TESTIMONIALS.length - 1 : c - 1));
   const next = () => setCurrent((c) => (c === TESTIMONIALS.length - 1 ? 0 : c + 1));
@@ -16,9 +18,9 @@ export default function TestimonialSection() {
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          eyebrow="Testimoni"
-          title="Cerita dari Pelanggan Kami"
-          subtitle="Bukan kami yang bilang bagus — mereka yang merasakan langsung."
+          eyebrow={t('testimonial.eyebrow')}
+          title={t('testimonial.title')}
+          subtitle={t('testimonial.subtitle')}
         />
 
         <div className="max-w-3xl mx-auto">
@@ -34,7 +36,7 @@ export default function TestimonialSection() {
                 transition={{ duration: 0.3 }}
               >
                 <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-8 italic">
-                  &ldquo;{testimonial.text}&rdquo;
+                  &ldquo;{td(testimonial.text)}&rdquo;
                 </p>
 
                 <div className="flex items-center gap-4">
@@ -47,7 +49,7 @@ export default function TestimonialSection() {
                   <div>
                     <div className="font-bold text-gray-900">{testimonial.name}</div>
                     <div className="text-sm text-gray-500">
-                      {testimonial.role} — {testimonial.company}
+                      {td(testimonial.role)} — {testimonial.company}
                     </div>
                     <div className="flex gap-0.5 mt-1">
                       {Array.from({ length: testimonial.rating }).map((_, i) => (
