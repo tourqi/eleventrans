@@ -11,6 +11,7 @@ const PackageDetail = lazy(() => import('../pages/PackageDetail'));
 const Fleet = lazy(() => import('../pages/Fleet'));
 const Gallery = lazy(() => import('../pages/Gallery'));
 const Contact = lazy(() => import('../pages/Contact'));
+const Calculator = lazy(() => import('../pages/Calculator'));
 const NotFound = lazy(() => import('../pages/NotFound'));
 
 export default function AppRouter() {
@@ -28,6 +29,7 @@ export default function AppRouter() {
             <Route path="fleet" element={<Fleet />} />
             <Route path="gallery" element={<Gallery />} />
             <Route path="contact" element={<Contact />} />
+            <Route path="calculator" element={<Calculator />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

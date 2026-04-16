@@ -57,7 +57,7 @@ export const PACKAGES = [
     priceUnit: '/orang',
     priceNote: 'Harga tergantung paket & jumlah peserta. Hubungi kami untuk penawaran terbaik.',
     images: [
-      'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200',
+      'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEierUxADK0bSiqov5hnvuIrQduyUw6YLf-VIW3GTuGVhCayXznvhEiYuPUIStXBtv6JbsjOeFnHm-UiSzExrs1NWW5nn_uZ__SXKuRJybWgqPPu3dIaFAVsoxIp0CM6B9cbmann3cPJElY/w1200-h630-p-k-no-nu/bodyrafting-citumang.jpg',
       'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800',
       'https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=800',
       'https://images.unsplash.com/photo-1468413253725-0d5181091126?w=800',
@@ -129,7 +129,7 @@ export const PACKAGES = [
     priceUnit: '/orang',
     priceNote: 'Minimal 13 pax. Menggunakan Hiace 14 Seat.',
     images: [
-      'https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?w=1200',
+      'https://static.promediateknologi.id/crop/0x0:0x0/1200x600/webp/photo/p1/260/2023/11/03/pantai-ujung-genteng-3844594730.png',
       'https://images.unsplash.com/photo-1505881502353-a1986add3762?w=800',
       'https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?w=800',
       'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=800',
@@ -191,7 +191,7 @@ export const PACKAGES = [
     priceUnit: '/orang',
     priceNote: 'Minimal 13 pax. Menggunakan Hiace 14 Seat.',
     images: [
-      'https://images.unsplash.com/photo-1551632811-561732d1e306?w=1200',
+      'https://www.tripacker.id/wp-content/uploads/2021/10/WhatsApp-Image-2022-09-13-at-22.23.26.jpeg',
       'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800',
       'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800',
     ],
@@ -255,7 +255,7 @@ export const PACKAGES = [
     priceUnit: '/orang',
     priceNote: 'Minimal 13 pax. Menggunakan Hiace 14 Seat.',
     images: [
-      'https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?w=1200',
+      'https://images.unsplash.com/photo-1623484280881-f94f89d15650?q=80&w=918&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800',
       'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800',
     ],
