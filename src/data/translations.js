@@ -6,14 +6,14 @@
 export const UI = {
   id: {
     /* ── Nav ── */
-    'nav.home': 'Home',
-    'nav.about': 'About',
-    'nav.services': 'Services',
-    'nav.packages': 'Packages',
-    'nav.fleet': 'Fleet',
-    'nav.gallery': 'Gallery',
-    'nav.calculator': 'Calculator',
-    'nav.contact': 'Contact',
+    'nav.home': 'Beranda',
+    'nav.about': 'Tentang',
+    'nav.services': 'Layanan',
+    'nav.packages': 'Paket',
+    'nav.fleet': 'Armada',
+    'nav.gallery': 'Galeri',
+    'nav.calculator': 'Kalkulator',
+    'nav.contact': 'Kontak',
 
     /* ── Hero ── */
     'hero.badge': '🎉 Travel with Fun',
