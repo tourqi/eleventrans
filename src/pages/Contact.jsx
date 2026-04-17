@@ -6,12 +6,13 @@ import Button from '../components/ui/Button';
 import PageHero from '../components/sections/PageHero';
 import SEO from '../components/SEO';
 import { COMPANY } from '../data/constants';
+import { PACKAGES } from '../data/packages';
 import { buildWhatsAppLink } from '../utils/helpers';
 import { useLanguage } from '../contexts/LanguageContext';
 
 export default function Contact() {
   const [status, setStatus] = useState('idle');
-  const { t } = useLanguage();
+  const { t, td } = useLanguage();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -27,9 +28,10 @@ export default function Contact() {
     const phone = formData.get('phone');
     const message = formData.get('message');
     const tripType = formData.get('tripType');
+    const tripPackage = formData.get('tripPackage');
     const pax = formData.get('pax');
 
-    const waText = `Halo Eleven Trans! 👋\n\nNama: ${name}\nNo HP: ${phone}\nJenis Trip: ${tripType}\nJumlah Orang: ${pax}\n\nPesan:\n${message}`;
+    const waText = `Halo Eleven Trans! 👋\n\nNama: ${name}\nNo HP: ${phone}\nJenis Trip: ${tripType}\nPaket: ${tripPackage || '-'}\nJumlah Orang: ${pax}\n\nPesan:\n${message}`;
 
     window.open(buildWhatsAppLink(waText), '_blank');
     setStatus('success');
@@ -100,6 +102,19 @@ export default function Contact() {
                           <option value="Custom">{t('contact.tripCustom')}</option>
                         </select>
                       </div>
+                      <div>
+                        <label className="form-label">{t('contact.packageLabel')}</label>
+                        <select name="tripPackage" className="form-input">
+                          <option value="">{t('contact.packagePlaceholder')}</option>
+                          {PACKAGES.map((pkg) => (
+                            <option key={pkg.id} value={pkg.title}>{td(pkg.title)}</option>
+                          ))}
+                          <option value="Lainnya">{t('contact.packageOther')}</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="grid sm:grid-cols-2 gap-5">
                       <div>
                         <label className="form-label">{t('contact.paxLabel')}</label>
                         <input name="pax" type="number" min="1" placeholder={t('contact.paxPlaceholder')} className="form-input" />
@@ -191,7 +206,7 @@ export default function Contact() {
         <div className="w-full h-[400px] bg-gray-100">
           <iframe
             title="Lokasi Eleven Trans Holiday"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961!2d107.6868101!3d-6.9231907!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e52e6900c083%3A0x5b1e9f6a7b3e4d2a!2sJl.+Raya+Cimahi%2C+Bandung!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961!2d107.6699!3d-6.9345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68c152ae0db891%3A0x6e834b9082a093b6!2sCisaranten+Kulon%2C+Cinambo%2C+Bandung!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
             width="100%"
             height="100%"
             style={{ border: 0 }}

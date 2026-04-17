@@ -13,7 +13,7 @@ export const COMPANY = {
   tagline: 'Travel with Fun — Bikin Liburan Makin Asyik',
   phone: '+62 812-2047-8789',
   email: 'eleventransholiday@gmail.com',
-  address: 'Jl. Raya Cimahi No. 11, Bandung, Jawa Barat 40511',
+  address: 'Graha Pesona, Blok E3, Cisaranten Kulon, Cinambo, Bandung City, West Java 40296',
   instagram: 'https://instagram.com/eleventransholiday',
   facebook: 'https://facebook.com/eleventransholiday',
   tiktok: 'https://tiktok.com/@eleventransholiday',
