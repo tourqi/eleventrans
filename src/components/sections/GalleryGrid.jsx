@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import SectionHeading from '../ui/SectionHeading';
@@ -6,6 +6,15 @@ import SectionHeading from '../ui/SectionHeading';
 export default function GalleryGrid({ images, categories, title, subtitle }) {
   const [activeCategory, setActiveCategory] = useState('all');
   const [lightbox, setLightbox] = useState(null);
+
+  useEffect(() => {
+    if (!lightbox) return;
+    const handleKey = (e) => {
+      if (e.key === 'Escape') setLightbox(null);
+    };
+    document.addEventListener('keydown', handleKey);
+    return () => document.removeEventListener('keydown', handleKey);
+  }, [lightbox]);
 
   const filtered =
     activeCategory === 'all'

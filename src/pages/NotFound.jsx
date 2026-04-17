@@ -8,7 +8,7 @@ export default function NotFound() {
   const { t } = useLanguage();
   return (
     <section className="min-h-[80vh] flex items-center justify-center px-4 relative overflow-hidden">
-      <SEO title="404 — Halaman Tidak Ditemukan" description="Halaman yang kamu cari tidak ditemukan." />
+      <SEO title={t('notFound.title')} description={t('seo.notFound')} />
       {/* Background decoration */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl" />

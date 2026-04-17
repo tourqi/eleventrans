@@ -1,5 +1,8 @@
 // Eleven Trans Holiday — WhatsApp number (Indonesia)
-export const WHATSAPP_NUMBER = '6281220478789';
+export const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER || '6281220478789';
+
+// Site URL
+export const SITE_URL = import.meta.env.VITE_SITE_URL || 'https://eleventransholiday.com';
 
 // Default WhatsApp message
 export const DEFAULT_WA_MESSAGE =

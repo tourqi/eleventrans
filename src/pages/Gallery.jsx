@@ -11,8 +11,8 @@ export default function Gallery() {
   return (
     <>
       <SEO
-        title="Gallery"
-        description="Galeri foto trip dan keseruan bersama Eleven Trans Holiday — rafting, gathering, city tour, dan banyak lagi."
+        title={t('gallery.eyebrow')}
+        description={t('seo.gallery')}
         path="/gallery"
       />
       {/* Hero */}

@@ -257,6 +257,17 @@ export const UI = {
     'footer.rights': 'All rights reserved.',
     'footer.motto': 'Bikin Liburan Makin Asyik 🎉',
 
+    /* ── SEO Descriptions ── */
+    'seo.home': 'Eleven Trans Holiday — Travel with Fun! Private trip, family gathering, adventure trip & industrial visit terbaik di Bandung. Hubungi kami sekarang!',
+    'seo.about': 'Kenali Eleven Trans Holiday — tim berpengalaman di balik layanan travel terbaik di Bandung.',
+    'seo.services': 'Private trip, family gathering, adventure trip & industrial visit — layanan travel lengkap dari Eleven Trans Holiday.',
+    'seo.fleet': 'Armada kendaraan Eleven Trans Holiday — HiAce, Elf, Bus Medium, Big Bus, dan MPV. Terawat, nyaman, dan siap antar ke mana saja.',
+    'seo.gallery': 'Galeri foto trip dan keseruan bersama Eleven Trans Holiday — rafting, gathering, city tour, dan banyak lagi.',
+    'seo.contact': 'Hubungi Eleven Trans Holiday via WhatsApp, telepon, atau email. Konsultasi gratis untuk trip impianmu!',
+    'seo.calculator': 'Hitung estimasi biaya trip bersama Eleven Trans Holiday. Pilih armada, hotel, destinasi, dan aktivitas.',
+    'seo.packages': 'Pilih paket wisata terbaik dari Eleven Trans Holiday.',
+    'seo.notFound': 'Halaman yang kamu cari tidak ditemukan.',
+
     /* ── Misc ── */
     'loader.text': 'Memuat halaman...',
     'sticky.label': 'Plan Your Trip',
@@ -517,6 +528,17 @@ export const UI = {
     'footer.taglineSuffix': '. We deliver enjoyable, safe, and unforgettable travel experiences.',
     'footer.rights': 'All rights reserved.',
     'footer.motto': 'Make Your Trip More Exciting 🎉',
+
+    /* ── SEO Descriptions ── */
+    'seo.home': 'Eleven Trans Holiday — Travel with Fun! The best private trips, family gatherings, adventure trips & industrial visits in Bandung. Contact us now!',
+    'seo.about': 'Get to know Eleven Trans Holiday — the experienced team behind the best travel services in Bandung.',
+    'seo.services': 'Private trips, family gatherings, adventure trips & industrial visits — complete travel services from Eleven Trans Holiday.',
+    'seo.fleet': 'Eleven Trans Holiday fleet — HiAce, Elf, Medium Bus, Big Bus, and MPV. Well-maintained, comfortable, and ready to take you anywhere.',
+    'seo.gallery': 'Trip photo gallery and fun moments with Eleven Trans Holiday — rafting, gatherings, city tours, and more.',
+    'seo.contact': 'Contact Eleven Trans Holiday via WhatsApp, phone, or email. Free consultation for your dream trip!',
+    'seo.calculator': 'Calculate your trip cost estimate with Eleven Trans Holiday. Choose fleet, hotel, destination, and activities.',
+    'seo.packages': 'Choose the best tour packages from Eleven Trans Holiday.',
+    'seo.notFound': 'The page you are looking for was not found.',
 
     /* ── Misc ── */
     'loader.text': 'Loading page...',

@@ -16,7 +16,7 @@ export default function Fleet() {
     <>
       <SEO
         title={t('fleet.eyebrow')}
-        description="Armada kendaraan Eleven Trans Holiday — HiAce, Elf, Bus Medium, Big Bus, dan MPV. Terawat, nyaman, dan siap antar ke mana saja."
+        description={t('seo.fleet')}
         path="/fleet"
       />
       {/* Hero */}

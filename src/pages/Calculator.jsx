@@ -152,7 +152,7 @@ export default function CalculatorPage() {
     <>
       <SEO
         title={t('calc.eyebrow')}
-        description="Hitung estimasi biaya trip bersama Eleven Trans Holiday. Pilih armada, penginapan, lokasi, makan, dan kegiatan sesuai kebutuhan."
+        description={t('seo.calculator')}
         path="/calculator"
       />
 
@@ -392,9 +392,6 @@ export default function CalculatorPage() {
                           )}
                           {opt.busOnly && (
                             <p className="text-xs text-amber-600 mt-0.5">{t('calc.busOnly')}</p>
-                          )}
-                          {opt.busOrRequest && (
-                            <p className="text-xs text-blue-600 mt-0.5">{t('calc.busOrReq')}</p>
                           )}
                         </div>
                         <span className="text-xs text-gray-500 whitespace-nowrap">

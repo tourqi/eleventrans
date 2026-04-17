@@ -31,7 +31,7 @@ function PackagesList() {
     <>
       <SEO
         title={t('pkg.eyebrow')}
-        description="Pilih paket wisata terbaik dari Eleven Trans Holiday."
+        description={t('seo.packages')}
         path="/packages"
       />
       <PageHero>

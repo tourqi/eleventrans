@@ -41,7 +41,7 @@ export default function Contact() {
     <>
       <SEO
         title={t('contact.eyebrow')}
-        description="Hubungi Eleven Trans Holiday via WhatsApp, telepon, atau email. Konsultasi gratis untuk trip impianmu!"
+        description={t('seo.contact')}
         path="/contact"
       />
       <PageHero>
@@ -191,7 +191,7 @@ export default function Contact() {
         <div className="w-full h-[400px] bg-gray-100">
           <iframe
             title="Lokasi Eleven Trans Holiday"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000!2d107.6868101!3d-6.9231907!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNTUnMjMuNSJTIDEwN8KwNDEnMTIuNSJF!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961!2d107.6868101!3d-6.9231907!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e52e6900c083%3A0x5b1e9f6a7b3e4d2a!2sJl.+Raya+Cimahi%2C+Bandung!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
             width="100%"
             height="100%"
             style={{ border: 0 }}

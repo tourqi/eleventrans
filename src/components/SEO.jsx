@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { SITE_URL } from '../data/constants';
 
 const SITE_NAME = 'Eleven Trans Holiday';
 const DEFAULT_DESCRIPTION =
@@ -21,7 +22,31 @@ export default function SEO({
   path = '',
 }) {
   const fullTitle = title ? `${title} — ${SITE_NAME}` : `${SITE_NAME} — Travel with Fun`;
-  const url = `https://eleventransholiday.com${path}`;
+  const url = `${SITE_URL}${path}`;
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'TravelAgency',
+    name: SITE_NAME,
+    url: SITE_URL,
+    logo: `${SITE_URL}/favicon.svg`,
+    description: DEFAULT_DESCRIPTION,
+    telephone: '+62-812-2047-8789',
+    email: 'eleventransholiday@gmail.com',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Jl. Raya Cimahi No. 11',
+      addressLocality: 'Bandung',
+      addressRegion: 'Jawa Barat',
+      postalCode: '40511',
+      addressCountry: 'ID',
+    },
+    sameAs: [
+      'https://instagram.com/eleventransholiday',
+      'https://facebook.com/eleventransholiday',
+      'https://tiktok.com/@eleventransholiday',
+    ],
+  };
 
   return (
     <Helmet>
@@ -44,6 +69,11 @@ export default function SEO({
 
       {/* Canonical */}
       <link rel="canonical" href={url} />
+
+      {/* JSON-LD Structured Data */}
+      {path === '/' && (
+        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      )}
     </Helmet>
   );
 }

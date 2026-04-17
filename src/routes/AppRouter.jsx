@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import DefaultLayout from '../layouts/DefaultLayout';
 import PageLoader from '../components/ui/PageLoader';
+import ErrorBoundary from '../components/ErrorBoundary';
 
 // Lazy-loaded pages — each gets its own chunk
 const Home = lazy(() => import('../pages/Home'));
@@ -17,23 +18,25 @@ const NotFound = lazy(() => import('../pages/NotFound'));
 export default function AppRouter() {
   return (
     <BrowserRouter>
-      <Suspense fallback={<PageLoader />}>
-        <Routes>
-          <Route path="/" element={<DefaultLayout />}>
-            <Route index element={<Home />} />
-            <Route path="about" element={<About />} />
-            <Route path="services" element={<Services />} />
-            <Route path="services/:slug" element={<Services />} />
-            <Route path="packages" element={<PackageDetail />} />
-            <Route path="packages/:slug" element={<PackageDetail />} />
-            <Route path="fleet" element={<Fleet />} />
-            <Route path="gallery" element={<Gallery />} />
-            <Route path="contact" element={<Contact />} />
-            <Route path="calculator" element={<Calculator />} />
-            <Route path="*" element={<NotFound />} />
-          </Route>
-        </Routes>
-      </Suspense>
+      <ErrorBoundary>
+        <Suspense fallback={<PageLoader />}>
+          <Routes>
+            <Route path="/" element={<DefaultLayout />}>
+              <Route index element={<Home />} />
+              <Route path="about" element={<About />} />
+              <Route path="services" element={<Services />} />
+              <Route path="services/:slug" element={<Services />} />
+              <Route path="packages" element={<PackageDetail />} />
+              <Route path="packages/:slug" element={<PackageDetail />} />
+              <Route path="fleet" element={<Fleet />} />
+              <Route path="gallery" element={<Gallery />} />
+              <Route path="contact" element={<Contact />} />
+              <Route path="calculator" element={<Calculator />} />
+              <Route path="*" element={<NotFound />} />
+            </Route>
+          </Routes>
+        </Suspense>
+      </ErrorBoundary>
     </BrowserRouter>
   );
 }

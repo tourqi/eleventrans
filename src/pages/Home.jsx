@@ -15,7 +15,7 @@ export default function Home() {
     <>
       <SEO
         title={null}
-        description="Eleven Trans Holiday — Travel with Fun! Private trip, family gathering, adventure trip & industrial visit terbaik di Bandung. Hubungi kami sekarang!"
+        description={t('seo.home')}
         path="/"
       />
       <HeroSection />

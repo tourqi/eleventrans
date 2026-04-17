@@ -20,7 +20,7 @@ function ServicesList() {
     <>
       <SEO
         title={t('servicesPage.eyebrow')}
-        description="Private trip, family gathering, adventure trip & industrial visit — layanan travel lengkap dari Eleven Trans Holiday."
+        description={t('seo.services')}
         path="/services"
       />
       <PageHero>

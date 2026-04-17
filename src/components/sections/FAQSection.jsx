@@ -58,7 +58,7 @@ export default function FAQSection() {
     <section className="py-20 bg-white">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          label="FAQ"
+          eyebrow="FAQ"
           title={t('faq.title')}
           subtitle={t('faq.subtitle')}
         />
