@@ -1,0 +1,60 @@
+{
+  "hash": "8426c367",
+  "configHash": "2c5d973f",
+  "lockfileHash": "ff0b98d9",
+  "browserHash": "e1b12fe7",
+  "optimized": {
+    "framer-motion": {
+      "src": "../../node_modules/framer-motion/dist/es/index.mjs",
+      "file": "framer-motion.js",
+      "fileHash": "ecf8537f",
+      "needsInterop": false
+    },
+    "lucide-react": {
+      "src": "../../node_modules/lucide-react/dist/esm/lucide-react.mjs",
+      "file": "lucide-react.js",
+      "fileHash": "d7952f41",
+      "needsInterop": false
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "4a48704e",
+      "needsInterop": true
+    },
+    "react-helmet-async": {
+      "src": "../../node_modules/react-helmet-async/lib/index.esm.js",
+      "file": "react-helmet-async.js",
+      "fileHash": "adbe4b8f",
+      "needsInterop": false
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/react-router-dom/dist/index.mjs",
+      "file": "react-router-dom.js",
+      "fileHash": "61b29971",
+      "needsInterop": false
+    },
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "e13bd2c7",
+      "needsInterop": true
+    },
+    "react/jsx-dev-runtime": {
+      "src": "../../node_modules/react/jsx-dev-runtime.js",
+      "file": "react_jsx-dev-runtime.js",
+      "fileHash": "3367fa16",
+      "needsInterop": true
+    }
+  },
+  "chunks": {
+    "react-BdPUEnv1": {
+      "file": "react-BdPUEnv1.js",
+      "isDynamicEntry": false
+    },
+    "react-dom-C1fwc23Y": {
+      "file": "react-dom-C1fwc23Y.js",
+      "isDynamicEntry": false
+    }
+  }
+}

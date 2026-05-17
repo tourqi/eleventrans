@@ -10,6 +10,8 @@ import {
   CheckSquare,
   Users,
   Send,
+  CalendarDays,
+  Info,
 } from 'lucide-react';
 import SEO from '../components/SEO';
 import PageHero from '../components/sections/PageHero';
@@ -35,9 +37,11 @@ const select =
 export default function CalculatorPage() {
   const { t, td } = useLanguage();
   /* ── state ── */
+  const [tanggalKegiatan, setTanggalKegiatan] = useState('');
   const [armada, setArmada] = useState('');
   const [penginapan, setPenginapan] = useState('');
   const [jumlahMalam, setJumlahMalam] = useState(1);
+  const [jumlahKamar, setJumlahKamar] = useState(1);
   const [lokasi, setLokasi] = useState('');
   const [makan, setMakan] = useState('');
   const [kegiatan, setKegiatan] = useState([]);
@@ -71,9 +75,10 @@ export default function CalculatorPage() {
       items.push({ label: `Armada — ${selectedArmada.name}`, amount: selectedArmada.price });
     }
     if (selectedPenginapan && malam > 0) {
-      const hotelTotal = selectedPenginapan.pricePerNight * malam;
+      const kamar = Math.max(jumlahKamar, 1);
+      const hotelTotal = selectedPenginapan.pricePerNight * malam * kamar;
       items.push({
-        label: `Penginapan — ${selectedPenginapan.label} (${malam} malam)`,
+        label: `Penginapan — ${selectedPenginapan.label} (${malam} malam, ${kamar} kamar)`,
         amount: hotelTotal,
       });
     }
@@ -110,6 +115,7 @@ export default function CalculatorPage() {
     selectedArmada,
     selectedPenginapan,
     jumlahMalam,
+    jumlahKamar,
     selectedLokasi,
     selectedMakan,
     kegiatan,
@@ -132,8 +138,12 @@ export default function CalculatorPage() {
   /* ── WhatsApp summary ── */
   const waMessage = useMemo(() => {
     let msg = `Halo Eleven Trans! 👋\nSaya ingin estimasi biaya:\n\n`;
+    if (tanggalKegiatan) {
+      const tgl = new Date(tanggalKegiatan).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+      msg += `📅 Tanggal Rencana: ${tgl}\n`;
+    }
     if (selectedArmada) msg += `🚐 Armada: ${selectedArmada.name}\n`;
-    if (selectedPenginapan) msg += `🏨 Penginapan: ${selectedPenginapan.label} (${jumlahMalam} malam)\n`;
+    if (selectedPenginapan) msg += `🏨 Penginapan: ${selectedPenginapan.label} (${jumlahMalam} malam, ${jumlahKamar} kamar)\n`;
     if (selectedLokasi) msg += `📍 Lokasi: ${selectedLokasi.name}\n`;
     if (selectedMakan) msg += `🍽️ Makan: ${selectedMakan.label}\n`;
     if (kegiatan.length) {
@@ -145,7 +155,7 @@ export default function CalculatorPage() {
     msg += `💰 Per Orang: ${formatRupiah(breakdown.perPax)}\n`;
     msg += `\nMohon info lebih lanjut. Terima kasih!`;
     return msg;
-  }, [selectedArmada, selectedPenginapan, jumlahMalam, selectedLokasi, selectedMakan, kegiatan, jumlahOrang, breakdown]);
+  }, [selectedArmada, selectedPenginapan, jumlahMalam, jumlahKamar, selectedLokasi, selectedMakan, kegiatan, jumlahOrang, breakdown, tanggalKegiatan]);
 
   /* ── render ── */
   return (
@@ -173,11 +183,32 @@ export default function CalculatorPage() {
           <div className="grid lg:grid-cols-3 gap-8">
             {/* ────────── LEFT — Form ────────── */}
             <div className="lg:col-span-2 space-y-6">
-              {/* Jumlah Orang */}
+              {/* Tanggal Rencana Kegiatan */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 }}
+                className={card}
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <CalendarDays className="w-5 h-5 text-primary-600" />
+                  <h3 className="text-lg font-bold text-gray-900">{t('calc.dateTitle')}</h3>
+                </div>
+                <label className={label}>{t('calc.dateLabel')}</label>
+                <input
+                  type="date"
+                  value={tanggalKegiatan}
+                  min={new Date().toISOString().split('T')[0]}
+                  onChange={(e) => setTanggalKegiatan(e.target.value)}
+                  className={select}
+                />
+              </motion.div>
+
+              {/* Jumlah Orang */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.03 }}
                 className={card}
               >
                 <div className="flex items-center gap-3 mb-4">
@@ -217,6 +248,12 @@ export default function CalculatorPage() {
                     </option>
                   ))}
                 </select>
+                <div className="mt-3 flex gap-2 p-3 rounded-lg bg-blue-50 border border-blue-100">
+                  <Info className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" />
+                  <p className="text-xs text-blue-700 leading-relaxed">
+                    Harga armada <strong>sudah termasuk</strong> jasa supir & BBM. <strong>Belum termasuk:</strong> tol, parkir, tip supir, dan tip kondektur (untuk bus).
+                  </p>
+                </div>
               </motion.div>
 
               {/* Penginapan */}
@@ -230,8 +267,8 @@ export default function CalculatorPage() {
                   <Hotel className="w-5 h-5 text-primary-600" />
                   <h3 className="text-lg font-bold text-gray-900">{t('calc.hotelTitle')}</h3>
                 </div>
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <div>
+                <div className="grid sm:grid-cols-3 gap-4">
+                  <div className="sm:col-span-1">
                     <label className={label}>{t('calc.hotelLabel')}</label>
                     <select
                       value={penginapan}
@@ -241,7 +278,7 @@ export default function CalculatorPage() {
                       <option value="">{t('calc.hotelPlaceholder')}</option>
                       {PENGINAPAN_OPTIONS.map((p) => (
                         <option key={p.id} value={p.id}>
-                          {p.label} — {formatRupiah(p.pricePerNight)}/malam
+                          {p.label} — {formatRupiah(p.pricePerNight)}/kamar/malam
                         </option>
                       ))}
                     </select>
@@ -256,6 +293,18 @@ export default function CalculatorPage() {
                       onChange={(e) => setJumlahMalam(Math.max(0, parseInt(e.target.value) || 0))}
                       className={select}
                     />
+                  </div>
+                  <div>
+                    <label className={label}>{t('calc.roomLabel')}</label>
+                    <input
+                      type="number"
+                      min={1}
+                      max={50}
+                      value={jumlahKamar}
+                      onChange={(e) => setJumlahKamar(Math.max(1, parseInt(e.target.value) || 1))}
+                      className={select}
+                    />
+                    <p className="text-xs text-gray-400 mt-1.5">{t('calc.roomHint')}</p>
                   </div>
                 </div>
               </motion.div>
@@ -287,6 +336,12 @@ export default function CalculatorPage() {
                     </option>
                   ))}
                 </select>
+                <div className="mt-3 flex gap-2 p-3 rounded-lg bg-green-50 border border-green-100">
+                  <Info className="w-4 h-4 text-green-600 shrink-0 mt-0.5" />
+                  <p className="text-xs text-green-700 leading-relaxed">
+                    Tiket masuk wisata <strong>sudah termasuk</strong> dalam paket wisata.
+                  </p>
+                </div>
               </motion.div>
 
               {/* Makan */}
@@ -425,37 +480,41 @@ export default function CalculatorPage() {
                     </p>
                   ) : (
                     <>
-                      <ul className="space-y-3 mb-6">
+                      <ul className="space-y-2 mb-5">
                         {breakdown.items.map((item, idx) => (
-                          <li key={idx} className="flex justify-between text-sm">
-                            <span className="text-gray-600">{item.label}</span>
-                            <span className="font-medium text-gray-900">
-                              {formatRupiah(item.amount)}
-                            </span>
+                          <li key={idx} className="flex items-center gap-2 text-sm text-gray-600">
+                            <span className="w-1.5 h-1.5 rounded-full bg-primary-400 shrink-0" />
+                            {item.label}
                           </li>
                         ))}
                       </ul>
 
-                      <div className="border-t border-gray-200 pt-4 space-y-2">
-                        <div className="flex justify-between text-base font-bold">
-                          <span className="text-gray-800">{t('calc.total')}</span>
-                          <span className="text-primary-600">{formatRupiah(breakdown.total)}</span>
+                      <div className="space-y-3 border-t border-gray-200 pt-4">
+                        <div className="flex justify-between items-center py-3 px-4 rounded-xl bg-primary-50 border border-primary-100">
+                          <span className="text-sm font-semibold text-gray-700">{t('calc.total')}</span>
+                          <span className="text-base font-bold text-primary-600">{formatRupiah(breakdown.total)}</span>
                         </div>
-                        <div className="flex justify-between text-sm">
-                          <span className="text-gray-500">
-                            {t('calc.perPax')} ({breakdown.pax} pax)
+                        <div className="flex justify-between items-center py-3 px-4 rounded-xl bg-accent-50 border border-accent-100">
+                          <span className="text-sm font-semibold text-gray-700">
+                            {t('calc.perPax')} <span className="text-gray-400 font-normal">({breakdown.pax} pax)</span>
                           </span>
-                          <span className="font-semibold text-accent-600">
-                            {formatRupiah(breakdown.perPax)}
-                          </span>
+                          <span className="text-base font-bold text-accent-600">{formatRupiah(breakdown.perPax)}</span>
                         </div>
                       </div>
                     </>
                   )}
 
-                  <p className="text-[11px] text-gray-400 mt-4 leading-relaxed">
-                    {t('calc.note')}
-                  </p>
+                  <div className="mt-4 space-y-1.5">
+                    <div className="flex gap-1.5 items-start">
+                      <Info className="w-3.5 h-3.5 text-green-500 shrink-0 mt-0.5" />
+                      <p className="text-[11px] text-green-600 leading-relaxed">
+                        Harga sudah termasuk asuransi perjalanan & makan tour leader.
+                      </p>
+                    </div>
+                    <p className="text-[11px] text-gray-400 leading-relaxed">
+                      {t('calc.note')}
+                    </p>
+                  </div>
                 </motion.div>
 
                 {/* CTA WhatsApp */}

@@ -63,14 +63,12 @@ export const KEGIATAN_OPTIONS = [
 /* ── Variabel Tambahan (checkbox) ── */
 // perPax: true  → price × jumlah orang
 // (default)     → flat cost per trip
+// Catatan: asuransi, tiket masuk wisata, makan TL sudah termasuk. Local guide dihapus.
 export const ADDITIONAL_OPTIONS = [
-  { id: 'tol', label: 'Tol', price: 250000, description: 'Biaya tol PP' },
-  { id: 'parkir', label: 'Parkir', price: 50000, description: 'Biaya parkir di lokasi wisata' },
-  { id: 'tips-supir', label: 'Tips Supir', price: 100000, description: 'Tips / uang makan driver' },
+  { id: 'tol', label: 'Tol', price: 250000, description: 'Biaya tol PP (exclude dari harga armada)' },
+  { id: 'parkir', label: 'Parkir', price: 50000, description: 'Biaya parkir di lokasi wisata (exclude dari harga armada)' },
+  { id: 'tips-supir', label: 'Tips Supir', price: 100000, description: 'Tips driver (exclude dari harga armada)' },
+  { id: 'tips-kondektur', label: 'Tips Kondektur', price: 75000, busOnly: true, description: 'Tips kondektur bus (exclude dari harga armada)' },
   { id: 'kendek', label: 'Kernet (Kendek)', price: 150000, busOnly: true, description: 'Kernet pendamping untuk bus' },
-  { id: 'tiket-masuk', label: 'Tiket Masuk Wisata', price: 50000, perPax: true, description: 'Tiket masuk objek wisata utama' },
-  { id: 'tour-leader', label: 'Tour Leader', price: 300000, description: 'Pemandu wisata profesional' },
-  { id: 'makan-tl', label: 'Makan Tour Leader', price: 75000, description: 'Biaya makan tour leader' },
-  { id: 'asuransi', label: 'Asuransi Perjalanan', price: 15000, perPax: true, description: 'Asuransi kecelakaan perjalanan' },
-  { id: 'local-guide', label: 'Local Guide (Opsional)', price: 200000, description: 'Pemandu wisata lokal di destinasi' },
+  { id: 'tour-leader', label: 'Tour Leader', price: 300000, description: 'Pemandu wisata profesional (makan TL sudah disediakan)' },
 ];
