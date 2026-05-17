@@ -38,6 +38,7 @@ export default function CalculatorPage() {
   const { t, td } = useLanguage();
   /* ── state ── */
   const [tanggalKegiatan, setTanggalKegiatan] = useState('');
+  const [tanggalAkhir, setTanggalAkhir] = useState('');
   const [armada, setArmada] = useState('');
   const [penginapan, setPenginapan] = useState('');
   const [jumlahMalam, setJumlahMalam] = useState(1);
@@ -139,8 +140,13 @@ export default function CalculatorPage() {
   const waMessage = useMemo(() => {
     let msg = `Halo Eleven Trans! 👋\nSaya ingin estimasi biaya:\n\n`;
     if (tanggalKegiatan) {
-      const tgl = new Date(tanggalKegiatan).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
-      msg += `📅 Tanggal Rencana: ${tgl}\n`;
+      const tglMulai = new Date(tanggalKegiatan).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+      if (tanggalAkhir) {
+        const tglAkhir = new Date(tanggalAkhir).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+        msg += `📅 Tanggal Rencana: ${tglMulai} s/d ${tglAkhir}\n`;
+      } else {
+        msg += `📅 Tanggal Rencana: ${tglMulai}\n`;
+      }
     }
     if (selectedArmada) msg += `🚐 Armada: ${selectedArmada.name}\n`;
     if (selectedPenginapan) msg += `🏨 Penginapan: ${selectedPenginapan.label} (${jumlahMalam} malam, ${jumlahKamar} kamar)\n`;
@@ -155,7 +161,7 @@ export default function CalculatorPage() {
     msg += `💰 Per Orang: ${formatRupiah(breakdown.perPax)}\n`;
     msg += `\nMohon info lebih lanjut. Terima kasih!`;
     return msg;
-  }, [selectedArmada, selectedPenginapan, jumlahMalam, jumlahKamar, selectedLokasi, selectedMakan, kegiatan, jumlahOrang, breakdown, tanggalKegiatan]);
+  }, [selectedArmada, selectedPenginapan, jumlahMalam, jumlahKamar, selectedLokasi, selectedMakan, kegiatan, jumlahOrang, breakdown, tanggalKegiatan, tanggalAkhir]);
 
   /* ── render ── */
   return (
@@ -194,14 +200,31 @@ export default function CalculatorPage() {
                   <CalendarDays className="w-5 h-5 text-primary-600" />
                   <h3 className="text-lg font-bold text-gray-900">{t('calc.dateTitle')}</h3>
                 </div>
-                <label className={label}>{t('calc.dateLabel')}</label>
-                <input
-                  type="date"
-                  value={tanggalKegiatan}
-                  min={new Date().toISOString().split('T')[0]}
-                  onChange={(e) => setTanggalKegiatan(e.target.value)}
-                  className={select}
-                />
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className={label}>{t('calc.dateLabel')}</label>
+                    <input
+                      type="date"
+                      value={tanggalKegiatan}
+                      min={new Date().toISOString().split('T')[0]}
+                      onChange={(e) => {
+                        setTanggalKegiatan(e.target.value);
+                        if (tanggalAkhir && e.target.value > tanggalAkhir) setTanggalAkhir('');
+                      }}
+                      className={select}
+                    />
+                  </div>
+                  <div>
+                    <label className={label}>{t('calc.dateEndLabel')}</label>
+                    <input
+                      type="date"
+                      value={tanggalAkhir}
+                      min={tanggalKegiatan || new Date().toISOString().split('T')[0]}
+                      onChange={(e) => setTanggalAkhir(e.target.value)}
+                      className={select}
+                    />
+                  </div>
+                </div>
               </motion.div>
 
               {/* Jumlah Orang */}
@@ -244,7 +267,7 @@ export default function CalculatorPage() {
                   <option value="">{t('calc.armadaPlaceholder')}</option>
                   {ARMADA_OPTIONS.map((a) => (
                     <option key={a.id} value={a.id}>
-                      {a.name} ({a.capacity}) — {formatRupiah(a.price)}/hari
+                      {a.name} ({a.capacity})
                     </option>
                   ))}
                 </select>
@@ -278,7 +301,7 @@ export default function CalculatorPage() {
                       <option value="">{t('calc.hotelPlaceholder')}</option>
                       {PENGINAPAN_OPTIONS.map((p) => (
                         <option key={p.id} value={p.id}>
-                          {p.label} — {formatRupiah(p.pricePerNight)}/kamar/malam
+                          {p.label}
                         </option>
                       ))}
                     </select>
@@ -360,7 +383,7 @@ export default function CalculatorPage() {
                   <option value="">{t('calc.makanPlaceholder')}</option>
                   {MAKAN_OPTIONS.map((m) => (
                     <option key={m.id} value={m.id}>
-                      {m.label} — {formatRupiah(m.pricePerPax)}/orang
+                      {m.label}
                     </option>
                   ))}
                 </select>
