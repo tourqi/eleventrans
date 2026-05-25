@@ -271,11 +271,30 @@ export default function CalculatorPage() {
                     </option>
                   ))}
                 </select>
-                <div className="mt-3 flex gap-2 p-3 rounded-lg bg-blue-50 border border-blue-100">
-                  <Info className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" />
-                  <p className="text-xs text-blue-700 leading-relaxed">
-                    Harga armada <strong>sudah termasuk</strong> jasa supir & BBM. <strong>Belum termasuk:</strong> tol, parkir, tip supir, dan tip kondektur (untuk bus).
-                  </p>
+                <div className="mt-3 grid sm:grid-cols-2 gap-3">
+                  <div className="flex gap-2 p-3 rounded-lg bg-green-50 border border-green-100">
+                    <Info className="w-4 h-4 text-green-600 shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-xs font-semibold text-green-700 mb-1">Sudah termasuk:</p>
+                      <ul className="text-xs text-green-700 space-y-0.5">
+                        <li>✓ Unit</li>
+                        <li>✓ Supir</li>
+                        <li>✓ BBM</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="flex gap-2 p-3 rounded-lg bg-amber-50 border border-amber-100">
+                    <Info className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-xs font-semibold text-amber-700 mb-1">Belum termasuk:</p>
+                      <ul className="text-xs text-amber-700 space-y-0.5">
+                        <li>✗ Tol</li>
+                        <li>✗ Parkir</li>
+                        <li>✗ Makan supir & kondektur</li>
+                        <li>✗ Tips supir & kondektur</li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
 
@@ -444,39 +463,27 @@ export default function CalculatorPage() {
                 </div>
                 <div className="space-y-3">
                   {ADDITIONAL_OPTIONS.map((opt) => {
-                    const disabled = opt.busOnly && !isBus;
+                    if (opt.busOnly && !isBus) return null;
                     return (
-                      <label
+                      <div
                         key={opt.id}
-                        className={`flex items-start gap-3 p-3 rounded-lg border transition ${
-                          disabled
-                            ? 'opacity-40 cursor-not-allowed border-gray-100'
-                            : additional.includes(opt.id)
-                            ? 'border-primary-500 bg-primary-50 cursor-pointer'
-                            : 'border-gray-200 hover:border-gray-300 cursor-pointer'
-                        }`}
+                        className="flex items-start gap-3 p-3 rounded-lg border border-dashed border-amber-200 bg-amber-50"
                       >
-                        <input
-                          type="checkbox"
-                          checked={additional.includes(opt.id)}
-                          onChange={() => !disabled && toggleAdditional(opt.id)}
-                          disabled={disabled}
-                          className="accent-primary-600 w-4 h-4 mt-0.5"
-                        />
+                        <Info className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
                         <div className="flex-1">
-                          <span className="text-sm font-medium text-gray-800">{opt.label}</span>
+                          <span className="text-sm font-medium text-amber-800">{opt.label}</span>
                           {opt.description && (
-                            <p className="text-xs text-gray-500 mt-0.5">{opt.description}</p>
+                            <p className="text-xs text-amber-600 mt-0.5">{opt.description}</p>
                           )}
                           {opt.busOnly && (
-                            <p className="text-xs text-amber-600 mt-0.5">{t('calc.busOnly')}</p>
+                            <p className="text-xs text-amber-500 mt-0.5">{t('calc.busOnly')}</p>
                           )}
                         </div>
-                        <span className="text-xs text-gray-500 whitespace-nowrap">
+                        <span className="text-xs text-amber-600 whitespace-nowrap">
                           {formatRupiah(opt.price)}
                           {opt.perPax ? '/org' : '/trip'}
                         </span>
-                      </label>
+                      </div>
                     );
                   })}
                 </div>

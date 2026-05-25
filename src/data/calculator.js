@@ -65,10 +65,10 @@ export const KEGIATAN_OPTIONS = [
 // (default)     → flat cost per trip
 // Catatan: asuransi, tiket masuk wisata, makan TL sudah termasuk. Local guide dihapus.
 export const ADDITIONAL_OPTIONS = [
-  { id: 'tol', label: 'Tol', price: 250000, description: 'Biaya tol PP (exclude dari harga armada)' },
-  { id: 'parkir', label: 'Parkir', price: 50000, description: 'Biaya parkir di lokasi wisata (exclude dari harga armada)' },
-  { id: 'tips-supir', label: 'Tips Supir', price: 100000, description: 'Tips driver (exclude dari harga armada)' },
-  { id: 'tips-kondektur', label: 'Tips Kondektur', price: 75000, busOnly: true, description: 'Tips kondektur bus (exclude dari harga armada)' },
-  { id: 'kendek', label: 'Kernet (Kendek)', price: 150000, busOnly: true, description: 'Kernet pendamping untuk bus' },
-  { id: 'tour-leader', label: 'Tour Leader', price: 300000, description: 'Pemandu wisata profesional (makan TL sudah disediakan)' },
+  { id: 'tol', label: 'Tol', price: 250000, infoOnly: true, description: 'Biaya tol PP (exclude dari harga armada)' },
+  { id: 'parkir', label: 'Parkir', price: 50000, infoOnly: true, description: 'Biaya parkir di lokasi wisata (exclude dari harga armada)' },
+  { id: 'tips-supir', label: 'Tips Supir', price: 100000, infoOnly: true, description: 'Tips driver (exclude dari harga armada)' },
+  { id: 'tips-kondektur', label: 'Tips Kondektur', price: 75000, busOnly: true, infoOnly: true, description: 'Tips kondektur bus (exclude dari harga armada)' },
+  { id: 'kendek', label: 'Kernet (Kendek)', price: 150000, busOnly: true, infoOnly: true, description: 'Kernet pendamping untuk bus' },
+  { id: 'tour-leader', label: 'Tour Leader', price: 300000, infoOnly: true, description: 'Pemandu wisata profesional (makan TL sudah disediakan)' },
 ];
