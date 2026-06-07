@@ -53,8 +53,7 @@ export const MAKAN_OPTIONS = [
 
 /* ── Kegiatan ── */
 export const KEGIATAN_OPTIONS = [
-  { id: 'body-rafting', label: 'Body Rafting', pricePerPax: 85000, lokasi: ['pangandaran-citumang'] },
-  { id: 'rafting', label: 'Rafting / Arung Jeram', pricePerPax: 150000, lokasi: ['pangalengan-rafting'] },
+{ id: 'rafting', label: 'Rafting / Arung Jeram', pricePerPax: 150000, lokasi: ['pangalengan-rafting'] },
   { id: 'fun-games', label: 'Fun Games & Team Building', pricePerPax: 35000, lokasi: ['pangandaran-citumang', 'ujung-genteng', 'pangalengan-rafting', 'trip-ciwidey'] },
   { id: 'outbound', label: 'Outbound Games', pricePerPax: 50000, lokasi: ['pangalengan-rafting', 'trip-ciwidey'] },
   { id: 'campfire', label: 'Api Unggun / Campfire Night', pricePerPax: 25000, lokasi: ['pangandaran-citumang', 'ujung-genteng'] },

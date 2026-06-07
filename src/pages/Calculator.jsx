@@ -7,7 +7,6 @@ import {
   MapPin,
   UtensilsCrossed,
   Activity,
-  CheckSquare,
   Users,
   Send,
   CalendarDays,
@@ -45,6 +44,7 @@ export default function CalculatorPage() {
   const [jumlahKamar, setJumlahKamar] = useState(1);
   const [lokasi, setLokasi] = useState('');
   const [makan, setMakan] = useState('');
+  const [frekuensiMakan, setFrekuensiMakan] = useState(1);
   const [kegiatan, setKegiatan] = useState([]);
   const [jumlahOrang, setJumlahOrang] = useState(1);
   const [additional, setAdditional] = useState([]);
@@ -90,9 +90,10 @@ export default function CalculatorPage() {
       });
     }
     if (selectedMakan) {
+      const freq = Math.max(frekuensiMakan, 1);
       items.push({
-        label: `Makan — ${selectedMakan.label}`,
-        amount: selectedMakan.pricePerPax * pax,
+        label: `Makan — ${selectedMakan.label} (${freq}x/hari)`,
+        amount: selectedMakan.pricePerPax * pax * freq,
       });
     }
 
@@ -119,6 +120,7 @@ export default function CalculatorPage() {
     jumlahKamar,
     selectedLokasi,
     selectedMakan,
+    frekuensiMakan,
     kegiatan,
     additional,
     jumlahOrang,
@@ -151,7 +153,7 @@ export default function CalculatorPage() {
     if (selectedArmada) msg += `🚐 Armada: ${selectedArmada.name}\n`;
     if (selectedPenginapan) msg += `🏨 Penginapan: ${selectedPenginapan.label} (${jumlahMalam} malam, ${jumlahKamar} kamar)\n`;
     if (selectedLokasi) msg += `📍 Lokasi: ${selectedLokasi.name}\n`;
-    if (selectedMakan) msg += `🍽️ Makan: ${selectedMakan.label}\n`;
+    if (selectedMakan) msg += `🍽️ Makan: ${selectedMakan.label} (${frekuensiMakan}x/hari)\n`;
     if (kegiatan.length) {
       const names = kegiatan.map((id) => KEGIATAN_OPTIONS.find((k) => k.id === id)?.label).filter(Boolean);
       msg += `🎯 Kegiatan: ${names.join(', ')}\n`;
@@ -161,7 +163,7 @@ export default function CalculatorPage() {
     msg += `💰 Per Orang: ${formatRupiah(breakdown.perPax)}\n`;
     msg += `\nMohon info lebih lanjut. Terima kasih!`;
     return msg;
-  }, [selectedArmada, selectedPenginapan, jumlahMalam, jumlahKamar, selectedLokasi, selectedMakan, kegiatan, jumlahOrang, breakdown, tanggalKegiatan, tanggalAkhir]);
+  }, [selectedArmada, selectedPenginapan, jumlahMalam, jumlahKamar, selectedLokasi, selectedMakan, frekuensiMakan, kegiatan, jumlahOrang, breakdown, tanggalKegiatan, tanggalAkhir]);
 
   /* ── render ── */
   return (
@@ -246,7 +248,8 @@ export default function CalculatorPage() {
                   min={1}
                   max={200}
                   value={jumlahOrang}
-                  onChange={(e) => setJumlahOrang(Math.max(1, parseInt(e.target.value) || 1))}
+                  onChange={(e) => setJumlahOrang(e.target.value === '' ? '' : Math.max(1, parseInt(e.target.value) || 1))}
+                  onBlur={(e) => setJumlahOrang(Math.max(1, parseInt(e.target.value) || 1))}
                   className={select}
                 />
               </motion.div>
@@ -332,7 +335,8 @@ export default function CalculatorPage() {
                       min={0}
                       max={14}
                       value={jumlahMalam}
-                      onChange={(e) => setJumlahMalam(Math.max(0, parseInt(e.target.value) || 0))}
+                      onChange={(e) => setJumlahMalam(e.target.value === '' ? '' : Math.max(0, parseInt(e.target.value) || 0))}
+                      onBlur={(e) => setJumlahMalam(Math.max(0, parseInt(e.target.value) || 0))}
                       className={select}
                     />
                   </div>
@@ -343,7 +347,8 @@ export default function CalculatorPage() {
                       min={1}
                       max={50}
                       value={jumlahKamar}
-                      onChange={(e) => setJumlahKamar(Math.max(1, parseInt(e.target.value) || 1))}
+                      onChange={(e) => setJumlahKamar(e.target.value === '' ? '' : Math.max(1, parseInt(e.target.value) || 1))}
+                      onBlur={(e) => setJumlahKamar(Math.max(1, parseInt(e.target.value) || 1))}
                       className={select}
                     />
                     <p className="text-xs text-gray-400 mt-1.5">{t('calc.roomHint')}</p>
@@ -397,18 +402,35 @@ export default function CalculatorPage() {
                   <UtensilsCrossed className="w-5 h-5 text-primary-600" />
                   <h3 className="text-lg font-bold text-gray-900">{t('calc.makanTitle')}</h3>
                 </div>
-                <label className={label}>{t('calc.makanLabel')}</label>
-                <select value={makan} onChange={(e) => setMakan(e.target.value)} className={select}>
-                  <option value="">{t('calc.makanPlaceholder')}</option>
-                  {MAKAN_OPTIONS.map((m) => (
-                    <option key={m.id} value={m.id}>
-                      {m.label}
-                    </option>
-                  ))}
-                </select>
-                {selectedMakan && (
-                  <p className="text-xs text-gray-500 mt-2">{selectedMakan.description}</p>
-                )}
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className={label}>{t('calc.makanLabel')}</label>
+                    <select value={makan} onChange={(e) => setMakan(e.target.value)} className={select}>
+                      <option value="">{t('calc.makanPlaceholder')}</option>
+                      {MAKAN_OPTIONS.map((m) => (
+                        <option key={m.id} value={m.id}>
+                          {m.label}
+                        </option>
+                      ))}
+                    </select>
+                    {selectedMakan && (
+                      <p className="text-xs text-gray-500 mt-2">{selectedMakan.description}</p>
+                    )}
+                  </div>
+                  <div>
+                    <label className={label}>Frekuensi Makan</label>
+                    <select
+                      value={frekuensiMakan}
+                      onChange={(e) => setFrekuensiMakan(parseInt(e.target.value))}
+                      className={select}
+                    >
+                      <option value={1}>1x makan / hari</option>
+                      <option value={2}>2x makan / hari</option>
+                      <option value={3}>3x makan / hari</option>
+                    </select>
+                    <p className="text-xs text-gray-400 mt-1.5">Berapa kali makan dalam 1 hari</p>
+                  </div>
+                </div>
               </motion.div>
 
               {/* Kegiatan */}
@@ -444,50 +466,11 @@ export default function CalculatorPage() {
                         className="accent-primary-600 w-4 h-4"
                       />
                       <span className="flex-1 text-sm font-medium text-gray-800">{k.label}</span>
-                      <span className="text-xs text-gray-500">{formatRupiah(k.pricePerPax)}/org</span>
                     </label>
                   ))}
                 </div>
               </motion.div>
 
-              {/* Variabel Tambahan */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.3 }}
-                className={card}
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <CheckSquare className="w-5 h-5 text-primary-600" />
-                  <h3 className="text-lg font-bold text-gray-900">{t('calc.additionalTitle')}</h3>
-                </div>
-                <div className="space-y-3">
-                  {ADDITIONAL_OPTIONS.map((opt) => {
-                    if (opt.busOnly && !isBus) return null;
-                    return (
-                      <div
-                        key={opt.id}
-                        className="flex items-start gap-3 p-3 rounded-lg border border-dashed border-amber-200 bg-amber-50"
-                      >
-                        <Info className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
-                        <div className="flex-1">
-                          <span className="text-sm font-medium text-amber-800">{opt.label}</span>
-                          {opt.description && (
-                            <p className="text-xs text-amber-600 mt-0.5">{opt.description}</p>
-                          )}
-                          {opt.busOnly && (
-                            <p className="text-xs text-amber-500 mt-0.5">{t('calc.busOnly')}</p>
-                          )}
-                        </div>
-                        <span className="text-xs text-amber-600 whitespace-nowrap">
-                          {formatRupiah(opt.price)}
-                          {opt.perPax ? '/org' : '/trip'}
-                        </span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </motion.div>
             </div>
 
             {/* ────────── RIGHT — Summary ────────── */}
