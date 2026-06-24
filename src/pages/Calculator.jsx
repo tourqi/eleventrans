@@ -39,6 +39,7 @@ export default function CalculatorPage() {
   const [tanggalKegiatan, setTanggalKegiatan] = useState('');
   const [tanggalAkhir, setTanggalAkhir] = useState('');
   const [armada, setArmada] = useState('');
+  const [jumlahArmada, setJumlahArmada] = useState(1);
   const [penginapan, setPenginapan] = useState('');
   const [jumlahMalam, setJumlahMalam] = useState(1);
   const [jumlahKamar, setJumlahKamar] = useState(1);
@@ -57,6 +58,14 @@ export default function CalculatorPage() {
 
   const isBus = selectedArmada?.isBus ?? false;
 
+  const MAX_ORANG_PER_KAMAR = 4;
+  const minKamarDibutuhkan = Math.ceil(jumlahOrang / MAX_ORANG_PER_KAMAR);
+  const kamarKurang = penginapan && jumlahOrang > 1 && jumlahKamar < minKamarDibutuhkan;
+
+  const kapasitasArmada = selectedArmada ? selectedArmada.passengerSeat * jumlahArmada : 0;
+  const minArmadaDibutuhkan = selectedArmada ? Math.ceil(jumlahOrang / selectedArmada.passengerSeat) : 1;
+  const armadaKurang = selectedArmada && jumlahOrang > kapasitasArmada;
+
   // Filter kegiatan by selected lokasi
   const availableKegiatan = useMemo(
     () =>
@@ -73,7 +82,8 @@ export default function CalculatorPage() {
     const items = [];
 
     if (selectedArmada) {
-      items.push({ label: `Armada — ${selectedArmada.name}`, amount: selectedArmada.price });
+      const unit = Math.max(jumlahArmada, 1);
+      items.push({ label: `Armada — ${selectedArmada.name} (${unit} unit)`, amount: selectedArmada.price * unit });
     }
     if (selectedPenginapan && malam > 0) {
       const kamar = Math.max(jumlahKamar, 1);
@@ -124,6 +134,7 @@ export default function CalculatorPage() {
     kegiatan,
     additional,
     jumlahOrang,
+    jumlahArmada,
     isBus,
   ]);
 
@@ -150,7 +161,7 @@ export default function CalculatorPage() {
         msg += `📅 Tanggal Rencana: ${tglMulai}\n`;
       }
     }
-    if (selectedArmada) msg += `🚐 Armada: ${selectedArmada.name}\n`;
+    if (selectedArmada) msg += `🚐 Armada: ${selectedArmada.name} (${jumlahArmada} unit)\n`;
     if (selectedPenginapan) msg += `🏨 Penginapan: ${selectedPenginapan.label} (${jumlahMalam} malam, ${jumlahKamar} kamar)\n`;
     if (selectedLokasi) msg += `📍 Lokasi: ${selectedLokasi.name}\n`;
     if (selectedMakan) msg += `🍽️ Makan: ${selectedMakan.label} (${frekuensiMakan}x/hari)\n`;
@@ -265,16 +276,41 @@ export default function CalculatorPage() {
                   <Bus className="w-5 h-5 text-primary-600" />
                   <h3 className="text-lg font-bold text-gray-900">{t('calc.armadaTitle')}</h3>
                 </div>
-                <label className={label}>{t('calc.armadaLabel')}</label>
-                <select value={armada} onChange={(e) => setArmada(e.target.value)} className={select}>
-                  <option value="">{t('calc.armadaPlaceholder')}</option>
-                  {ARMADA_OPTIONS.map((a) => (
-                    <option key={a.id} value={a.id}>
-                      {a.name} ({a.capacity})
-                    </option>
-                  ))}
-                </select>
-                <div className="mt-3 grid sm:grid-cols-2 gap-3">
+                <div className="grid sm:grid-cols-2 gap-4 mb-3">
+                  <div>
+                    <label className={label}>{t('calc.armadaLabel')}</label>
+                    <select value={armada} onChange={(e) => { setArmada(e.target.value); setJumlahArmada(1); }} className={select}>
+                      <option value="">{t('calc.armadaPlaceholder')}</option>
+                      {ARMADA_OPTIONS.map((a) => (
+                        <option key={a.id} value={a.id}>
+                          {a.name} ({a.capacity})
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label className={label}>Jumlah Unit Armada</label>
+                    <input
+                      type="number"
+                      min={1}
+                      max={20}
+                      value={jumlahArmada}
+                      onChange={(e) => setJumlahArmada(e.target.value === '' ? '' : Math.max(1, parseInt(e.target.value) || 1))}
+                      onBlur={(e) => setJumlahArmada(Math.max(1, parseInt(e.target.value) || 1))}
+                      className={`${select} ${armadaKurang ? 'border-red-400 focus:border-red-500 focus:ring-red-200' : ''}`}
+                    />
+                    {armadaKurang ? (
+                      <p className="text-xs text-red-500 mt-1.5 font-medium">
+                        ⚠ Kapasitas penuh — butuh minimal {minArmadaDibutuhkan} unit untuk {jumlahOrang} orang.
+                      </p>
+                    ) : selectedArmada ? (
+                      <p className="text-xs text-gray-400 mt-1.5">
+                        Kapasitas: {kapasitasArmada} penumpang ({jumlahArmada} × {selectedArmada.passengerSeat} seat)
+                      </p>
+                    ) : null}
+                  </div>
+                </div>
+                <div className="grid sm:grid-cols-2 gap-3">
                   <div className="flex gap-2 p-3 rounded-lg bg-green-50 border border-green-100">
                     <Info className="w-4 h-4 text-green-600 shrink-0 mt-0.5" />
                     <div>
@@ -349,9 +385,15 @@ export default function CalculatorPage() {
                       value={jumlahKamar}
                       onChange={(e) => setJumlahKamar(e.target.value === '' ? '' : Math.max(1, parseInt(e.target.value) || 1))}
                       onBlur={(e) => setJumlahKamar(Math.max(1, parseInt(e.target.value) || 1))}
-                      className={select}
+                      className={`${select} ${kamarKurang ? 'border-red-400 focus:border-red-500 focus:ring-red-200' : ''}`}
                     />
-                    <p className="text-xs text-gray-400 mt-1.5">{t('calc.roomHint')}</p>
+                    {kamarKurang ? (
+                      <p className="text-xs text-red-500 mt-1.5 font-medium">
+                        ⚠ Maks. 4 orang/kamar — butuh minimal {minKamarDibutuhkan} kamar untuk {jumlahOrang} orang.
+                      </p>
+                    ) : (
+                      <p className="text-xs text-gray-400 mt-1.5">{t('calc.roomHint')}</p>
+                    )}
                   </div>
                 </div>
               </motion.div>

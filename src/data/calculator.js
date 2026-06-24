@@ -1,45 +1,41 @@
-import { FLEET } from './fleet';
 import { PACKAGES } from './packages';
 
 /* ── Armada ── */
-export const ARMADA_OPTIONS = FLEET.map((v) => ({
-  id: v.id,
-  name: v.name,
-  capacity: v.capacity,
-  type: v.type,
-  // Harga sewa per hari (dummy — sesuaikan dengan harga riil)
-  price: {
-    hiace: 1800000,
-    'elf-long': 2200000,
-    'bus-medium': 3500000,
-    'bus-big': 5500000,
-    avanza: 750000,
-  }[v.id],
-  isBus: ['bus-medium', 'bus-big'].includes(v.id),
-}));
+export const ARMADA_OPTIONS = [
+  { id: 'hiace',               name: 'Hiace 14 Seat',               capacity: '14 Seat (13 penumpang)', passengerSeat: 13, type: 'Minibus',          minPax: 13, price: 1800000, isBus: false },
+  { id: 'medium-bus-35',       name: 'Medium Bus 35 Seat',           capacity: '35 Seat',                passengerSeat: 35, type: 'Bus Sedang',        minPax: 35, price: 3500000, isBus: true  },
+  { id: 'medium-bus-35-sr3',   name: 'Medium Bus 35 Seat SR3 2024',  capacity: '35 Seat',                passengerSeat: 35, type: 'Bus Sedang',        minPax: 35, price: 4000000, isBus: true  },
+  { id: 'medium-bus-18-luxury',name: 'Medium Bus 18 Seat Luxury',    capacity: '18 Seat',                passengerSeat: 18, type: 'Bus Sedang Luxury', minPax: 18, price: 4500000, isBus: true  },
+  { id: 'big-bus-jb3',         name: 'Big Bus JB3 50 Seat',          capacity: '50 Seat',                passengerSeat: 50, type: 'Bus Besar',         minPax: 50, price: 5500000, isBus: true  },
+  { id: 'big-bus-jb5',         name: 'Big Bus JB5 50 Seat',          capacity: '50 Seat',                passengerSeat: 50, type: 'Bus Besar',         minPax: 50, price: 6000000, isBus: true  },
+  { id: 'luxury-bus-36',       name: 'Luxury Bus 36 Seat',           capacity: '36 Seat',                passengerSeat: 36, type: 'Bus Luxury',        minPax: 36, price: 7000000, isBus: true  },
+];
 
 /* ── Penginapan ── */
 export const PENGINAPAN_OPTIONS = [
   { id: 'bintang-1', label: 'Bintang 1 — Penginapan / Losmen', stars: 1, pricePerNight: 150000 },
-  { id: 'bintang-2', label: 'Bintang 2 — Hotel Budget', stars: 2, pricePerNight: 300000 },
-  { id: 'bintang-3', label: 'Bintang 3 — Hotel Standar', stars: 3, pricePerNight: 500000 },
-  { id: 'bintang-4', label: 'Bintang 4 — Hotel Premium', stars: 4, pricePerNight: 850000 },
-  { id: 'bintang-5', label: 'Bintang 5 — Hotel Mewah', stars: 5, pricePerNight: 1500000 },
+  { id: 'bintang-2', label: 'Bintang 2 — Hotel Budget',         stars: 2, pricePerNight: 350000 },
+  { id: 'bintang-3', label: 'Bintang 3 — Hotel Standar',        stars: 3, pricePerNight: 350000 },
+  { id: 'bintang-4', label: 'Bintang 4 — Hotel Premium',        stars: 4, pricePerNight: 850000 },
+  { id: 'bintang-5', label: 'Bintang 5 — Hotel Mewah',          stars: 5, pricePerNight: 850000 },
 ];
 
 /* ── Lokasi Wisata (dari paket) ── */
+const LOKASI_META = {
+  'pangandaran-citumang': { minPax: 18, pricePerPax: 600000 },
+  'ujung-genteng':        { minPax: 13, pricePerPax: 1000000 },
+  'pangalengan-rafting':  { minPax: 13, pricePerPax: 450000 },
+  'trip-ciwidey':         { minPax: 13, pricePerPax: 450000 },
+};
+
 export const LOKASI_OPTIONS = PACKAGES.map((p) => ({
   id: p.id,
   name: p.title,
   location: p.meta.location,
   duration: p.meta.duration,
-  // Estimasi biaya destinasi (tiket masuk, dll) per orang — dummy
-  pricePerPax: {
-    'pangandaran-citumang': 75000,
-    'ujung-genteng': 100000,
-    'pangalengan-rafting': 50000,
-    'trip-ciwidey': 85000,
-  }[p.id] || 75000,
+  minPax: LOKASI_META[p.id]?.minPax ?? 13,
+  pricePerPax: LOKASI_META[p.id]?.pricePerPax ?? 450000,
+  pricingTiers: p.pricingTiers ?? [],
 }));
 
 /* ── Paket Makan ── */
@@ -53,7 +49,7 @@ export const MAKAN_OPTIONS = [
 
 /* ── Kegiatan ── */
 export const KEGIATAN_OPTIONS = [
-{ id: 'rafting', label: 'Rafting / Arung Jeram', pricePerPax: 150000, lokasi: ['pangalengan-rafting'] },
+  { id: 'rafting', label: 'Rafting / Arung Jeram', pricePerPax: 150000, lokasi: ['pangalengan-rafting'] },
   { id: 'fun-games', label: 'Fun Games & Team Building', pricePerPax: 35000, lokasi: ['pangandaran-citumang', 'ujung-genteng', 'pangalengan-rafting', 'trip-ciwidey'] },
   { id: 'outbound', label: 'Outbound Games', pricePerPax: 50000, lokasi: ['pangalengan-rafting', 'trip-ciwidey'] },
   { id: 'campfire', label: 'Api Unggun / Campfire Night', pricePerPax: 25000, lokasi: ['pangandaran-citumang', 'ujung-genteng'] },
@@ -62,7 +58,6 @@ export const KEGIATAN_OPTIONS = [
 /* ── Variabel Tambahan (checkbox) ── */
 // perPax: true  → price × jumlah orang
 // (default)     → flat cost per trip
-// Catatan: asuransi, tiket masuk wisata, makan TL sudah termasuk. Local guide dihapus.
 export const ADDITIONAL_OPTIONS = [
   { id: 'tol', label: 'Tol', price: 250000, infoOnly: true, description: 'Biaya tol PP (exclude dari harga armada)' },
   { id: 'parkir', label: 'Parkir', price: 50000, infoOnly: true, description: 'Biaya parkir di lokasi wisata (exclude dari harga armada)' },

@@ -16,10 +16,10 @@ export const UI = {
     'nav.contact': 'Kontak',
 
     /* ── Hero ── */
-    'hero.badge': '🎉 Travel with Fun',
+    'hero.badge': 'Travel with Fun',
     'hero.title1': 'Bikin Liburan',
     'hero.title2': 'Makin Asyik',
-    'hero.subtitle': 'Private trip, family gathering, adventure trip & industrial visit — semua dirancang khusus untuk pengalaman tak terlupakan. Aman, seru, dan penuh cerita.',
+    'hero.subtitle': 'Private trip, family gathering, adventure trip & industrial visit semua dirancang khusus untuk pengalaman tak terlupakan. Aman, seru, dan penuh cerita.',
     'hero.cta': 'Chat via WhatsApp',
     'hero.cta2': 'Lihat Paket',
     'hero.social': 'pelanggan puas',
@@ -36,16 +36,16 @@ export const UI = {
     'why.title': 'Travel Partner yang Bisa Diandalkan',
     'why.subtitle': 'Sudah ratusan perusahaan, komunitas, dan keluarga mempercayakan perjalanan mereka ke Eleven Trans Holiday.',
     'why.r1.title': 'Layanan Ramah & Personal',
-    'why.r1.desc': 'Kami bukan travel biasa. Setiap klien kami perlakukan seperti teman — komunikasi santai, respon cepat, dan selalu siap bantu kapanpun.',
+    'why.r1.desc': 'Kami bukan travel biasa. Setiap klien kami perlakukan seperti teman komunikasi santai, respon cepat, dan selalu siap bantu kapanpun.',
     'why.r2.title': 'Konsep Kreatif & Fleksibel',
     'why.r2.desc': 'Bosan dengan trip monoton? Kami merancang konsep acara yang fresh dan bisa disesuaikan 100% dengan keinginan dan budget kamu.',
     'why.r3.title': 'One-Stop Solution & Aman',
-    'why.r3.desc': 'Dari transportasi, venue, konsumsi, hingga dokumentasi — semua kami urus. Kamu tinggal datang, nikmati, dan pulang bawa kenangan.',
+    'why.r3.desc': 'Dari transportasi, venue, konsumsi, hingga dokumentasi semua kami urus. Kamu tinggal datang, nikmati, dan pulang bawa kenangan.',
 
     /* ── Featured Experience ── */
     'featured.eyebrow': 'Paket Unggulan',
     'featured.title': 'Pengalaman Paling Populer',
-    'featured.subtitle': 'Dicoba ratusan peserta — direkomendasikan semua.',
+    'featured.subtitle': 'Dicoba ratusan peserta direkomendasikan semua.',
     'featured.popular': '🔥 Most Popular',
     'featured.booking': 'Booking Sekarang',
     'featured.detail': 'Detail Lengkap',
@@ -53,7 +53,7 @@ export const UI = {
     /* ── Testimonials ── */
     'testimonial.eyebrow': 'Testimoni',
     'testimonial.title': 'Cerita dari Pelanggan Kami',
-    'testimonial.subtitle': 'Bukan kami yang bilang bagus — mereka yang merasakan langsung.',
+    'testimonial.subtitle': 'Bukan kami yang bilang bagus mereka yang merasakan langsung.',
 
     /* ── FAQ ── */
     'faq.label': 'FAQ',
@@ -74,7 +74,7 @@ export const UI = {
 
     /* ── CTA ── */
     'cta.title': 'Siap Bikin Liburan Makin Asyik?',
-    'cta.subtitle': 'Konsultasi GRATIS — ceritakan rencana trip kamu, dan kami bantu wujudkan.',
+    'cta.subtitle': 'Konsultasi GRATIS, ceritakan rencana trip kamu, dan kami bantu wujudkan.',
     'cta.wa': 'Chat via WhatsApp',
     'cta.form': 'Isi Form Request',
 
@@ -83,29 +83,28 @@ export const UI = {
 
     /* ── About ── */
     'about.eyebrow': 'Tentang Kami',
-    'about.heroTitle': 'Lebih dari Sekadar Travel — Kami Adalah Teman Perjalananmu',
+    'about.heroTitle': 'Lebih dari Sekadar Travel, kami Adalah Teman Perjalananmu',
     'about.heroDesc': 'Eleven Trans Holiday lahir dari passion sederhana: bikin liburan jadi lebih asyik. Kami percaya bahwa perjalanan terbaik bukan soal destinasi, tapi soal pengalaman dan cerita yang kamu bawa pulang.',
     'about.storyTitle': 'Cerita Kami',
-    'about.storyP1': 'Berawal dari sebuah mobil rental kecil di Bandung tahun 2015, Eleven Trans Holiday tumbuh menjadi travel organizer yang dipercaya ratusan perusahaan, komunitas, dan keluarga di Indonesia.',
-    'about.storyP2': 'Nama "Eleven" bukan sekadar angka — ini simbol dari philosophy kami: selalu berusaha memberikan yang lebih (above & beyond). Setiap trip, setiap acara, setiap momen — kami ingin hasilnya selalu di atas ekspektasi.',
-    'about.storyP3': 'Dengan tim yang passionate, armada yang terawat, dan konsep acara yang selalu fresh — kami siap menjadi teman perjalanan terbaik kamu.',
+    'about.storyP1': 'Eleven Trans Holiday bukan sekadar layanan perjalanan. Kami adalah mitra yang hadir untuk mengubah setiap destinasi menjadi pengalaman yang benar-benar hidup penuh makna, penuh cerita, dan tak terlupakan.',
+    'about.storyP2': 'Kami percaya perjalanan bukan hanya soal berpindah tempat. Di balik setiap kilometer yang kami tempuh, ada momen relaksasi yang kamu butuhkan, inspirasi yang selama ini kamu cari, dan kenangan yang akan kamu simpan jauh lebih lama dari foto di galerimu.',
+    'about.storyP3': 'Percayakan perjalananmu kepada kami dan kami akan memastikan setiap detailnya sempurna. Karena bagi Eleven Trans Holiday, kesuksesanmu menikmati perjalanan adalah standar layanan kami.',
     'about.vmEyebrow': 'Visi & Misi',
     'about.vmTitle': 'Arah & Tujuan Kami',
     'about.visionTitle': 'Visi',
-    'about.visionText': 'Menjadi travel organizer #1 di Indonesia yang dikenal karena pengalaman perjalanan yang menyenangkan, personal, dan penuh cerita.',
+    'about.visionText': 'Menjadi agen perjalanan terdepan yang menginspirasi dan memfasilitasi perjalanan wisata yang tak terlupakan, dengan menghadirkan pengalaman unik dan baru bagi setiap pelanggan.',
     'about.missionTitle': 'Misi',
-    'about.m1': 'Memberikan layanan travel yang personal dan ramah',
-    'about.m2': 'Merancang konsep acara yang kreatif dan memorable',
-    'about.m3': 'Mengutamakan keamanan dan kenyamanan pelanggan',
-    'about.m4': 'Berinovasi dalam pengalaman wisata Indonesia',
+    'about.m1': 'Memberikan Pengalaman Wisata yang Tak Terlupakan',
+    'about.m2': 'Menciptakan Pengalaman yang Unik dan Baru',
+    'about.m3': 'Menjadi Mitra Perjalanan yang Terpercaya',
     'about.teamEyebrow': 'Tim Kami',
     'about.teamTitle': 'Orang-Orang di Balik Layar',
-    'about.teamSubtitle': 'Tim kecil tapi solid — setiap orang punya passion untuk memberikan yang terbaik.',
+    'about.teamSubtitle': 'Tim kecil tapi solid setiap orang punya passion untuk memberikan yang terbaik.',
 
     /* ── Services Page ── */
     'servicesPage.eyebrow': 'Layanan',
     'servicesPage.title': 'Layanan Kami',
-    'servicesPage.desc': 'Dari private trip hingga industrial visit — setiap layanan kami dirancang untuk menciptakan pengalaman yang berkesan.',
+    'servicesPage.desc': 'Dari private trip hingga industrial visit setiap layanan kami dirancang untuk menciptakan pengalaman yang berkesan.',
     'servicesPage.notFound': 'Layanan tidak ditemukan',
     'servicesPage.backLink': '← Kembali ke layanan',
     'servicesPage.allServices': 'Semua Layanan',
@@ -114,7 +113,7 @@ export const UI = {
     'servicesPage.benefitsTitle': 'Kenapa Pilih',
     'servicesPage.suitableFor': 'Cocok untuk:',
     'servicesPage.interested': 'Tertarik',
-    'servicesPage.interestedSub': 'Ceritakan rencana kamu — kami bantu wujudkan.',
+    'servicesPage.interestedSub': 'Ceritakan rencana kamu kami bantu wujudkan.',
 
     /* ── Fleet Page ── */
     'fleet.eyebrow': 'Armada',
@@ -201,7 +200,7 @@ export const UI = {
     'calc.makanLabel': 'Pilih Paket',
     'calc.makanPlaceholder': '— Pilih Paket Makan —',
     'calc.kegiatanTitle': 'Kegiatan',
-    'calc.kegiatanHint': 'Pilih kegiatan yang tersedia di lokasi ini.',
+    'calc.kegiatanHint': 'Pilihan kegiatan yang tersedia di lokasi ini.',
     'calc.kegiatanHintEmpty': 'Pilih lokasi dulu untuk melihat kegiatan yang tersedia.',
     'calc.additionalTitle': 'Biaya Tambahan',
     'calc.busOnly': '* Hanya untuk Bus',
@@ -217,7 +216,7 @@ export const UI = {
     /* ── Packages ── */
     'pkg.eyebrow': 'Paket Wisata',
     'pkg.title': 'Paket Pengalaman',
-    'pkg.desc': 'Pilih paket yang sesuai — atau request custom trip sesuai kebutuhan kamu.',
+    'pkg.desc': 'Pilih paket yang sesuai atau request custom trip sesuai kebutuhan kamu.',
     'pkg.notFound': 'Paket tidak ditemukan',
     'pkg.backLink': '← Lihat semua paket',
     'pkg.allPackages': 'Semua Paket',

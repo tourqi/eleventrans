@@ -55,7 +55,7 @@ export default function About() {
               className="rounded-2xl overflow-hidden shadow-xl"
             >
               <img
-                src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800"
+                src="public/citumang.JPG"
                 alt="Eleven Trans team"
                 className="w-full h-80 lg:h-[400px] object-cover"
                 loading="lazy"
@@ -111,10 +111,6 @@ export default function About() {
                   <span className="text-accent-500 mt-1">•</span>
                   {t('about.m3')}
                 </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-accent-500 mt-1">•</span>
-                  {t('about.m4')}
-                </li>
               </ul>
             </motion.div>
           </div>
@@ -130,7 +126,7 @@ export default function About() {
             subtitle={t('about.teamSubtitle')}
           />
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
             {TEAM.map((member, idx) => (
               <motion.div
                 key={member.name}
@@ -140,9 +136,17 @@ export default function About() {
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 className="text-center bg-gray-50 rounded-2xl p-6 hover:shadow-lg transition-shadow"
               >
-                <div className="w-20 h-20 mx-auto bg-gradient-to-br from-primary-400 to-accent-400 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4">
-                  {member.name[0]}
-                </div>
+                {member.image ? (
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-20 h-20 mx-auto rounded-full object-cover object-top mb-4 ring-2 ring-primary-100"
+                  />
+                ) : (
+                  <div className="w-20 h-20 mx-auto bg-gradient-to-br from-primary-400 to-accent-400 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4">
+                    {member.name[0]}
+                  </div>
+                )}
                 <h4 className="font-bold text-gray-900">{member.name}</h4>
                 <p className="text-sm text-accent-600 font-medium mb-2">{member.role}</p>
                 <p className="text-sm text-gray-500">{td(member.desc)}</p>

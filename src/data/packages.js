@@ -57,7 +57,7 @@ export const PACKAGES = [
     priceUnit: '/orang',
     priceNote: 'Harga tergantung paket & jumlah peserta. Hubungi kami untuk penawaran terbaik.',
     images: [
-      'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEierUxADK0bSiqov5hnvuIrQduyUw6YLf-VIW3GTuGVhCayXznvhEiYuPUIStXBtv6JbsjOeFnHm-UiSzExrs1NWW5nn_uZ__SXKuRJybWgqPPu3dIaFAVsoxIp0CM6B9cbmann3cPJElY/w1200-h630-p-k-no-nu/bodyrafting-citumang.jpg',
+      '/public/citumang.JPG',
       'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800',
       'https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=800',
       'https://images.unsplash.com/photo-1468413253725-0d5181091126?w=800',
