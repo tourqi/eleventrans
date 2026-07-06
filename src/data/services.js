@@ -23,7 +23,7 @@ export const SERVICES = [
     ],
     targets: ['Keluarga', 'Pasangan', 'Grup kecil (2-10 orang)'],
     icon: 'Compass',
-    heroImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200',
+    heroImage: '/public/categories/private-trip.jpeg',
     gallery: [
       'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600',
       'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600',
@@ -46,7 +46,7 @@ export const SERVICES = [
     ],
     targets: ['Perusahaan', 'Keluarga besar', 'Komunitas'],
     icon: 'Users',
-    heroImage: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200',
+    heroImage: '/public/categories/family-trip.JPG',
     gallery: [
       'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600',
       'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=600',
@@ -69,7 +69,7 @@ export const SERVICES = [
     ],
     targets: ['Tim perusahaan', 'Komunitas', 'Sekolah & kampus'],
     icon: 'Mountain',
-    heroImage: 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=1200',
+    heroImage: '/public/categories/adventure.jpg',
     gallery: [
       'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=600',
       'https://images.unsplash.com/photo-1551632811-561732d1e306?w=600',
@@ -92,7 +92,7 @@ export const SERVICES = [
     ],
     targets: ['Mahasiswa', 'Sekolah', 'Organisasi kampus'],
     icon: 'Building2',
-    heroImage: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=1200',
+    heroImage: '/public/categories/industrial-visit.jpg',
     gallery: [
       'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=600',
       'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600',
