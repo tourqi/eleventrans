@@ -56,7 +56,9 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
+        open
+          ? 'bg-white shadow-md'
+          : scrolled
           ? 'glass shadow-md'
           : 'bg-white/60 backdrop-blur-sm'
       }`}
@@ -115,7 +117,7 @@ export default function Navbar() {
 
         {/* Mobile Nav */}
         {open && (
-          <div className="lg:hidden pb-4 border-t border-gray-100">
+          <div className="lg:hidden pb-4 border-t border-gray-100 bg-white">
             <div className="flex flex-col gap-1 pt-3">
               {NAV_KEYS.map((link) => (
                 <NavLink
