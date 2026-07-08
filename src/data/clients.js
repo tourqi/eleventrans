@@ -10,18 +10,18 @@ export const CLIENTS = [
 ];
 
 export const GALLERY_IMAGES = [
-  { id: 1, src: 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=600', alt: 'Rafting adventure', category: 'adventure' },
-  { id: 2, src: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600', alt: 'Family gathering fun', category: 'gathering' },
-  { id: 3, src: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=600', alt: 'Team building activity', category: 'adventure' },
-  { id: 4, src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600', alt: 'Mountain scenery', category: 'trip' },
-  { id: 5, src: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600', alt: 'Scenic landscape', category: 'trip' },
-  { id: 6, src: 'https://images.unsplash.com/photo-1551632811-561732d1e306?w=600', alt: 'Hiking together', category: 'adventure' },
-  { id: 7, src: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=600', alt: 'Industrial visit', category: 'industrial' },
-  { id: 8, src: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600', alt: 'Learning tour', category: 'industrial' },
-  { id: 9, src: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600', alt: 'Fleet lineup', category: 'fleet' },
-  { id: 10, src: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600', alt: 'Happy customers', category: 'gathering' },
-  { id: 11, src: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600', alt: 'Team moments', category: 'gathering' },
-  { id: 12, src: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600', alt: 'Group photo', category: 'trip' },
+  { id: 1, src: '/gallery/IMG_7751.jpg', alt: 'Body rafting Citumang', category: 'adventure' },
+  { id: 2, src: '/gallery/IMG_7792.jpg', alt: 'Keseruan body rafting di sungai', category: 'adventure' },
+  { id: 3, src: '/gallery/IMG_7828.JPG', alt: 'Menyusuri gua sungai saat body rafting', category: 'adventure' },
+  { id: 4, src: '/gallery/IMG_8043.JPG', alt: 'Dokumentasi seru body rafting', category: 'adventure' },
+  { id: 5, src: '/gallery/IMG_8133.jpg', alt: 'Body rafting di air terjun', category: 'adventure' },
+  { id: 6, src: '/gallery/IMG_8139.JPG', alt: 'Berfoto di tepi air terjun', category: 'adventure' },
+  { id: 7, src: '/gallery/Dinkes Bangka.jpg', alt: 'Kunjungan klien ke kantor mitra', category: 'industrial' },
+  { id: 8, src: '/gallery/lombok-tengah.jpg', alt: 'Gathering rombongan Dinas Kesehatan', category: 'gathering' },
+  { id: 9, src: '/gallery/malaysia.JPG', alt: 'Private trip keluarga di puncak gunung', category: 'trip' },
+  { id: 10, src: '/gallery/singapore.JPG', alt: 'Trip wisata kawah dan pemandian air panas', category: 'trip' },
+  { id: 11, src: '/gallery/singapore.jpeg', alt: 'Kunjungan wisata ke observatorium', category: 'trip' },
+  { id: 12, src: '/gallery/megatrans.JPG', alt: 'Armada bus pariwisata Eleven Trans Holiday', category: 'fleet' },
 ];
 
 export const GALLERY_CATEGORIES = [

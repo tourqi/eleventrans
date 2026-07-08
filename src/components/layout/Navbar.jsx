@@ -67,7 +67,7 @@ export default function Navbar() {
           <Link to="/" className="flex items-center gap-2 shrink-0">
             <img src={logo} alt="Eleven Trans Holiday" className="w-10 h-10 object-contain" />
             <div className="hidden sm:block">
-              <div className="font-bold text-gray-900 text-lg leading-tight">Eleven Trans</div>
+              <div className="font-bold text-gray-900 text-lg leading-tight">Eleven Trans Holiday</div>
               <div className="text-[10px] text-accent-500 font-medium -mt-0.5">Travel with Fun</div>
             </div>
           </Link>

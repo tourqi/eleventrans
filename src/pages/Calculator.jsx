@@ -83,33 +83,33 @@ export default function CalculatorPage() {
 
     if (selectedArmada) {
       const unit = Math.max(jumlahArmada, 1);
-      items.push({ label: `Armada — ${selectedArmada.name} (${unit} unit)`, amount: selectedArmada.price * unit });
+      items.push({ label: `Armada: ${selectedArmada.name} (${unit} unit)`, amount: selectedArmada.price * unit });
     }
     if (selectedPenginapan && malam > 0) {
       const kamar = Math.max(jumlahKamar, 1);
       const hotelTotal = selectedPenginapan.pricePerNight * malam * kamar;
       items.push({
-        label: `Penginapan — ${selectedPenginapan.label} (${malam} malam, ${kamar} kamar)`,
+        label: `Penginapan: ${selectedPenginapan.label} (${malam} malam, ${kamar} kamar)`,
         amount: hotelTotal,
       });
     }
     if (selectedLokasi) {
       items.push({
-        label: `Lokasi — ${selectedLokasi.name}`,
+        label: `Lokasi: ${selectedLokasi.name}`,
         amount: selectedLokasi.pricePerPax * pax,
       });
     }
     if (selectedMakan) {
       const freq = Math.max(frekuensiMakan, 1);
       items.push({
-        label: `Makan — ${selectedMakan.label} (${freq}x/hari)`,
+        label: `Makan: ${selectedMakan.label} (${freq}x/hari)`,
         amount: selectedMakan.pricePerPax * pax * freq,
       });
     }
 
     kegiatan.forEach((kid) => {
       const k = KEGIATAN_OPTIONS.find((x) => x.id === kid);
-      if (k) items.push({ label: `Kegiatan — ${k.label}`, amount: k.pricePerPax * pax });
+      if (k) items.push({ label: `Kegiatan: ${k.label}`, amount: k.pricePerPax * pax });
     });
 
     additional.forEach((aid) => {
@@ -151,7 +151,7 @@ export default function CalculatorPage() {
 
   /* ── WhatsApp summary ── */
   const waMessage = useMemo(() => {
-    let msg = `Halo Eleven Trans! 👋\nSaya ingin estimasi biaya:\n\n`;
+    let msg = `Halo Eleven Trans Holiday! 👋\nSaya ingin estimasi biaya:\n\n`;
     if (tanggalKegiatan) {
       const tglMulai = new Date(tanggalKegiatan).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
       if (tanggalAkhir) {
@@ -301,7 +301,7 @@ export default function CalculatorPage() {
                     />
                     {armadaKurang ? (
                       <p className="text-xs text-red-500 mt-1.5 font-medium">
-                        ⚠ Kapasitas penuh — butuh minimal {minArmadaDibutuhkan} unit untuk {jumlahOrang} orang.
+                        ⚠ Kapasitas penuh, butuh minimal {minArmadaDibutuhkan} unit untuk {jumlahOrang} orang.
                       </p>
                     ) : selectedArmada ? (
                       <p className="text-xs text-gray-400 mt-1.5">
@@ -389,7 +389,7 @@ export default function CalculatorPage() {
                     />
                     {kamarKurang ? (
                       <p className="text-xs text-red-500 mt-1.5 font-medium">
-                        ⚠ Maks. 4 orang/kamar — butuh minimal {minKamarDibutuhkan} kamar untuk {jumlahOrang} orang.
+                        ⚠ Maks. 4 orang/kamar, butuh minimal {minKamarDibutuhkan} kamar untuk {jumlahOrang} orang.
                       </p>
                     ) : (
                       <p className="text-xs text-gray-400 mt-1.5">{t('calc.roomHint')}</p>
@@ -421,7 +421,7 @@ export default function CalculatorPage() {
                   <option value="">{t('calc.lokasiPlaceholder')}</option>
                   {LOKASI_OPTIONS.map((l) => (
                     <option key={l.id} value={l.id}>
-                      {l.name} — {l.location} ({l.duration})
+                      {l.name}, {l.location} ({l.duration})
                     </option>
                   ))}
                 </select>

@@ -31,7 +31,7 @@ export default function Contact() {
     const tripPackage = formData.get('tripPackage');
     const pax = formData.get('pax');
 
-    const waText = `Halo Eleven Trans! 👋\n\nNama: ${name}\nNo HP: ${phone}\nJenis Trip: ${tripType}\nPaket: ${tripPackage || '-'}\nJumlah Orang: ${pax}\n\nPesan:\n${message}`;
+    const waText = `Halo Eleven Trans Holiday! 👋\n\nNama: ${name}\nNo HP: ${phone}\nJenis Trip: ${tripType}\nPaket: ${tripPackage || '-'}\nJumlah Orang: ${pax}\n\nPesan:\n${message}`;
 
     window.open(buildWhatsAppLink(waText), '_blank');
     setStatus('success');
@@ -139,7 +139,7 @@ export default function Contact() {
               <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8 border border-green-200">
                 <h3 className="text-xl font-bold text-gray-900 mb-3">{t('contact.chatDirect')}</h3>
                 <p className="text-gray-600 text-sm mb-5">{t('contact.chatDirectDesc')}</p>
-                <Button variant="whatsapp" size="lg" href={buildWhatsAppLink('Halo Eleven Trans! Saya mau tanya tentang trip.')} className="w-full">
+                <Button variant="whatsapp" size="lg" href={buildWhatsAppLink('Halo Eleven Trans Holiday! Saya mau tanya tentang trip.')} className="w-full">
                   <Phone className="w-5 h-5" />
                   {t('contact.chatWA')}
                 </Button>

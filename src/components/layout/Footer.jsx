@@ -38,7 +38,7 @@ export default function Footer() {
             <Link to="/" className="flex items-center gap-2 mb-4">
               <img src={logo} alt="Eleven Trans Holiday" className="w-10 h-10 object-contain" />
               <div>
-                <div className="font-bold text-white text-lg leading-tight">Eleven Trans</div>
+                <div className="font-bold text-white text-lg leading-tight">Eleven Trans Holiday</div>
                 <div className="text-[10px] text-accent-400 font-medium -mt-0.5">
                   Travel with Fun
                 </div>

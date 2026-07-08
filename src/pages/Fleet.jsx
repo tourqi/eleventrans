@@ -83,7 +83,7 @@ export default function Fleet() {
                     variant="primary"
                     size="sm"
                     href={buildWhatsAppLink(
-                      `Halo Eleven Trans! Saya mau sewa ${vehicle.name} (${vehicle.capacity}). Bisa info harga?`
+                      `Halo Eleven Trans Holiday! Saya mau sewa ${vehicle.name} (${vehicle.capacity}). Bisa info harga?`
                     )}
                     className="w-full"
                   >

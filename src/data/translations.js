@@ -28,7 +28,7 @@ export const UI = {
     /* ── Services Section ── */
     'services.eyebrow': 'Layanan Kami',
     'services.title': 'Pengalaman yang Dirancang Khusus',
-    'services.subtitle': 'Dari private trip hingga industrial visit — setiap perjalanan kami rancang dengan cinta dan perhatian penuh.',
+    'services.subtitle': 'Dari private trip hingga industrial visit, setiap perjalanan kami rancang dengan cinta dan perhatian penuh.',
     'services.more': 'Selengkapnya',
 
     /* ── Why Choose Us ── */
@@ -142,7 +142,7 @@ export const UI = {
     /* ── Contact ── */
     'contact.eyebrow': 'Kontak',
     'contact.title': 'Ceritakan Rencana Trip Kamu',
-    'contact.desc': 'Isi form di bawah atau langsung chat via WhatsApp. Konsultasi gratis — tanpa komitmen!',
+    'contact.desc': 'Isi form di bawah atau langsung chat via WhatsApp. Konsultasi gratis, tanpa komitmen!',
     'contact.formTitle': 'Request Custom Trip',
     'contact.thankYou': 'Terima kasih! 🎉',
     'contact.thankYouMsg': 'Pesan kamu sudah kami terima. Tim kami akan menghubungi kamu segera via WhatsApp.',
@@ -178,7 +178,7 @@ export const UI = {
     /* ── Calculator ── */
     'calc.eyebrow': 'Kalkulator',
     'calc.title': 'Estimasi Biaya Trip',
-    'calc.desc': 'Pilih armada, penginapan, destinasi, dan kegiatan — dapatkan estimasi biaya trip kamu secara instan.',
+    'calc.desc': 'Pilih armada, penginapan, destinasi, dan kegiatan, dapatkan estimasi biaya trip kamu secara instan.',
     'calc.paxTitle': 'Jumlah Peserta',
     'calc.paxLabel': 'Jumlah Orang',
     'calc.armadaTitle': 'Armada',
@@ -265,11 +265,11 @@ export const UI = {
     'footer.motto': 'Bikin Liburan Makin Asyik 🎉',
 
     /* ── SEO Descriptions ── */
-    'seo.home': 'Eleven Trans Holiday — Travel with Fun! Private trip, family gathering, adventure trip & industrial visit terbaik di Bandung. Hubungi kami sekarang!',
-    'seo.about': 'Kenali Eleven Trans Holiday — tim berpengalaman di balik layanan travel terbaik di Bandung.',
-    'seo.services': 'Private trip, family gathering, adventure trip & industrial visit — layanan travel lengkap dari Eleven Trans Holiday.',
-    'seo.fleet': 'Armada kendaraan Eleven Trans Holiday — HiAce, Elf, Bus Medium, Big Bus, dan MPV. Terawat, nyaman, dan siap antar ke mana saja.',
-    'seo.gallery': 'Galeri foto trip dan keseruan bersama Eleven Trans Holiday — rafting, gathering, city tour, dan banyak lagi.',
+    'seo.home': 'Eleven Trans Holiday: Travel with Fun! Private trip, family gathering, adventure trip & industrial visit terbaik di Bandung. Hubungi kami sekarang!',
+    'seo.about': 'Kenali Eleven Trans Holiday, tim berpengalaman di balik layanan travel terbaik di Bandung.',
+    'seo.services': 'Private trip, family gathering, adventure trip & industrial visit, layanan travel lengkap dari Eleven Trans Holiday.',
+    'seo.fleet': 'Armada kendaraan Eleven Trans Holiday: HiAce, Elf, Bus Medium, Big Bus, dan MPV. Terawat, nyaman, dan siap antar ke mana saja.',
+    'seo.gallery': 'Galeri foto trip dan keseruan bersama Eleven Trans Holiday: rafting, gathering, city tour, dan banyak lagi.',
     'seo.contact': 'Hubungi Eleven Trans Holiday via WhatsApp, telepon, atau email. Konsultasi gratis untuk trip impianmu!',
     'seo.calculator': 'Hitung estimasi biaya trip bersama Eleven Trans Holiday. Pilih armada, hotel, destinasi, dan aktivitas.',
     'seo.packages': 'Pilih paket wisata terbaik dari Eleven Trans Holiday.',
@@ -298,7 +298,7 @@ export const UI = {
     'hero.badge': '🎉 Travel with Fun',
     'hero.title1': 'Make Your Trip',
     'hero.title2': 'More Exciting',
-    'hero.subtitle': 'Private trips, family gatherings, adventure trips & industrial visits — all designed for an unforgettable experience. Safe, fun, and full of stories.',
+    'hero.subtitle': 'Private trips, family gatherings, adventure trips & industrial visits, all designed for an unforgettable experience. Safe, fun, and full of stories.',
     'hero.cta': 'Chat via WhatsApp',
     'hero.cta2': 'View Packages',
     'hero.social': 'happy customers',
@@ -307,7 +307,7 @@ export const UI = {
     /* ── Services Section ── */
     'services.eyebrow': 'Our Services',
     'services.title': 'Experiences Designed Just for You',
-    'services.subtitle': 'From private trips to industrial visits — every journey is crafted with love and full attention.',
+    'services.subtitle': 'From private trips to industrial visits, every journey is crafted with love and full attention.',
     'services.more': 'Learn More',
 
     /* ── Why Choose Us ── */
@@ -315,16 +315,16 @@ export const UI = {
     'why.title': 'A Travel Partner You Can Count On',
     'why.subtitle': 'Hundreds of companies, communities, and families have trusted their journeys to Eleven Trans Holiday.',
     'why.r1.title': 'Friendly & Personal Service',
-    'why.r1.desc': 'We\'re not your ordinary travel agency. We treat every client like a friend — casual communication, fast response, and always ready to help.',
+    'why.r1.desc': 'We\'re not your ordinary travel agency. We treat every client like a friend: casual communication, fast response, and always ready to help.',
     'why.r2.title': 'Creative & Flexible Concepts',
     'why.r2.desc': 'Tired of the same old trips? We design fresh event concepts that can be 100% customized to your wishes and budget.',
     'why.r3.title': 'One-Stop Solution & Safe',
-    'why.r3.desc': 'From transportation, venue, catering, to documentation — we handle everything. Just come, enjoy, and go home with memories.',
+    'why.r3.desc': 'From transportation, venue, catering, to documentation, we handle everything. Just come, enjoy, and go home with memories.',
 
     /* ── Featured Experience ── */
     'featured.eyebrow': 'Featured Package',
     'featured.title': 'Most Popular Experience',
-    'featured.subtitle': 'Tried by hundreds of participants — recommended by all.',
+    'featured.subtitle': 'Tried by hundreds of participants, recommended by all.',
     'featured.popular': '🔥 Most Popular',
     'featured.booking': 'Book Now',
     'featured.detail': 'Full Details',
@@ -332,7 +332,7 @@ export const UI = {
     /* ── Testimonials ── */
     'testimonial.eyebrow': 'Testimonials',
     'testimonial.title': 'Stories from Our Customers',
-    'testimonial.subtitle': 'Don\'t take our word for it — hear it from those who experienced it firsthand.',
+    'testimonial.subtitle': 'Don\'t take our word for it, hear it from those who experienced it firsthand.',
 
     /* ── FAQ ── */
     'faq.label': 'FAQ',
@@ -353,7 +353,7 @@ export const UI = {
 
     /* ── CTA ── */
     'cta.title': 'Ready to Make Your Trip More Exciting?',
-    'cta.subtitle': 'FREE consultation — tell us your trip plans, and we\'ll make it happen.',
+    'cta.subtitle': 'FREE consultation, tell us your trip plans, and we\'ll make it happen.',
     'cta.wa': 'Chat via WhatsApp',
     'cta.form': 'Fill Request Form',
 
@@ -362,12 +362,12 @@ export const UI = {
 
     /* ── About ── */
     'about.eyebrow': 'About Us',
-    'about.heroTitle': 'More Than Just Travel — We Are Your Journey Companion',
+    'about.heroTitle': 'More Than Just Travel: We Are Your Journey Companion',
     'about.heroDesc': 'Eleven Trans Holiday was born from a simple passion: making vacations more fun. We believe the best journeys aren\'t about the destination, but about the experiences and stories you bring home.',
     'about.storyTitle': 'Our Story',
     'about.storyP1': 'Starting with a small rental car in Bandung in 2015, Eleven Trans Holiday has grown into a travel organizer trusted by hundreds of companies, communities, and families in Indonesia.',
-    'about.storyP2': 'The name "Eleven" isn\'t just a number — it\'s a symbol of our philosophy: always striving to give more (above & beyond). Every trip, every event, every moment — we want the results to always exceed expectations.',
-    'about.storyP3': 'With a passionate team, well-maintained fleet, and always-fresh event concepts — we\'re ready to be your best travel companion.',
+    'about.storyP2': 'The name "Eleven" isn\'t just a number. It\'s a symbol of our philosophy: always striving to give more (above & beyond). Every trip, every event, every moment, we want the results to always exceed expectations.',
+    'about.storyP3': 'With a passionate team, well-maintained fleet, and always-fresh event concepts, we\'re ready to be your best travel companion.',
     'about.vmEyebrow': 'Vision & Mission',
     'about.vmTitle': 'Our Direction & Purpose',
     'about.visionTitle': 'Vision',
@@ -379,12 +379,12 @@ export const UI = {
     'about.m4': 'Innovate in Indonesian tourism experiences',
     'about.teamEyebrow': 'Our Team',
     'about.teamTitle': 'The People Behind the Scenes',
-    'about.teamSubtitle': 'A small but solid team — everyone has a passion for delivering the best.',
+    'about.teamSubtitle': 'A small but solid team, everyone has a passion for delivering the best.',
 
     /* ── Services Page ── */
     'servicesPage.eyebrow': 'Services',
     'servicesPage.title': 'Our Services',
-    'servicesPage.desc': 'From private trips to industrial visits — every service is designed to create memorable experiences.',
+    'servicesPage.desc': 'From private trips to industrial visits, every service is designed to create memorable experiences.',
     'servicesPage.notFound': 'Service not found',
     'servicesPage.backLink': '← Back to services',
     'servicesPage.allServices': 'All Services',
@@ -393,7 +393,7 @@ export const UI = {
     'servicesPage.benefitsTitle': 'Why Choose',
     'servicesPage.suitableFor': 'Suitable for:',
     'servicesPage.interested': 'Interested in',
-    'servicesPage.interestedSub': 'Tell us your plans — we\'ll help make it happen.',
+    'servicesPage.interestedSub': 'Tell us your plans, we\'ll help make it happen.',
 
     /* ── Fleet Page ── */
     'fleet.eyebrow': 'Fleet',
@@ -422,7 +422,7 @@ export const UI = {
     /* ── Contact ── */
     'contact.eyebrow': 'Contact',
     'contact.title': 'Tell Us About Your Trip Plan',
-    'contact.desc': 'Fill out the form below or chat directly via WhatsApp. Free consultation — no commitment!',
+    'contact.desc': 'Fill out the form below or chat directly via WhatsApp. Free consultation, no commitment!',
     'contact.formTitle': 'Request Custom Trip',
     'contact.thankYou': 'Thank you! 🎉',
     'contact.thankYouMsg': 'Your message has been received. Our team will contact you soon via WhatsApp.',
@@ -458,7 +458,7 @@ export const UI = {
     /* ── Calculator ── */
     'calc.eyebrow': 'Calculator',
     'calc.title': 'Trip Cost Estimate',
-    'calc.desc': 'Choose fleet, accommodation, destination, and activities — get your trip cost estimate instantly.',
+    'calc.desc': 'Choose fleet, accommodation, destination, and activities, get your trip cost estimate instantly.',
     'calc.paxTitle': 'Number of Participants',
     'calc.paxLabel': 'Number of People',
     'calc.armadaTitle': 'Fleet',
@@ -496,7 +496,7 @@ export const UI = {
     /* ── Packages ── */
     'pkg.eyebrow': 'Tour Packages',
     'pkg.title': 'Experience Packages',
-    'pkg.desc': 'Choose the right package — or request a custom trip to suit your needs.',
+    'pkg.desc': 'Choose the right package, or request a custom trip to suit your needs.',
     'pkg.notFound': 'Package not found',
     'pkg.backLink': '← View all packages',
     'pkg.allPackages': 'All Packages',
@@ -545,11 +545,11 @@ export const UI = {
     'footer.motto': 'Make Your Trip More Exciting 🎉',
 
     /* ── SEO Descriptions ── */
-    'seo.home': 'Eleven Trans Holiday — Travel with Fun! The best private trips, family gatherings, adventure trips & industrial visits in Bandung. Contact us now!',
-    'seo.about': 'Get to know Eleven Trans Holiday — the experienced team behind the best travel services in Bandung.',
-    'seo.services': 'Private trips, family gatherings, adventure trips & industrial visits — complete travel services from Eleven Trans Holiday.',
-    'seo.fleet': 'Eleven Trans Holiday fleet — HiAce, Elf, Medium Bus, Big Bus, and MPV. Well-maintained, comfortable, and ready to take you anywhere.',
-    'seo.gallery': 'Trip photo gallery and fun moments with Eleven Trans Holiday — rafting, gatherings, city tours, and more.',
+    'seo.home': 'Eleven Trans Holiday: Travel with Fun! The best private trips, family gatherings, adventure trips & industrial visits in Bandung. Contact us now!',
+    'seo.about': 'Get to know Eleven Trans Holiday, the experienced team behind the best travel services in Bandung.',
+    'seo.services': 'Private trips, family gatherings, adventure trips & industrial visits, complete travel services from Eleven Trans Holiday.',
+    'seo.fleet': 'Eleven Trans Holiday fleet: HiAce, Elf, Medium Bus, Big Bus, and MPV. Well-maintained, comfortable, and ready to take you anywhere.',
+    'seo.gallery': 'Trip photo gallery and fun moments with Eleven Trans Holiday: rafting, gatherings, city tours, and more.',
     'seo.contact': 'Contact Eleven Trans Holiday via WhatsApp, phone, or email. Free consultation for your dream trip!',
     'seo.calculator': 'Calculate your trip cost estimate with Eleven Trans Holiday. Choose fleet, hotel, destination, and activities.',
     'seo.packages': 'Choose the best tour packages from Eleven Trans Holiday.',
@@ -610,20 +610,20 @@ export const DATA = {
     'Private tours designed specifically for you and your small group. Flexible, personal, full of experiences.',
   'Acara gathering keluarga besar atau perusahaan dengan konsep seru, games, dan bonding yang memorable.':
     'Large family or corporate gatherings with fun concepts, games, and memorable bonding.',
-  'Rafting, hiking, team building — petualangan seru yang menantang dan memperkuat tim.':
-    'Rafting, hiking, team building — exciting adventures that challenge and strengthen teams.',
+  'Rafting, hiking, team building, petualangan seru yang menantang dan memperkuat tim.':
+    'Rafting, hiking, team building, exciting adventures that challenge and strengthen teams.',
   'Kunjungan industri edukatif ke perusahaan & pabrik untuk mahasiswa dan institusi.':
     'Educational industrial visits to companies & factories for students and institutions.',
 
   /* Service long descriptions */
-  'Bayangkan perjalanan tanpa antri, tanpa terburu-buru — hanya kamu, orang-orang terdekat, dan pengalaman terbaik. Private Trip dari Eleven Trans Holiday dirancang untuk memberi kamu kebebasan penuh: pilih destinasi, atur jadwal, nikmati perjalanan tanpa kompromi.':
-    'Imagine a trip without queues, without rushing — just you, your closest people, and the best experience. Private Trip from Eleven Trans Holiday is designed to give you complete freedom: choose your destination, set your schedule, enjoy the journey without compromise.',
-  'Family Gathering bukan sekadar kumpul-kumpul — ini tentang membangun kenangan. Kami merancang konsep acara dari A-Z: venue, games, makan bersama, hingga dokumentasi. Semua dirancang agar setiap orang pulang dengan senyuman dan cerita.':
-    'Family Gathering is more than just getting together — it\'s about building memories. We design the event concept from A-Z: venue, games, dining together, to documentation. Everything is designed so everyone goes home with smiles and stories.',
-  'Mau rafting di sungai yang menantang? Atau team building yang bikin tim makin solid? Adventure Trip kami dirancang untuk menciptakan momen yang mendebarkan sekaligus mempererat hubungan. Keselamatan tetap nomor satu — keseruan tetap maksimal.':
-    'Want to raft on challenging rivers? Or team building that makes your team even stronger? Our Adventure Trip is designed to create thrilling moments while strengthening bonds. Safety is always number one — fun is always maximum.',
-  'Industrial Visit dari Eleven Trans Holiday menghadirkan pengalaman belajar di luar kelas. Kunjungi perusahaan-perusahaan top, lihat proses produksi nyata, dan dapatkan wawasan langsung dari para profesional. Semua diatur oleh kami — kamu tinggal datang dan belajar.':
-    'Industrial Visit from Eleven Trans Holiday brings learning experiences outside the classroom. Visit top companies, see real production processes, and gain insights directly from professionals. Everything is arranged by us — you just come and learn.',
+  'Bayangkan perjalanan tanpa antri, tanpa terburu-buru, hanya kamu, orang-orang terdekat, dan pengalaman terbaik. Private Trip dari Eleven Trans Holiday dirancang untuk memberi kamu kebebasan penuh: pilih destinasi, atur jadwal, nikmati perjalanan tanpa kompromi.':
+    'Imagine a trip without queues, without rushing, just you, your closest people, and the best experience. Private Trip from Eleven Trans Holiday is designed to give you complete freedom: choose your destination, set your schedule, enjoy the journey without compromise.',
+  'Family Gathering bukan sekadar kumpul-kumpul. Ini tentang membangun kenangan. Kami merancang konsep acara dari A-Z: venue, games, makan bersama, hingga dokumentasi. Semua dirancang agar setiap orang pulang dengan senyuman dan cerita.':
+    'Family Gathering is more than just getting together. It\'s about building memories. We design the event concept from A-Z: venue, games, dining together, to documentation. Everything is designed so everyone goes home with smiles and stories.',
+  'Mau rafting di sungai yang menantang? Atau team building yang bikin tim makin solid? Adventure Trip kami dirancang untuk menciptakan momen yang mendebarkan sekaligus mempererat hubungan. Keselamatan tetap nomor satu, keseruan tetap maksimal.':
+    'Want to raft on challenging rivers? Or team building that makes your team even stronger? Our Adventure Trip is designed to create thrilling moments while strengthening bonds. Safety is always number one, fun is always maximum.',
+  'Industrial Visit dari Eleven Trans Holiday menghadirkan pengalaman belajar di luar kelas. Kunjungi perusahaan-perusahaan top, lihat proses produksi nyata, dan dapatkan wawasan langsung dari para profesional. Semua diatur oleh kami, kamu tinggal datang dan belajar.':
+    'Industrial Visit from Eleven Trans Holiday brings learning experiences outside the classroom. Visit top companies, see real production processes, and gain insights directly from professionals. Everything is arranged by us, you just come and learn.',
 
   /* Service benefits */
   'Itinerary 100% custom sesuai keinginan': '100% custom itinerary to your wishes',
@@ -671,16 +671,38 @@ export const DATA = {
     'Every client\'s favorite contact person. Friendly, fast, solution-oriented.',
 
   /* Testimonials */
-  'Team building di Pangalengan luar biasa! Semua karyawan senang, acara terorganisir dengan baik. Tim Eleven Trans ramah dan profesional. Pasti pakai lagi untuk outing tahun depan!':
-    'Team building in Pangalengan was amazing! All employees were happy, the event was well organized. Eleven Trans team is friendly and professional. Will definitely use again for next year\'s outing!',
-  'Gathering keluarga besar kami diurus dari A-Z. Games-nya seru, makan enak, anak-anak happy. Terima kasih Eleven Trans!':
-    'Our big family gathering was handled from A-Z. Games were fun, food was great, kids were happy. Thank you Eleven Trans!',
+  'Team building di Pangalengan luar biasa! Semua karyawan senang, acara terorganisir dengan baik. Tim Eleven Trans Holiday ramah dan profesional. Pasti pakai lagi untuk outing tahun depan!':
+    'Team building in Pangalengan was amazing! All employees were happy, the event was well organized. Eleven Trans Holiday team is friendly and professional. Will definitely use again for next year\'s outing!',
+  'Gathering keluarga besar kami diurus dari A-Z. Games-nya seru, makan enak, anak-anak happy. Terima kasih Eleven Trans Holiday!':
+    'Our big family gathering was handled from A-Z. Games were fun, food was great, kids were happy. Thank you Eleven Trans Holiday!',
   'Industrial visit mahasiswa kami berjalan sangat lancar. Koordinasi dengan pabrik sudah diurus semuanya. Mahasiswa dapat banyak insight baru.':
     'Our student industrial visit went very smoothly. All coordination with factories was handled. Students gained many new insights.',
   'Private trip ke Ciwidey bareng tim kecil kami. Fleksibel banget, bisa request rute sendiri. Driver-nya asik dan tau tempat-tempat hidden gem!':
     'Private trip to Ciwidey with our small team. Very flexible, could request our own route. The driver was fun and knew hidden gem spots!',
-  'Sudah 3x pakai Eleven Trans untuk outing kantor. Konsepnya selalu fresh dan beda. Karyawan selalu puas. Highly recommended!':
-    'Used Eleven Trans 3 times for office outings. The concepts are always fresh and different. Employees are always satisfied. Highly recommended!',
+  'Sudah 3x pakai Eleven Trans Holiday untuk outing kantor. Konsepnya selalu fresh dan beda. Karyawan selalu puas. Highly recommended!':
+    'Used Eleven Trans Holiday 3 times for office outings. The concepts are always fresh and different. Employees are always satisfied. Highly recommended!',
+
+  /* Google review testimonials */
+  'Saya sangat puas dengan pelayanan jasa travel ini. Sejak awal pemesanan, tim admin sangat membantu dan memberikan informasi dengan jelas. Pada hari keberangkatan, kendaraan datang tepat waktu dalam kondisi bersih dan nyaman. Sepanjang perjalanan, sopir mengemudi dengan hati-hati dan selalu memastikan penumpang merasa aman. Perjalanan berlangsung lancar tanpa kendala, dan saya merasa dilayani dengan sangat baik. Jasa travel ini benar-benar pilihan yang tepat bagi siapa saja yang mengutamakan kenyamanan dan profesionalisme.':
+    'I\'m very satisfied with this travel service. From the moment I booked, the admin team was helpful and gave clear information. On departure day, the vehicle arrived on time, clean and comfortable. Throughout the trip, the driver drove carefully and always made sure passengers felt safe. The trip went smoothly with no issues, and I felt very well taken care of. This travel service is truly the right choice for anyone who values comfort and professionalism.',
+  'Saya menggunakan jasa Eleven Trans Holiday untuk rencana perjalanan saya di Bandung. Beliau sangat terorganisir dan sabar dalam memandu saya berkeliling Bandung. Anda juga dapat memberi tahu beliau tempat-tempat yang ingin dikunjungi sebelumnya agar Anda dapat memanfaatkan waktu bersama beliau sebaik mungkin. Layanan tur yang luar biasa!':
+    'I used Eleven Trans Holiday\'s service for my trip plans in Bandung. They were very organized and patient guiding me around Bandung. You can also tell them beforehand which places you want to visit so you can make the best use of your time together. An outstanding tour service!',
+  'Makasih Kang Efsa buat nemenin saya dan temen dari luar buat wisata keliling Bandung Raya, mobilnya nyaman, dokumentasi aman, dan pelayanannya mantul. Rekomen pokoknya':
+    'Thanks Kang Efsa for accompanying me and my friend from out of town on a tour around Greater Bandung. The car was comfortable, the documentation was well handled, and the service was great. Highly recommended!',
+  'Mau liburan tanpa pusing mikirin itinerary? Eleven Trans Holiday jawabannyaa!!! Gak perlu ribet pokoknya, semua udah di atur dari A-Z. Kita tinggal duduk manis, popotoan, dan nikmatin trip nya. Rekomen pisan pokokna mah⭐⭐⭐⭐⭐':
+    'Want a vacation without the hassle of planning an itinerary? Eleven Trans Holiday is the answer!!! No need to worry about anything, everything is arranged from A to Z. We just sat back, took photos, and enjoyed the trip. Highly, highly recommended!⭐⭐⭐⭐⭐',
+  'Mendapat pengalaman liburan yang berkesan bersama Elevent Trans Holiday. Ownernya baik ramah dan harga bisa diskusi. Terimakasih':
+    'Had a memorable vacation experience with Eleven Trans Holiday. The owner is kind and friendly, and the price is negotiable. Thank you!',
+  'TL nya ramah gercep bus nya nyaman dan bersih jgn ragu temn2 kalau butuh transportasi hub eleven trans holiday aja 😉🤩':
+    'The tour leader is friendly and quick to respond, the bus is comfortable and clean. Don\'t hesitate, friends, if you need transportation, just contact Eleven Trans Holiday 😉🤩',
+  'Rekomendasi buatt yang bingung ngatur untuk acara liburan, jalan2 atau kebutuhan kendaraan eleven trans solusinya👏👏✨️✨️':
+    'Recommended for anyone unsure how to organize a vacation, trip, or vehicle needs, Eleven Trans Holiday is the solution👏👏✨️✨️',
+  'Owner ramah, Mobilnya bersih dan nyaman, Terimakasih yaa, sukses teruss':
+    'Friendly owner, clean and comfortable car. Thank you, continued success!',
+  'Saya selalu percaya dengan pelayanan Eleven Trans Holiday kalau untuk kebutuhan trip dan travel, jadi langganan kalau ada tamu ke kantor dari luar kota / luar pulau, tinggal titip ke Eleven Trans Holiday, selain pelayanannya oke, biayanya pun murah.Suskes terus untuk ETH':
+    'I always trust Eleven Trans Holiday\'s service whenever we need a trip or travel arrangement. It\'s become our go-to whenever we have guests visiting the office from out of town or another island, we just leave it to Eleven Trans Holiday. Besides great service, the cost is affordable too. Continued success for ETH!',
+  'Owner nya ramah baik, Makin sukses usaha travel nya':
+    'The owner is friendly and kind. Wishing even more success for the travel business!',
 
   /* Testimonial roles */
   'HR Manager': 'HR Manager',
@@ -690,16 +712,16 @@ export const DATA = {
   'Event Coordinator': 'Event Coordinator',
 
   /* Calculator data labels */
-  'Bintang 1 — Penginapan / Losmen': '1 Star — Budget Inn / Hostel',
-  'Bintang 2 — Hotel Budget': '2 Star — Budget Hotel',
-  'Bintang 3 — Hotel Standar': '3 Star — Standard Hotel',
-  'Bintang 4 — Hotel Premium': '4 Star — Premium Hotel',
-  'Bintang 5 — Hotel Mewah': '5 Star — Luxury Hotel',
-  'Paket Hemat — Nasi Box Sederhana': 'Economy — Simple Lunch Box',
-  'Paket Standar — Nasi Box + Snack': 'Standard — Lunch Box + Snack',
-  'Paket Lengkap — 2x Makan + Snack': 'Complete — 2x Meals + Snack',
-  'Paket Premium — Prasmanan': 'Premium — Buffet',
-  'Paket VIP — Seafood / Special Menu': 'VIP — Seafood / Special Menu',
+  'Bintang 1: Penginapan / Losmen': '1 Star: Budget Inn / Hostel',
+  'Bintang 2: Hotel Budget': '2 Star: Budget Hotel',
+  'Bintang 3: Hotel Standar': '3 Star: Standard Hotel',
+  'Bintang 4: Hotel Premium': '4 Star: Premium Hotel',
+  'Bintang 5: Hotel Mewah': '5 Star: Luxury Hotel',
+  'Paket Hemat: Nasi Box Sederhana': 'Economy: Simple Lunch Box',
+  'Paket Standar: Nasi Box + Snack': 'Standard: Lunch Box + Snack',
+  'Paket Lengkap: 2x Makan + Snack': 'Complete: 2x Meals + Snack',
+  'Paket Premium: Prasmanan': 'Premium: Buffet',
+  'Paket VIP: Seafood / Special Menu': 'VIP: Seafood / Special Menu',
   '1x makan nasi box standar': '1x standard lunch box',
   '1x nasi box + 1x snack box': '1x lunch box + 1x snack box',
   '2x nasi box + 1x snack': '2x lunch box + 1x snack',
@@ -732,11 +754,11 @@ export const DATA = {
   /* Package titles */
   'Trip Pangandaran + Citumang': 'Pangandaran + Citumang Trip',
   'Trip Ujung Genteng': 'Ujung Genteng Trip',
-  'Pangalengan — Rafting Situ Cileunca': 'Pangalengan — Situ Cileunca Rafting',
+  'Pangalengan: Rafting Situ Cileunca': 'Pangalengan: Situ Cileunca Rafting',
   'Trip Ciwidey': 'Ciwidey Trip',
 
   /* Package taglines */
-  'Pantai, Body Rafting & Keseruan 2 Hari 1 Malam': 'Beach, Body Rafting & Fun — 2 Days 1 Night',
+  'Pantai, Body Rafting & Keseruan 2 Hari 1 Malam': 'Beach, Body Rafting & Fun, 2 Days 1 Night',
   'Pantai Tersembunyi, Penyu & Air Terjun Cikaso': 'Hidden Beach, Sea Turtles & Cikaso Waterfall',
   'Rafting Seru + Team Building + Makan Siang': 'Fun Rafting + Team Building + Lunch',
   'Kawah Putih, Situ Patenggang & Pemandian Air Panas': 'White Crater, Situ Patenggang & Hot Springs',
@@ -744,12 +766,12 @@ export const DATA = {
   /* Package excerpts */
   'Nikmati keindahan pantai Pangandaran dan sensasi body rafting di Citumang. Tersedia mulai paket Silver hingga Platinum+ dengan pilihan armada dan hotel sesuai budget.':
     'Enjoy the beauty of Pangandaran beach and the thrill of body rafting in Citumang. Available from Silver to Platinum+ packages with fleet and hotel options to suit your budget.',
-  'Jelajahi keindahan tersembunyi Ujung Genteng — pantai pasir putih, penangkaran penyu Pangumbahan, Bukit Teletubies, dan air terjun Cikaso yang memukau.':
-    'Explore the hidden beauty of Ujung Genteng — white sand beaches, Pangumbahan turtle sanctuary, Teletubbies Hill, and the stunning Cikaso waterfall.',
+  'Jelajahi keindahan tersembunyi Ujung Genteng: pantai pasir putih, penangkaran penyu Pangumbahan, Bukit Teletubies, dan air terjun Cikaso yang memukau.':
+    'Explore the hidden beauty of Ujung Genteng: white sand beaches, Pangumbahan turtle sanctuary, Teletubbies Hill, and the stunning Cikaso waterfall.',
   'Rasakan serunya arung jeram di Situ Cileunca Pangalengan lengkap dengan games, team building, snack, dan makan siang. Cocok untuk outing dan gathering!':
     'Experience the thrill of rafting at Situ Cileunca Pangalengan complete with games, team building, snack, and lunch. Perfect for outings and gatherings!',
-  'Jelajahi keindahan Ciwidey dalam satu hari — Kawah Putih, Situ Patenggang, Rengganis Suspension Bridge, Kebun Teh Rancabali, dan berendam di kolam air panas Ciwalini.':
-    'Explore the beauty of Ciwidey in one day — White Crater, Situ Patenggang, Rengganis Suspension Bridge, Rancabali Tea Plantation, and soak in Ciwalini hot springs.',
+  'Jelajahi keindahan Ciwidey dalam satu hari: Kawah Putih, Situ Patenggang, Rengganis Suspension Bridge, Kebun Teh Rancabali, dan berendam di kolam air panas Ciwalini.':
+    'Explore the beauty of Ciwidey in one day: White Crater, Situ Patenggang, Rengganis Suspension Bridge, Rancabali Tea Plantation, and soak in Ciwalini hot springs.',
 
   /* Package meta */
   '2 hari 1 malam': '2 days 1 night',
@@ -757,7 +779,7 @@ export const DATA = {
   '1 hari (full day)': '1 day (full day)',
   'Min. 18 orang': 'Min. 18 people',
   'Min. 13 orang': 'Min. 13 people',
-  'Mudah — Menengah': 'Easy — Moderate',
+  'Mudah-Menengah': 'Easy-Moderate',
   'Mudah': 'Easy',
   'Menengah': 'Moderate',
 

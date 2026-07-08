@@ -89,7 +89,7 @@ function ServiceDetail() {
         <p className="text-base text-white/80 leading-relaxed mb-6">
           {td(service.description)}
         </p>
-        <Button variant="whatsapp" size="lg" href={buildWhatsAppLink(`Halo Eleven Trans! 👋 Saya tertarik dengan layanan ${service.title}. Bisa minta info lebih lanjut?`)}>
+        <Button variant="whatsapp" size="lg" href={buildWhatsAppLink(`Halo Eleven Trans Holiday! 👋 Saya tertarik dengan layanan ${service.title}. Bisa minta info lebih lanjut?`)}>
           <Phone className="w-5 h-5" />
           {t('servicesPage.freeConsult')}
         </Button>

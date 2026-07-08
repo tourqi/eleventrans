@@ -13,11 +13,11 @@ export const ARMADA_OPTIONS = [
 
 /* ── Penginapan ── */
 export const PENGINAPAN_OPTIONS = [
-  { id: 'bintang-1', label: 'Bintang 1 — Penginapan / Losmen', stars: 1, pricePerNight: 150000 },
-  { id: 'bintang-2', label: 'Bintang 2 — Hotel Budget',         stars: 2, pricePerNight: 350000 },
-  { id: 'bintang-3', label: 'Bintang 3 — Hotel Standar',        stars: 3, pricePerNight: 350000 },
-  { id: 'bintang-4', label: 'Bintang 4 — Hotel Premium',        stars: 4, pricePerNight: 850000 },
-  { id: 'bintang-5', label: 'Bintang 5 — Hotel Mewah',          stars: 5, pricePerNight: 850000 },
+  { id: 'bintang-1', label: 'Bintang 1: Penginapan / Losmen', stars: 1, pricePerNight: 150000 },
+  { id: 'bintang-2', label: 'Bintang 2: Hotel Budget',         stars: 2, pricePerNight: 350000 },
+  { id: 'bintang-3', label: 'Bintang 3: Hotel Standar',        stars: 3, pricePerNight: 350000 },
+  { id: 'bintang-4', label: 'Bintang 4: Hotel Premium',        stars: 4, pricePerNight: 850000 },
+  { id: 'bintang-5', label: 'Bintang 5: Hotel Mewah',          stars: 5, pricePerNight: 850000 },
 ];
 
 /* ── Lokasi Wisata (dari paket) ── */
@@ -40,11 +40,11 @@ export const LOKASI_OPTIONS = PACKAGES.map((p) => ({
 
 /* ── Paket Makan ── */
 export const MAKAN_OPTIONS = [
-  { id: 'makan-1', label: 'Paket Hemat — Nasi Box Sederhana', pricePerPax: 25000, description: '1x makan nasi box standar' },
-  { id: 'makan-2', label: 'Paket Standar — Nasi Box + Snack', pricePerPax: 45000, description: '1x nasi box + 1x snack box' },
-  { id: 'makan-3', label: 'Paket Lengkap — 2x Makan + Snack', pricePerPax: 75000, description: '2x nasi box + 1x snack' },
-  { id: 'makan-4', label: 'Paket Premium — Prasmanan', pricePerPax: 100000, description: 'Prasmanan / buffet di restoran' },
-  { id: 'makan-5', label: 'Paket VIP — Seafood / Special Menu', pricePerPax: 150000, description: 'Menu spesial seafood / fine dining' },
+  { id: 'makan-1', label: 'Paket Hemat: Nasi Box Sederhana', pricePerPax: 25000, description: '1x makan nasi box standar' },
+  { id: 'makan-2', label: 'Paket Standar: Nasi Box + Snack', pricePerPax: 45000, description: '1x nasi box + 1x snack box' },
+  { id: 'makan-3', label: 'Paket Lengkap: 2x Makan + Snack', pricePerPax: 75000, description: '2x nasi box + 1x snack' },
+  { id: 'makan-4', label: 'Paket Premium: Prasmanan', pricePerPax: 100000, description: 'Prasmanan / buffet di restoran' },
+  { id: 'makan-5', label: 'Paket VIP: Seafood / Special Menu', pricePerPax: 150000, description: 'Menu spesial seafood / fine dining' },
 ];
 
 /* ── Kegiatan ── */

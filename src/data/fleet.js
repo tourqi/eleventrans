@@ -1,7 +1,7 @@
 export const FLEET = [
   {
     id: 'hiace',
-    name: 'Toyota HiAce Premio',
+    name: 'Toyota HiAce Premio / Commuter',
     capacity: '12-15 Penumpang',
     type: 'Medium Bus',
     image: 'https://d1g6w7sntckt92.cloudfront.net/public/images/color_option_images/uW9Jx499hs82qMH7VL2g6qR4udYGepMLHZT7mxXv.png',
@@ -44,7 +44,7 @@ export const FLEET = [
     name: 'Toyota Avanza / Xenia',
     capacity: '4-6 Penumpang',
     type: 'MPV',
-    image: 'https://arinatoyota.co.id/wp-content/uploads/2018/11/2-veloz-silver-mica-metallic-4.png',
+    image: 'https://astradigitaldigiroomuat.blob.core.windows.net/storage-uat-001/grand_new_avanza.png',
     facilities: ['AC', 'Audio', 'Charger', 'Bagasi'],
     description: 'Kendaraan ekonomis untuk trip privat kecil atau jemputan bandara.',
     popular: false,

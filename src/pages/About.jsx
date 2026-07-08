@@ -56,7 +56,7 @@ export default function About() {
             >
               <img
                 src="/citumang.JPG"
-                alt="Eleven Trans team"
+                alt="Eleven Trans Holiday team"
                 className="w-full h-80 lg:h-[400px] object-cover"
                 loading="lazy"
               />

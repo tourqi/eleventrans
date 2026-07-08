@@ -13,7 +13,7 @@ export const SERVICES = [
     tagline: 'Liburan Eksklusif Sesuai Gaya Kamu',
     short: 'Perjalananmu, versimu. Kami siapkan semua detailnya.',
     description:
-      'Bayangkan perjalanan tanpa antri, tanpa terburu-buru — hanya kamu, orang-orang terdekat, dan pengalaman terbaik. Private Trip dari Eleven Trans Holiday dirancang untuk memberi kamu kebebasan penuh: pilih destinasi, atur jadwal, nikmati perjalanan tanpa kompromi.',
+      'Bayangkan perjalanan tanpa antri, tanpa terburu-buru, hanya kamu, orang-orang terdekat, dan pengalaman terbaik. Private Trip dari Eleven Trans Holiday dirancang untuk memberi kamu kebebasan penuh: pilih destinasi, atur jadwal, nikmati perjalanan tanpa kompromi.',
     benefits: [
       'Itinerary 100% custom sesuai keinginan',
       'Kendaraan & driver privat',
@@ -23,7 +23,7 @@ export const SERVICES = [
     ],
     targets: ['Keluarga', 'Pasangan', 'Grup kecil (2-10 orang)'],
     icon: 'Compass',
-    heroImage: '/public/categories/private-trip.jpeg',
+    heroImage: '/categories/private-trip.jpeg',
     gallery: [
       'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600',
       'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600',
@@ -36,7 +36,7 @@ export const SERVICES = [
     tagline: 'Momen Kebersamaan yang Tak Terlupakan',
     short: 'Momen kebersamaan yang tak tergantikan, kami yang urus semuanya.',
     description:
-      'Family Gathering bukan sekadar kumpul-kumpul — ini tentang membangun kenangan. Kami merancang konsep acara dari A-Z: venue, games, makan bersama, hingga dokumentasi. Semua dirancang agar setiap orang pulang dengan senyuman dan cerita.',
+      'Family Gathering bukan sekadar kumpul-kumpul. Ini tentang membangun kenangan. Kami merancang konsep acara dari A-Z: venue, games, makan bersama, hingga dokumentasi. Semua dirancang agar setiap orang pulang dengan senyuman dan cerita.',
     benefits: [
       'Konsep acara kreatif & terencana',
       'MC & crew profesional',
@@ -46,7 +46,7 @@ export const SERVICES = [
     ],
     targets: ['Perusahaan', 'Keluarga besar', 'Komunitas'],
     icon: 'Users',
-    heroImage: '/public/categories/family-trip.JPG',
+    heroImage: '/categories/family-trip.JPG',
     gallery: [
       'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600',
       'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=600',
@@ -59,7 +59,7 @@ export const SERVICES = [
     tagline: 'Pacu Adrenalin, Bangun Kebersamaan',
     short: 'Tantang batasmu. Alam menunggu, kami siap menemanimu.',
     description:
-      'Mau rafting di sungai yang menantang? Atau team building yang bikin tim makin solid? Adventure Trip kami dirancang untuk menciptakan momen yang mendebarkan sekaligus mempererat hubungan. Keselamatan tetap nomor satu — keseruan tetap maksimal.',
+      'Mau rafting di sungai yang menantang? Atau team building yang bikin tim makin solid? Adventure Trip kami dirancang untuk menciptakan momen yang mendebarkan sekaligus mempererat hubungan. Keselamatan tetap nomor satu, keseruan tetap maksimal.',
     benefits: [
       'Aktivitas outdoor terencana & aman',
       'Pemandu bersertifikat',
@@ -69,7 +69,7 @@ export const SERVICES = [
     ],
     targets: ['Tim perusahaan', 'Komunitas', 'Sekolah & kampus'],
     icon: 'Mountain',
-    heroImage: '/public/categories/adventure.jpg',
+    heroImage: '/categories/adventure.jpg',
     gallery: [
       'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=600',
       'https://images.unsplash.com/photo-1551632811-561732d1e306?w=600',
@@ -82,7 +82,7 @@ export const SERVICES = [
     tagline: 'Belajar Langsung dari Sumbernya',
     short: 'Wisata edukatif yang berkesan untuk tim dan institusimu.',
     description:
-      'Industrial Visit dari Eleven Trans Holiday menghadirkan pengalaman belajar di luar kelas. Kunjungi perusahaan-perusahaan top, lihat proses produksi nyata, dan dapatkan wawasan langsung dari para profesional. Semua diatur oleh kami — kamu tinggal datang dan belajar.',
+      'Industrial Visit dari Eleven Trans Holiday menghadirkan pengalaman belajar di luar kelas. Kunjungi perusahaan-perusahaan top, lihat proses produksi nyata, dan dapatkan wawasan langsung dari para profesional. Semua diatur oleh kami, kamu tinggal datang dan belajar.',
     benefits: [
       'Akses ke perusahaan & pabrik ternama',
       'Sesi tanya jawab dengan profesional',
@@ -92,7 +92,7 @@ export const SERVICES = [
     ],
     targets: ['Mahasiswa', 'Sekolah', 'Organisasi kampus'],
     icon: 'Building2',
-    heroImage: '/public/categories/industrial-visit.jpg',
+    heroImage: '/categories/industrial-visit.jpg',
     gallery: [
       'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=600',
       'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600',

@@ -4,6 +4,7 @@ import Button from '../ui/Button';
 import { buildWhatsAppLink } from '../../utils/helpers';
 import { DEFAULT_WA_MESSAGE } from '../../data/constants';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { TESTIMONIALS } from '../../data/testimonials';
 import heroModel from '../../assets/hero-model.webp';
 
 export default function HeroSection() {
@@ -66,13 +67,14 @@ export default function HeroSection() {
             {/* Social proof */}
             <div className="mt-10 flex items-center gap-4">
               <div className="flex -space-x-2">
-                {[1, 2, 3, 4].map((i) => (
-                  <div
-                    key={i}
-                    className="w-10 h-10 rounded-full bg-gradient-to-br from-accent-400 to-primary-400 border-2 border-white/20 flex items-center justify-center text-white text-xs font-bold"
-                  >
-                    {String.fromCharCode(64 + i)}
-                  </div>
+                {TESTIMONIALS.slice(0, 4).map((item) => (
+                  <img
+                    key={item.id}
+                    src={item.photo}
+                    alt={item.name}
+                    className="w-10 h-10 rounded-full object-cover border-2 border-white/20"
+                    loading="lazy"
+                  />
                 ))}
               </div>
               <div className="text-sm text-blue-200">
