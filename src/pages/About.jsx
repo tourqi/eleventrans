@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Target, Eye, Heart, Users, Award } from 'lucide-react';
+import { Target, Eye } from 'lucide-react';
 import SectionHeading from '../components/ui/SectionHeading';
 import CTASection from '../components/sections/CTASection';
 import PageHero from '../components/sections/PageHero';
@@ -55,7 +55,7 @@ export default function About() {
               className="rounded-2xl overflow-hidden shadow-xl"
             >
               <img
-                src="public/citumang.JPG"
+                src="/citumang.JPG"
                 alt="Eleven Trans team"
                 className="w-full h-80 lg:h-[400px] object-cover"
                 loading="lazy"
