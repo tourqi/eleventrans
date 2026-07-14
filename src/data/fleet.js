@@ -44,7 +44,7 @@ export const FLEET = [
     name: 'Toyota Avanza / Xenia',
     capacity: '4-6 Penumpang',
     type: 'MPV',
-    image: 'https://astradigitaldigiroomuat.blob.core.windows.net/storage-uat-001/grand_new_avanza.png',
+    image: 'https://d1g6w7sntckt92.cloudfront.net/public/images/color_option_images/R98jLmGshUOzq6Mq7EXuWeBitwRUJw4ENDNZ4AR7.png',
     facilities: ['AC', 'Audio', 'Charger', 'Bagasi'],
     description: 'Kendaraan ekonomis untuk trip privat kecil atau jemputan bandara.',
     popular: false,

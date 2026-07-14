@@ -661,14 +661,18 @@ export const DATA = {
   'Organisasi kampus': 'Campus organizations',
 
   /* About team */
-  'Visioner di balik Eleven Trans Holiday. Berpengalaman 10+ tahun di industri travel.':
-    'Visionary behind Eleven Trans Holiday. 10+ years of experience in the travel industry.',
+  'Visioner di balik Eleven Trans Holiday. Berpengalaman 5+ tahun di industri travel.':
+    'Visionary behind Eleven Trans Holiday. 5+ years of experience in the travel industry.',
   'Memastikan setiap trip berjalan mulus dari A-Z.':
     'Ensuring every trip runs smoothly from A to Z.',
   'Merancang konsep acara yang kreatif dan memorable.':
     'Designing creative and memorable event concepts.',
   'Contact person favorit semua klien. Ramah, cepat, solutif.':
     'Every client\'s favorite contact person. Friendly, fast, solution-oriented.',
+  'Berpengalaman 10+ tahun dibidang marketing dan travel':
+    '10+ years of experience in marketing and travel.',
+  'Membangun relasi dan peluang kerja sama baru untuk pertumbuhan bisnis.':
+    'Building relationships and new partnership opportunities for business growth.',
 
   /* Testimonials */
   'Team building di Pangalengan luar biasa! Semua karyawan senang, acara terorganisir dengan baik. Tim Eleven Trans Holiday ramah dan profesional. Pasti pakai lagi untuk outing tahun depan!':
