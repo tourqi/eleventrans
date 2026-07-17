@@ -23,7 +23,7 @@ export const UI = {
     'hero.cta': 'Chat via WhatsApp',
     'hero.cta2': 'Lihat Paket',
     'hero.social': 'pelanggan puas',
-    'hero.reviews': '200+ reviews',
+    'hero.reviews': 'Google reviews',
 
     /* ── Services Section ── */
     'services.eyebrow': 'Layanan Kami',
@@ -94,9 +94,10 @@ export const UI = {
     'about.visionTitle': 'Visi',
     'about.visionText': 'Menjadi agen perjalanan terdepan yang menginspirasi dan memfasilitasi perjalanan wisata yang tak terlupakan, dengan menghadirkan pengalaman unik dan baru bagi setiap pelanggan.',
     'about.missionTitle': 'Misi',
-    'about.m1': 'Memberikan Pengalaman Wisata yang Tak Terlupakan',
-    'about.m2': 'Menciptakan Pengalaman yang Unik dan Baru',
-    'about.m3': 'Menjadi Mitra Perjalanan yang Terpercaya',
+    'about.m1': 'Menawarkan pengalaman yang memuaskan dan Membangun hubungan yang kuat dengan pelanggan dengan pelayanan ramah, professional, dan responsive.',
+    'about.m2': 'Selalu berupaya menghadirkan inovasi dalam produk, layanan wisata, dan aktivitas menarik yang menyenangkan agar setiap perjalanan terasa istimewa dan penuh kesenangan.',
+    'about.m3': 'Mengutamakan keberlanjutan dalam setiap kegiatan operasional, baik dari segi lingkungan maupun sosial.',
+    'about.m4': 'Aktif dalam mempromosikan dan mengembangkan destinasi wisata yang belum banyak diketahui, sehingga memberikan pilihan yang lebih beragam bagi pelanggan.',
     'about.teamEyebrow': 'Tim Kami',
     'about.teamTitle': 'Orang-Orang di Balik Layar',
     'about.teamSubtitle': 'Tim kecil tapi solid setiap orang punya passion untuk memberikan yang terbaik.',

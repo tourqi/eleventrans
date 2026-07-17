@@ -1,3 +1,5 @@
+// priceDalamKota / priceLuarKota = harga sewa per hari (Rupiah).
+// minSewaLuarKota = minimal jumlah hari sewa untuk trip luar kota (jika ada).
 export const FLEET = [
   {
     id: 'hiace',
@@ -8,6 +10,9 @@ export const FLEET = [
     facilities: ['AC', 'Reclining Seat', 'Audio System', 'Bagasi Luas', 'Charger USB'],
     description: 'Kendaraan favorit untuk grup kecil-menengah. Nyaman, lega, dan cocok untuk perjalanan jarak dekat maupun jauh.',
     popular: true,
+    priceDalamKota: 1500000,
+    priceLuarKota: 1500000,
+    minSewaLuarKota: 2,
   },
   {
     id: 'elf-long',
@@ -18,6 +23,9 @@ export const FLEET = [
     facilities: ['AC', 'Reclining Seat', 'Audio System', 'Bagasi', 'TV Monitor'],
     description: 'Pilihan tepat untuk outing kantor dan family gathering. Kapasitas besar dengan kenyamanan maksimal.',
     popular: true,
+    priceDalamKota: 1500000,
+    priceLuarKota: 1500000,
+    minSewaLuarKota: 2,
   },
   {
     id: 'bus-medium',
@@ -28,16 +36,22 @@ export const FLEET = [
     facilities: ['AC', 'Reclining Seat', 'Audio + Mic', 'TV', 'Bagasi Besar', 'Toilet'],
     description: 'Untuk rombongan besar. Dilengkapi fasilitas lengkap untuk perjalanan nyaman berjam-jam.',
     popular: false,
+    priceDalamKota: 2100000,
+    priceLuarKota: 2500000,
+    minSewaLuarKota: 2,
   },
   {
     id: 'bus-big',
-    name: 'Big Bus (50 Seat)',
+    name: 'Big Bus JB3 (50-59 Seat)',
     capacity: '45-50 Penumpang',
     type: 'Bus Besar',
     image: 'https://duniatraveling.co.id/wp-content/uploads/2022/03/sewa-bus-scania-jogja-1920x960.jpg',
     facilities: ['Full AC', 'Reclining Seat', 'Karaoke', 'TV LED', 'Toilet', 'Bagasi XL'],
     description: 'Bus besar premium untuk grup sangat besar. Cocok untuk study tour, outing massal, dan ziarah.',
     popular: false,
+    priceDalamKota: 3200000,
+    priceLuarKota: 3900000,
+    minSewaLuarKota: 2,
   },
   {
     id: 'avanza',
@@ -48,5 +62,19 @@ export const FLEET = [
     facilities: ['AC', 'Audio', 'Charger', 'Bagasi'],
     description: 'Kendaraan ekonomis untuk trip privat kecil atau jemputan bandara.',
     popular: false,
+    priceDalamKota: 750000,
+    priceLuarKota: 950000,
+  },
+  {
+    id: 'innova-reborn',
+    name: 'Toyota Innova Reborn',
+    capacity: '6-7 Penumpang',
+    type: 'MPV',
+    image: 'https://lh7-rt.googleusercontent.com/docsz/AD_4nXfy1jpC_xioikjvUfNcjheBmIAOSIn-21gfQXdWjHt9q5C1UYfiF-pMy2PD_iZKbkXOVK0QJe-FW7XotD3dmDXLnMMZphuwhVwjdCh2R7ClC4tOnC7Dkv_MEi7EWtA98k85eL3bfw?key=PGkG5aGpRVcUuJdg5bUs2WLo',
+    facilities: ['AC', 'Audio', 'Charger', 'Bagasi'],
+    description: 'Kendaraan privat yang lebih lega dan nyaman untuk keluarga atau grup kecil.',
+    popular: false,
+    priceDalamKota: 950000,
+    priceLuarKota: 1100000,
   },
 ];

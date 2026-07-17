@@ -105,8 +105,8 @@ export default function HeroSection() {
                     <span className="text-2xl">⭐</span>
                   </div>
                   <div>
-                    <div className="font-bold text-gray-900">4.9 / 5.0</div>
-                    <div className="text-xs text-gray-500">200+ reviews</div>
+                    <div className="font-bold text-gray-900">5.0 / 5.0</div>
+                    <div className="text-xs text-gray-500">Google reviews</div>
                   </div>
                 </div>
               </div>

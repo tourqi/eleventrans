@@ -111,6 +111,10 @@ export default function About() {
                   <span className="text-accent-500 mt-1">•</span>
                   {t('about.m3')}
                 </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-accent-500 mt-1">•</span>
+                  {t('about.m4')}
+                </li>
               </ul>
             </motion.div>
           </div>

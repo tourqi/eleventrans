@@ -83,7 +83,13 @@ export default function CalculatorPage() {
 
     if (selectedArmada) {
       const unit = Math.max(jumlahArmada, 1);
-      items.push({ label: `Armada: ${selectedArmada.name} (${unit} unit)`, amount: selectedArmada.price * unit });
+      const hari = selectedLokasi?.armadaDays ?? 1;
+      const zone = selectedLokasi?.zone ?? 'luar-kota';
+      const hargaPerHari = zone === 'dalam-kota' ? selectedArmada.priceDalamKota : selectedArmada.priceLuarKota;
+      items.push({
+        label: `Armada: ${selectedArmada.name} (${unit} unit × ${hari} hari)`,
+        amount: hargaPerHari * unit * hari,
+      });
     }
     if (selectedPenginapan && malam > 0) {
       const kamar = Math.max(jumlahKamar, 1);
@@ -240,11 +246,46 @@ export default function CalculatorPage() {
                 </div>
               </motion.div>
 
-              {/* Jumlah Orang */}
+              {/* Lokasi Wisata */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.03 }}
+                className={card}
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <MapPin className="w-5 h-5 text-primary-600" />
+                  <h3 className="text-lg font-bold text-gray-900">{t('calc.lokasiTitle')}</h3>
+                </div>
+                <label className={label}>{t('calc.lokasiLabel')}</label>
+                <select
+                  value={lokasi}
+                  onChange={(e) => {
+                    setLokasi(e.target.value);
+                    setKegiatan([]); // reset kegiatan saat ganti lokasi
+                  }}
+                  className={select}
+                >
+                  <option value="">{t('calc.lokasiPlaceholder')}</option>
+                  {LOKASI_OPTIONS.map((l) => (
+                    <option key={l.id} value={l.id}>
+                      {l.name}, {l.location} ({l.duration})
+                    </option>
+                  ))}
+                </select>
+                <div className="mt-3 flex gap-2 p-3 rounded-lg bg-green-50 border border-green-100">
+                  <Info className="w-4 h-4 text-green-600 shrink-0 mt-0.5" />
+                  <p className="text-xs text-green-700 leading-relaxed">
+                    Tiket masuk wisata <strong>sudah termasuk</strong> dalam paket wisata.
+                  </p>
+                </div>
+              </motion.div>
+
+              {/* Jumlah Orang */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.06 }}
                 className={card}
               >
                 <div className="flex items-center gap-3 mb-4">
@@ -395,41 +436,6 @@ export default function CalculatorPage() {
                       <p className="text-xs text-gray-400 mt-1.5">{t('calc.roomHint')}</p>
                     )}
                   </div>
-                </div>
-              </motion.div>
-
-              {/* Lokasi Wisata */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.15 }}
-                className={card}
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <MapPin className="w-5 h-5 text-primary-600" />
-                  <h3 className="text-lg font-bold text-gray-900">{t('calc.lokasiTitle')}</h3>
-                </div>
-                <label className={label}>{t('calc.lokasiLabel')}</label>
-                <select
-                  value={lokasi}
-                  onChange={(e) => {
-                    setLokasi(e.target.value);
-                    setKegiatan([]); // reset kegiatan saat ganti lokasi
-                  }}
-                  className={select}
-                >
-                  <option value="">{t('calc.lokasiPlaceholder')}</option>
-                  {LOKASI_OPTIONS.map((l) => (
-                    <option key={l.id} value={l.id}>
-                      {l.name}, {l.location} ({l.duration})
-                    </option>
-                  ))}
-                </select>
-                <div className="mt-3 flex gap-2 p-3 rounded-lg bg-green-50 border border-green-100">
-                  <Info className="w-4 h-4 text-green-600 shrink-0 mt-0.5" />
-                  <p className="text-xs text-green-700 leading-relaxed">
-                    Tiket masuk wisata <strong>sudah termasuk</strong> dalam paket wisata.
-                  </p>
                 </div>
               </motion.div>
 

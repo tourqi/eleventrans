@@ -39,7 +39,8 @@ describe('data integrity', () => {
 
   it('armada options should have prices', () => {
     ARMADA_OPTIONS.forEach((a) => {
-      expect(a.price).toBeGreaterThan(0);
+      expect(a.priceDalamKota).toBeGreaterThan(0);
+      expect(a.priceLuarKota).toBeGreaterThan(0);
     });
   });
 

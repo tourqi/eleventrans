@@ -7,7 +7,7 @@ import CTASection from '../components/sections/CTASection';
 import PageHero from '../components/sections/PageHero';
 import SEO from '../components/SEO';
 import { FLEET } from '../data/fleet';
-import { buildWhatsAppLink } from '../utils/helpers';
+import { buildWhatsAppLink, formatRupiah } from '../utils/helpers';
 import { useLanguage } from '../contexts/LanguageContext';
 
 export default function Fleet() {
@@ -66,6 +66,29 @@ export default function Fleet() {
                     <span>{td(vehicle.capacity)}</span>
                   </div>
                   <p className="text-sm text-gray-600 mb-4">{td(vehicle.description)}</p>
+
+                  {/* Price */}
+                  {(vehicle.priceDalamKota || vehicle.priceLuarKota) && (
+                    <div className="mb-4 text-sm bg-primary-50 rounded-lg p-3 space-y-1">
+                      {vehicle.priceDalamKota && (
+                        <div className="flex items-center justify-between">
+                          <span className="text-gray-600">Dalam kota / hari</span>
+                          <span className="font-semibold text-primary-700">{formatRupiah(vehicle.priceDalamKota)}</span>
+                        </div>
+                      )}
+                      {vehicle.priceLuarKota && (
+                        <div className="flex items-center justify-between">
+                          <span className="text-gray-600">Luar kota / hari</span>
+                          <span className="font-semibold text-primary-700">{formatRupiah(vehicle.priceLuarKota)}</span>
+                        </div>
+                      )}
+                      {vehicle.minSewaLuarKota && (
+                        <p className="text-xs text-gray-500">
+                          *Minimal sewa {vehicle.minSewaLuarKota} hari untuk luar kota
+                        </p>
+                      )}
+                    </div>
+                  )}
 
                   {/* Facilities */}
                   <div className="flex flex-wrap gap-2 mb-5">
