@@ -1,0 +1,119 @@
+---
+title: "Company Profile & Kalkulator Trip - Eleven Trans Holiday"
+description: "Website company profile untuk agen travel di Bandung: showcase paket wisata, armada, galeri, dan kalkulator estimasi biaya trip dalam satu situs dwibahasa"
+category: "webdev"
+tags: ["React", "Vite", "Tailwind CSS", "Netlify"]
+coverImage: "GANTI_DENGAN_URL_SCREENSHOT_HOME"
+coverColor: "#F97316"
+year: "2026"
+featured: true
+role: "Frontend Developer"
+timeline: "3 bulan, berlanjut"
+tools: ["React 19", "Vite", "Tailwind CSS v4", "Framer Motion", "React Router", "Netlify"]
+outcome: "Menggantikan company profile berbasis WhatsApp/Instagram dengan satu situs terpusat: katalog paket, armada, galeri, dan kalkulator estimasi biaya trip"
+liveUrl: "https://eleventransholiday.com"
+githubUrl: "https://github.com/tourqi/eleventrans"
+---
+
+## Latar Belakang
+
+Eleven Trans Holiday adalah agen travel di Bandung yang melayani private trip, family gathering, adventure trip, dan industrial visit. Sebelumnya, calon klien hanya bisa mengenal layanan lewat Instagram dan chat WhatsApp langsung, tanpa satu tempat yang menampilkan paket, armada, dan galeri kegiatan secara terstruktur, apalagi menghitung estimasi biaya sendiri.
+
+Saya membangun website ini dari nol sebagai company profile sekaligus alat bantu closing: calon klien bisa menjelajahi paket wisata, melihat armada yang tersedia, membuka galeri dokumentasi trip asli, dan menghitung estimasi biaya trip sendiri sebelum akhirnya diarahkan ke WhatsApp untuk konfirmasi.
+
+<ProjectStats stats={[
+  { label: "Timeline", value: "3 Bulan+" },
+  { label: "Tech Stack", value: "Vite + React 19" },
+  { label: "Halaman", value: "8" },
+  { label: "Bahasa", value: "2 (ID/EN)" }
+]} />
+
+---
+
+## Goals & Constraints
+
+### Yang Ingin Dicapai
+
+1. **Company profile yang lengkap tapi ringan** — halaman Beranda, Tentang, Layanan, Paket, Armada, Galeri, Kalkulator, dan Kontak, di-lazy-load per rute supaya loading tetap cepat di koneksi mobile.
+2. **Kalkulator estimasi biaya mandiri** — calon klien bisa memilih armada, penginapan, lokasi, paket makan, dan kegiatan tambahan, lalu langsung mendapat estimasi total biaya yang siap dikirim sebagai draft pesan WhatsApp.
+3. **Dwibahasa, Indonesia sebagai bahasa utama** — mayoritas klien lokal, tapi situs perlu tetap ramah untuk audiens internasional (misalnya klien perusahaan dari luar kota/pulau).
+4. **Konten mudah diupdate tanpa sentuh kode UI** — paket, harga, testimoni, dan foto galeri berubah cukup sering mengikuti masukan klien, jadi semuanya perlu bisa diedit lewat file data, bukan bongkar komponen.
+
+### Constraints
+
+<Callout type="info">
+Proyek ini dikerjakan sendirian sebagai freelance, dengan revisi konten yang datang bertahap dan informal langsung dari pemilik bisnis, bukan sekali brief di awal, lalu ditulis sekaligus. Perubahan seperti nama brand, foto galeri, dan isi testimoni bisa masuk kapan saja, jadi struktur datanya harus cukup fleksibel untuk menampung itu tanpa merombak ulang komponen.
+</Callout>
+
+---
+
+## Proses & Arsitektur Data
+
+<ProcessStep number={1} title="Konten Sebagai Modul Data, Terpisah dari UI">
+Semua konten yang sering berubah, paket wisata, layanan, armada, testimoni, klien, dan galeri, disimpan sebagai modul data terpisah (`packages.js`, `services.js`, `fleet.js`, `testimonials.js`, `clients.js`) yang dikonsumsi oleh komponen generik. Efeknya, menambah paket baru atau mengganti seluruh foto galeri dengan dokumentasi asli klien cukup dilakukan di satu file data, tanpa menyentuh logika tampilan.
+</ProcessStep>
+
+<ProcessStep number={2} title="Sistem Dwibahasa Custom: Dictionary UI vs Data">
+Alih-alih menduplikasi seluruh file data untuk tiap bahasa, saya membuat `LanguageContext` dengan dua kamus terjemahan: `t()` untuk string antarmuka tetap (label tombol, navigasi), dan `td()` untuk menerjemahkan teks konten dinamis (deskripsi paket, testimoni) lewat pemetaan teks Indonesia asli ke bahasa Inggris. Bahasa Indonesia tetap jadi sumber kebenaran utama.
+</ProcessStep>
+
+<ProcessStep number={3} title="Kalkulator Biaya Real-Time">
+Total biaya dihitung langsung di client dari kombinasi armada, jumlah malam menginap, jumlah kamar, lokasi, frekuensi makan, dan kegiatan tambahan yang dipilih, lengkap dengan validasi kapasitas (misalnya kapasitas armada dan maksimal orang per kamar), lalu diformat otomatis menjadi draft pesan WhatsApp yang tinggal dikirim.
+</ProcessStep>
+
+---
+
+## Arsitektur Teknis
+
+### Stack & Keputusan Teknis
+
+<Callout type="insight">
+Karena situs ini murni company profile tanpa kebutuhan backend atau autentikasi, saya sengaja memilih Vite + React sebagai static site murni yang di-deploy ke Netlify, tanpa framework SSR. Fokusnya ada di kecepatan loading dan kemudahan maintenance konten, bukan kompleksitas arsitektur.
+</Callout>
+
+**Frontend & Routing:**
+- **React Router** dengan setiap halaman di-*lazy-load* lewat `React.lazy` + `Suspense`, dibungkus `ErrorBoundary`, supaya bundle awal tetap kecil.
+- **Tailwind CSS v4** untuk seluruh styling, dan **Framer Motion** untuk transisi halaman, carousel testimoni, dan lightbox galeri.
+- **react-helmet-async** untuk SEO per halaman: title, meta description, Open Graph, Twitter Card, plus JSON-LD schema `TravelAgency` khusus di halaman Beranda.
+
+<ToolsUsed tools={["React 19", "Vite", "Tailwind CSS v4", "Framer Motion", "React Router", "Netlify"]} />
+
+### Deployment
+
+Situs di-deploy sebagai static build di **Netlify**, dengan `_redirects` untuk menangani client-side routing SPA, serta `sitemap.xml` dan `robots.txt` untuk crawlability.
+
+---
+
+## Tantangan Teknis
+
+<ProcessStep number={1} title="Bubble Testimoni yang 'Loncat' Saat Digeser">
+Kartu testimoni memakai teks dengan panjang yang sangat bervariasi, testimoni terpanjang bisa 4x lebih panjang dari yang terpendek, sehingga tinggi kartu berubah-ubah dan posisi tombol navigasi ikut bergeser tiap kali digeser. Solusinya: mengukur tinggi semua testimoni secara tersembunyi di belakang layar saat mount, mengambil tinggi maksimumnya, lalu menjadikannya `min-height` tetap untuk kartu, dengan konten di-*center* vertikal supaya testimoni pendek tidak terlihat kosong.
+</ProcessStep>
+
+<ProcessStep number={2} title="Jebakan Folder public/ di Vite">
+Beberapa path gambar sempat ditulis dengan prefix `/public/...`, yang ternyata tetap termuat normal di dev server (Vite punya fallback filesystem untuk itu), tapi 404 begitu di-deploy ke Netlify, karena build production menyalin isi `public/` langsung ke root, bukan ke folder `/public`. Bug ini baru kelihatan setelah cek langsung ke hasil `npm run build`, bukan cuma dari tampilan dev server.
+</ProcessStep>
+
+<ProcessStep number={3} title="Menjaga Sinkronisasi Konten Dwibahasa">
+Karena `td()` mencocokkan teks Indonesia persis karakter demi karakter untuk mencari terjemahannya, setiap revisi kecil pada konten sumber (ganti nama brand, hapus tanda baca tertentu) berisiko diam-diam memutus terjemahan Inggris-nya tanpa error yang terlihat. Solusinya: memperlakukan perubahan terjemahan sebagai bagian yang tidak terpisahkan dari setiap revisi konten, bukan pekerjaan susulan.
+</ProcessStep>
+
+---
+
+## Hasil
+
+Website ini dipakai sebagai company profile utama Eleven Trans Holiday, terus diperbarui sejak rilis pertama berdasarkan masukan langsung dari pemilik bisnis, mulai dari penyesuaian nama brand, penggantian seluruh foto galeri dengan dokumentasi trip asli, penambahan testimoni baru, sampai perbaikan detail UI kecil yang mengganggu pengalaman pengguna di mobile.
+
+<Callout type="result">
+Proyek ini menunjukkan bahwa untuk company profile dengan siklus revisi konten yang cepat dan informal, keputusan paling berdampak bukan di pilihan animasi atau library, tapi di seberapa mudah konten bisa diubah tanpa menyentuh kode, dan seberapa disiplin terjemahan dijaga tetap sinkron dengan kontennya.
+</Callout>
+
+---
+
+## Takeaways
+
+**Pisahkan konten dari komponen sejak awal, terutama untuk klien non-teknis.** Karena revisi konten datang bertahap dan informal, struktur data yang modular membuat perubahan besar seperti mengganti seluruh set foto galeri hanya butuh satu edit file, bukan restrukturisasi komponen.
+
+**Selalu uji hasil build production, bukan cuma dev server.** Bug path gambar `/public/...` lolos begitu saja di dev server karena Vite punya fallback yang menutupi masalahnya, dan baru ketahuan setelah cek langsung ke folder `dist/` hasil build.
+
+**Dwibahasa berbasis pencocokan teks butuh disiplin, bukan cuma sistem yang bagus.** Sistem terjemahan sebaik apa pun tetap bisa diam-diam rusak kalau revisi konten dan revisi terjemahan tidak dianggap satu paket pekerjaan yang sama.
