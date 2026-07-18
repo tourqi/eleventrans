@@ -23,6 +23,7 @@ import {
   MAKAN_OPTIONS,
   KEGIATAN_OPTIONS,
   ADDITIONAL_OPTIONS,
+  ASURANSI,
 } from '../data/calculator';
 import { formatRupiah, buildWhatsAppLink } from '../utils/helpers';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -44,8 +45,7 @@ export default function CalculatorPage() {
   const [jumlahMalam, setJumlahMalam] = useState(1);
   const [jumlahKamar, setJumlahKamar] = useState(1);
   const [lokasi, setLokasi] = useState('');
-  const [makan, setMakan] = useState('');
-  const [frekuensiMakan, setFrekuensiMakan] = useState(1);
+  const [makanSelections, setMakanSelections] = useState({});
   const [kegiatan, setKegiatan] = useState([]);
   const [jumlahOrang, setJumlahOrang] = useState(1);
   const [additional, setAdditional] = useState([]);
@@ -54,7 +54,6 @@ export default function CalculatorPage() {
   const selectedArmada = ARMADA_OPTIONS.find((a) => a.id === armada);
   const selectedPenginapan = PENGINAPAN_OPTIONS.find((p) => p.id === penginapan);
   const selectedLokasi = LOKASI_OPTIONS.find((l) => l.id === lokasi);
-  const selectedMakan = MAKAN_OPTIONS.find((m) => m.id === makan);
 
   const isBus = selectedArmada?.isBus ?? false;
 
@@ -105,13 +104,14 @@ export default function CalculatorPage() {
         amount: selectedLokasi.pricePerPax * pax,
       });
     }
-    if (selectedMakan) {
-      const freq = Math.max(frekuensiMakan, 1);
+    MAKAN_OPTIONS.forEach((m) => {
+      const freq = makanSelections[m.id];
+      if (!freq) return;
       items.push({
-        label: `Makan: ${selectedMakan.label} (${freq}x/hari)`,
-        amount: selectedMakan.pricePerPax * pax * freq,
+        label: `Makan: ${m.label} (${freq}x)`,
+        amount: m.pricePerPax * pax * freq,
       });
-    }
+    });
 
     kegiatan.forEach((kid) => {
       const k = KEGIATAN_OPTIONS.find((x) => x.id === kid);
@@ -126,7 +126,11 @@ export default function CalculatorPage() {
       items.push({ label: opt.label, amount });
     });
 
-    const total = items.reduce((sum, i) => sum + i.amount, 0);
+    items.push({ label: `${ASURANSI.label} (wajib)`, amount: ASURANSI.pricePerPax * pax });
+
+    const subtotal = items.reduce((sum, i) => sum + i.amount, 0);
+    const MARKUP_RATE = 0.3;
+    const total = Math.ceil(subtotal * (1 + MARKUP_RATE));
     const perPax = pax > 0 ? Math.ceil(total / pax) : 0;
     return { items, total, perPax, pax };
   }, [
@@ -135,8 +139,7 @@ export default function CalculatorPage() {
     jumlahMalam,
     jumlahKamar,
     selectedLokasi,
-    selectedMakan,
-    frekuensiMakan,
+    makanSelections,
     kegiatan,
     additional,
     jumlahOrang,
@@ -155,6 +158,19 @@ export default function CalculatorPage() {
       prev.includes(id) ? prev.filter((a) => a !== id) : [...prev, id],
     );
 
+  const toggleMakan = (id) =>
+    setMakanSelections((prev) => {
+      if (prev[id]) {
+        const next = { ...prev };
+        delete next[id];
+        return next;
+      }
+      return { ...prev, [id]: 1 };
+    });
+
+  const setMakanFreq = (id, freq) =>
+    setMakanSelections((prev) => ({ ...prev, [id]: freq }));
+
   /* ── WhatsApp summary ── */
   const waMessage = useMemo(() => {
     let msg = `Halo Eleven Trans Holiday! 👋\nSaya ingin estimasi biaya:\n\n`;
@@ -170,17 +186,21 @@ export default function CalculatorPage() {
     if (selectedArmada) msg += `🚐 Armada: ${selectedArmada.name} (${jumlahArmada} unit)\n`;
     if (selectedPenginapan) msg += `🏨 Penginapan: ${selectedPenginapan.label} (${jumlahMalam} malam, ${jumlahKamar} kamar)\n`;
     if (selectedLokasi) msg += `📍 Lokasi: ${selectedLokasi.name}\n`;
-    if (selectedMakan) msg += `🍽️ Makan: ${selectedMakan.label} (${frekuensiMakan}x/hari)\n`;
+    const makanNames = MAKAN_OPTIONS.filter((m) => makanSelections[m.id]).map(
+      (m) => `${m.label} ${makanSelections[m.id]}x`,
+    );
+    if (makanNames.length) msg += `🍽️ Makan: ${makanNames.join(', ')}\n`;
     if (kegiatan.length) {
       const names = kegiatan.map((id) => KEGIATAN_OPTIONS.find((k) => k.id === id)?.label).filter(Boolean);
       msg += `🎯 Kegiatan: ${names.join(', ')}\n`;
     }
+    msg += `🛡️ Asuransi Perjalanan: wajib\n`;
     msg += `👥 Jumlah: ${jumlahOrang} orang\n`;
     msg += `\n💰 Estimasi Total: ${formatRupiah(breakdown.total)}\n`;
     msg += `💰 Per Orang: ${formatRupiah(breakdown.perPax)}\n`;
     msg += `\nMohon info lebih lanjut. Terima kasih!`;
     return msg;
-  }, [selectedArmada, selectedPenginapan, jumlahMalam, jumlahKamar, selectedLokasi, selectedMakan, frekuensiMakan, kegiatan, jumlahOrang, breakdown, tanggalKegiatan, tanggalAkhir]);
+  }, [selectedArmada, selectedPenginapan, jumlahMalam, jumlahKamar, selectedLokasi, makanSelections, kegiatan, jumlahOrang, breakdown, tanggalKegiatan, tanggalAkhir]);
 
   /* ── render ── */
   return (
@@ -450,34 +470,43 @@ export default function CalculatorPage() {
                   <UtensilsCrossed className="w-5 h-5 text-primary-600" />
                   <h3 className="text-lg font-bold text-gray-900">{t('calc.makanTitle')}</h3>
                 </div>
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className={label}>{t('calc.makanLabel')}</label>
-                    <select value={makan} onChange={(e) => setMakan(e.target.value)} className={select}>
-                      <option value="">{t('calc.makanPlaceholder')}</option>
-                      {MAKAN_OPTIONS.map((m) => (
-                        <option key={m.id} value={m.id}>
-                          {m.label}
-                        </option>
-                      ))}
-                    </select>
-                    {selectedMakan && (
-                      <p className="text-xs text-gray-500 mt-2">{selectedMakan.description}</p>
-                    )}
-                  </div>
-                  <div>
-                    <label className={label}>Frekuensi Makan</label>
-                    <select
-                      value={frekuensiMakan}
-                      onChange={(e) => setFrekuensiMakan(parseInt(e.target.value))}
-                      className={select}
-                    >
-                      <option value={1}>1x makan / hari</option>
-                      <option value={2}>2x makan / hari</option>
-                      <option value={3}>3x makan / hari</option>
-                    </select>
-                    <p className="text-xs text-gray-400 mt-1.5">Berapa kali makan dalam 1 hari</p>
-                  </div>
+                <div className="space-y-3">
+                  {MAKAN_OPTIONS.map((m) => {
+                    const freq = makanSelections[m.id];
+                    const checked = Boolean(freq);
+                    return (
+                      <div
+                        key={m.id}
+                        className={`flex items-center gap-3 p-3 rounded-lg border transition ${
+                          checked ? 'border-primary-500 bg-primary-50' : 'border-gray-200'
+                        }`}
+                      >
+                        <label className="flex items-center gap-3 flex-1 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={checked}
+                            onChange={() => toggleMakan(m.id)}
+                            className="accent-primary-600 w-4 h-4"
+                          />
+                          <span className="text-sm font-medium text-gray-800">
+                            {m.label} <span className="text-gray-400">({formatRupiah(m.pricePerPax)}/orang)</span>
+                          </span>
+                        </label>
+                        <select
+                          value={freq || 1}
+                          disabled={!checked}
+                          onChange={(e) => setMakanFreq(m.id, parseInt(e.target.value))}
+                          className={`${select} w-32 disabled:opacity-50`}
+                        >
+                          {[1, 2, 3, 4, 5].map((n) => (
+                            <option key={n} value={n}>
+                              {n}x
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    );
+                  })}
                 </div>
               </motion.div>
 
@@ -517,6 +546,31 @@ export default function CalculatorPage() {
                     </label>
                   ))}
                 </div>
+              </motion.div>
+
+              {/* Asuransi Perjalanan (wajib) */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.28 }}
+                className={card}
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <Info className="w-5 h-5 text-primary-600" />
+                  <h3 className="text-lg font-bold text-gray-900">Asuransi Perjalanan</h3>
+                </div>
+                <label className="flex items-center gap-3 p-3 rounded-lg border border-primary-500 bg-primary-50 cursor-not-allowed">
+                  <input
+                    type="checkbox"
+                    checked
+                    disabled
+                    className="accent-primary-600 w-4 h-4"
+                  />
+                  <span className="flex-1 text-sm font-medium text-gray-800">
+                    {ASURANSI.label} <span className="text-gray-400">({formatRupiah(ASURANSI.pricePerPax)}/orang)</span>
+                  </span>
+                </label>
+                <p className="text-xs text-gray-500 mt-2">{ASURANSI.description}</p>
               </motion.div>
 
             </div>
