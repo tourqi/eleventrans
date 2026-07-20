@@ -3,10 +3,10 @@
 export const FLEET = [
   {
     id: 'hiace',
-    name: 'Toyota HiAce Premio / Commuter',
+    name: 'Toyota HiAce Commuter',
     capacity: '12-15 Penumpang',
     type: 'Medium Bus',
-    image: 'https://d1g6w7sntckt92.cloudfront.net/public/images/color_option_images/uW9Jx499hs82qMH7VL2g6qR4udYGepMLHZT7mxXv.png',
+    image: 'https://d1g6w7sntckt92.cloudfront.net/public/images/car_variant_image/xnOAdrdja0I8sFbpaILJ2efUP1TQVyHSbIpZ5iIK.png',
     facilities: ['AC', 'Reclining Seat', 'Audio System', 'Bagasi Luas', 'Charger USB'],
     description: 'Kendaraan favorit untuk grup kecil-menengah. Nyaman, lega, dan cocok untuk perjalanan jarak dekat maupun jauh.',
     popular: true,
@@ -32,7 +32,7 @@ export const FLEET = [
     name: 'Medium Bus (31 Seat)',
     capacity: '27-31 Penumpang',
     type: 'Bus',
-    image: 'https://busdiscovery.id/wp-content/uploads/2023/10/newmediumbus-1.png',
+    image: 'https://hersatrans.com/wp-content/uploads/2023/11/Medium-Bus.png',
     facilities: ['AC', 'Reclining Seat', 'Audio + Mic', 'TV', 'Bagasi Besar', 'Toilet'],
     description: 'Untuk rombongan besar. Dilengkapi fasilitas lengkap untuk perjalanan nyaman berjam-jam.',
     popular: false,

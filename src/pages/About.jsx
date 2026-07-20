@@ -40,7 +40,7 @@ export default function About() {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-3xl font-bold text-gray-900 mb-6">{t('about.storyTitle')}</h2>
-              <div className="space-y-4 text-gray-600 leading-relaxed">
+              <div className="space-y-4 text-gray-600 leading-relaxed text-justify">
                 <p>{t('about.storyP1')}</p>
                 <p>{t('about.storyP2')}</p>
                 <p>{t('about.storyP3')}</p>
@@ -82,7 +82,7 @@ export default function About() {
                 <Eye className="w-7 h-7 text-primary-600" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">{t('about.visionTitle')}</h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-600 leading-relaxed text-justify">
                 {t('about.visionText')}
               </p>
             </motion.div>
@@ -98,7 +98,7 @@ export default function About() {
                 <Target className="w-7 h-7 text-accent-600" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">{t('about.missionTitle')}</h3>
-              <ul className="text-gray-600 space-y-2">
+              <ul className="text-gray-600 space-y-2 text-justify">
                 <li className="flex items-start gap-2">
                   <span className="text-accent-500 mt-1">•</span>
                   {t('about.m1')}

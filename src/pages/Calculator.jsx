@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import {
   Calculator as CalcIcon,
@@ -24,6 +24,7 @@ import {
   KEGIATAN_OPTIONS,
   ADDITIONAL_OPTIONS,
   ASURANSI,
+  TOUR_GUIDE,
 } from '../data/calculator';
 import { formatRupiah, buildWhatsAppLink } from '../utils/helpers';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -49,6 +50,8 @@ export default function CalculatorPage() {
   const [kegiatan, setKegiatan] = useState([]);
   const [jumlahOrang, setJumlahOrang] = useState(1);
   const [additional, setAdditional] = useState([]);
+  const [tourGuide, setTourGuide] = useState(false);
+  const [calculated, setCalculated] = useState(false);
 
   /* ── derived ── */
   const selectedArmada = ARMADA_OPTIONS.find((a) => a.id === armada);
@@ -128,6 +131,10 @@ export default function CalculatorPage() {
 
     items.push({ label: `${ASURANSI.label} (wajib)`, amount: ASURANSI.pricePerPax * pax });
 
+    if (tourGuide) {
+      items.push({ label: TOUR_GUIDE.label, amount: TOUR_GUIDE.price });
+    }
+
     const subtotal = items.reduce((sum, i) => sum + i.amount, 0);
     const MARKUP_RATE = 0.3;
     const total = Math.ceil(subtotal * (1 + MARKUP_RATE));
@@ -142,10 +149,21 @@ export default function CalculatorPage() {
     makanSelections,
     kegiatan,
     additional,
+    tourGuide,
     jumlahOrang,
     jumlahArmada,
     isBus,
   ]);
+
+  // Setiap kali pilihan berubah, sembunyikan estimasi sampai tombol "Hitung" ditekan lagi.
+  const isFirstRender = useRef(true);
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    setCalculated(false);
+  }, [breakdown]);
 
   /* ── toggle helpers ── */
   const toggleKegiatan = (id) =>
@@ -195,12 +213,13 @@ export default function CalculatorPage() {
       msg += `🎯 Kegiatan: ${names.join(', ')}\n`;
     }
     msg += `🛡️ Asuransi Perjalanan: wajib\n`;
+    if (tourGuide) msg += `🧭 Tour Guide: 1 orang\n`;
     msg += `👥 Jumlah: ${jumlahOrang} orang\n`;
     msg += `\n💰 Estimasi Total: ${formatRupiah(breakdown.total)}\n`;
     msg += `💰 Per Orang: ${formatRupiah(breakdown.perPax)}\n`;
     msg += `\nMohon info lebih lanjut. Terima kasih!`;
     return msg;
-  }, [selectedArmada, selectedPenginapan, jumlahMalam, jumlahKamar, selectedLokasi, makanSelections, kegiatan, jumlahOrang, breakdown, tanggalKegiatan, tanggalAkhir]);
+  }, [selectedArmada, selectedPenginapan, jumlahMalam, jumlahKamar, selectedLokasi, makanSelections, kegiatan, tourGuide, jumlahOrang, breakdown, tanggalKegiatan, tanggalAkhir]);
 
   /* ── render ── */
   return (
@@ -488,9 +507,7 @@ export default function CalculatorPage() {
                             onChange={() => toggleMakan(m.id)}
                             className="accent-primary-600 w-4 h-4"
                           />
-                          <span className="text-sm font-medium text-gray-800">
-                            {m.label} <span className="text-gray-400">({formatRupiah(m.pricePerPax)}/orang)</span>
-                          </span>
+                          <span className="text-sm font-medium text-gray-800">{m.label}</span>
                         </label>
                         <select
                           value={freq || 1}
@@ -566,11 +583,36 @@ export default function CalculatorPage() {
                     disabled
                     className="accent-primary-600 w-4 h-4"
                   />
-                  <span className="flex-1 text-sm font-medium text-gray-800">
-                    {ASURANSI.label} <span className="text-gray-400">({formatRupiah(ASURANSI.pricePerPax)}/orang)</span>
-                  </span>
+                  <span className="flex-1 text-sm font-medium text-gray-800">{ASURANSI.label}</span>
                 </label>
                 <p className="text-xs text-gray-500 mt-2">{ASURANSI.description}</p>
+              </motion.div>
+
+              {/* Tour Guide (opsional) */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.3 }}
+                className={card}
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <Users className="w-5 h-5 text-primary-600" />
+                  <h3 className="text-lg font-bold text-gray-900">Tour Guide</h3>
+                </div>
+                <label
+                  className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition ${
+                    tourGuide ? 'border-primary-500 bg-primary-50' : 'border-gray-200 hover:border-gray-300'
+                  }`}
+                >
+                  <input
+                    type="checkbox"
+                    checked={tourGuide}
+                    onChange={() => setTourGuide((v) => !v)}
+                    className="accent-primary-600 w-4 h-4"
+                  />
+                  <span className="flex-1 text-sm font-medium text-gray-800">{TOUR_GUIDE.label}</span>
+                </label>
+                <p className="text-xs text-gray-500 mt-2">{TOUR_GUIDE.description}</p>
               </motion.div>
 
             </div>
@@ -604,18 +646,31 @@ export default function CalculatorPage() {
                         ))}
                       </ul>
 
-                      <div className="space-y-3 border-t border-gray-200 pt-4">
-                        <div className="flex justify-between items-center py-3 px-4 rounded-xl bg-primary-50 border border-primary-100">
-                          <span className="text-sm font-semibold text-gray-700">{t('calc.total')}</span>
-                          <span className="text-base font-bold text-primary-600">{formatRupiah(breakdown.total)}</span>
+                      {calculated ? (
+                        <div className="space-y-3 border-t border-gray-200 pt-4">
+                          <div className="flex justify-between items-center py-3 px-4 rounded-xl bg-primary-50 border border-primary-100">
+                            <span className="text-sm font-semibold text-gray-700">{t('calc.total')}</span>
+                            <span className="text-base font-bold text-primary-600">{formatRupiah(breakdown.total)}</span>
+                          </div>
+                          <div className="flex justify-between items-center py-3 px-4 rounded-xl bg-accent-50 border border-accent-100">
+                            <span className="text-sm font-semibold text-gray-700">
+                              {t('calc.perPax')} <span className="text-gray-400 font-normal">({breakdown.pax} pax)</span>
+                            </span>
+                            <span className="text-base font-bold text-accent-600">{formatRupiah(breakdown.perPax)}</span>
+                          </div>
                         </div>
-                        <div className="flex justify-between items-center py-3 px-4 rounded-xl bg-accent-50 border border-accent-100">
-                          <span className="text-sm font-semibold text-gray-700">
-                            {t('calc.perPax')} <span className="text-gray-400 font-normal">({breakdown.pax} pax)</span>
-                          </span>
-                          <span className="text-base font-bold text-accent-600">{formatRupiah(breakdown.perPax)}</span>
+                      ) : (
+                        <div className="border-t border-gray-200 pt-4">
+                          <Button
+                            variant="primary"
+                            size="lg"
+                            onClick={() => setCalculated(true)}
+                            className="w-full justify-center"
+                          >
+                            Klik untuk Hitung
+                          </Button>
                         </div>
-                      </div>
+                      )}
                     </>
                   )}
 
@@ -633,7 +688,7 @@ export default function CalculatorPage() {
                 </motion.div>
 
                 {/* CTA WhatsApp */}
-                {breakdown.items.length > 0 && (
+                {breakdown.items.length > 0 && calculated && (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}

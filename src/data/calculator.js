@@ -77,6 +77,14 @@ export const ASURANSI = {
   description: 'Asuransi bersifat wajib untuk setiap peserta',
 };
 
+/* ── Tour Guide (opsional) ── */
+export const TOUR_GUIDE = {
+  id: 'tour-guide',
+  label: 'Tour Guide',
+  price: 200000,
+  description: 'Harga untuk 1 orang tour guide',
+};
+
 /* ── Variabel Tambahan (checkbox) ── */
 // perPax: true  → price × jumlah orang
 // (default)     → flat cost per trip
