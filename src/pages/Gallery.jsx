@@ -1,5 +1,5 @@
 import GalleryGrid from '../components/sections/GalleryGrid';
-import { GALLERY_IMAGES, GALLERY_CATEGORIES } from '../data/clients';
+import { GALLERY_ITEMS, GALLERY_CATEGORIES } from '../data/clients';
 import CTASection from '../components/sections/CTASection';
 import PageHero from '../components/sections/PageHero';
 import SEO from '../components/SEO';
@@ -29,7 +29,7 @@ export default function Gallery() {
       </PageHero>
 
       <GalleryGrid
-        images={GALLERY_IMAGES}
+        items={GALLERY_ITEMS}
         categories={GALLERY_CATEGORIES}
         title={t('gallery.collectionTitle')}
         subtitle={t('gallery.collectionSub')}
