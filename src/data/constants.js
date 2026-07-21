@@ -10,7 +10,6 @@ export const DEFAULT_WA_MESSAGE =
 
 export const COMPANY = {
   name: 'Eleven Trans Holiday',
-  tagline: 'Travel with Fun, Bikin Liburan Makin Asyik',
   phone: '+62 812-2047-8789',
   email: 'eleventransholiday@gmail.com',
   address: 'Graha Pesona, Blok E3, Cisaranten Kulon, Cinambo, Bandung City, West Java 40296',

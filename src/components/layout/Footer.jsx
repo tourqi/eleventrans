@@ -40,12 +40,12 @@ export default function Footer() {
               <div>
                 <div className="font-bold text-white text-lg leading-tight">Eleven Trans Holiday</div>
                 <div className="text-[10px] text-accent-400 font-medium -mt-0.5">
-                  Travel with Fun
+                  {t('brand.tagline')}
                 </div>
               </div>
             </Link>
             <p className="text-sm text-gray-400 leading-relaxed mb-6">
-              {COMPANY.tagline}{t('footer.taglineSuffix')}
+              {t('footer.tagline')}{t('footer.taglineSuffix')}
             </p>
             <div className="flex gap-3">
               <a

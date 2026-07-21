@@ -15,11 +15,14 @@ export const UI = {
     'nav.calculator': 'Kalkulator',
     'nav.contact': 'Kontak',
 
+    /* ── Brand ── */
+    'brand.tagline': 'Merancang Momen Berkesan',
+
     /* ── Hero ── */
-    'hero.badge': 'Travel with Fun',
-    'hero.title1': 'Bikin Liburan',
-    'hero.title2': 'Makin Asyik',
-    'hero.subtitle': 'Private trip, family gathering, adventure trip & industrial visit semua dirancang khusus untuk pengalaman tak terlupakan. Aman, seru, dan penuh cerita.',
+    'hero.badge': 'Tour Planner Momen Berkesan',
+    'hero.title1': 'Bukan Trip Biasa,',
+    'hero.title2': 'Momen yang Berkesan',
+    'hero.subtitle': 'Private trip, family gathering, adventure trip & industrial visit kami rancang detail demi detail, supaya setiap perjalanan jadi momen yang benar-benar berkesan bukan sekadar jalan-jalan biasa.',
     'hero.cta': 'Chat via WhatsApp',
     'hero.cta2': 'Lihat Paket',
     'hero.social': 'pelanggan puas',
@@ -28,24 +31,24 @@ export const UI = {
     /* ── Services Section ── */
     'services.eyebrow': 'Layanan Kami',
     'services.title': 'Pengalaman yang Dirancang Khusus',
-    'services.subtitle': 'Dari private trip hingga industrial visit, setiap perjalanan kami rancang dengan cinta dan perhatian penuh.',
+    'services.subtitle': 'Dari private trip hingga industrial visit setiap perjalanan kami rancang supaya jadi momen yang diingat, bukan sekadar acara jalan-jalan.',
     'services.more': 'Selengkapnya',
 
     /* ── Why Choose Us ── */
-    'why.eyebrow': 'Kenapa Kami?',
-    'why.title': 'Travel Partner yang Bisa Diandalkan',
-    'why.subtitle': 'Sudah ratusan perusahaan, komunitas, dan keluarga mempercayakan perjalanan mereka ke Eleven Trans Holiday.',
-    'why.r1.title': 'Layanan Ramah & Personal',
-    'why.r1.desc': 'Kami bukan travel biasa. Setiap klien kami perlakukan seperti teman komunikasi santai, respon cepat, dan selalu siap bantu kapanpun.',
-    'why.r2.title': 'Konsep Kreatif & Fleksibel',
-    'why.r2.desc': 'Bosan dengan trip monoton? Kami merancang konsep acara yang fresh dan bisa disesuaikan 100% dengan keinginan dan budget kamu.',
-    'why.r3.title': 'One-Stop Solution & Aman',
-    'why.r3.desc': 'Dari transportasi, venue, konsumsi, hingga dokumentasi semua kami urus. Kamu tinggal datang, nikmati, dan pulang bawa kenangan.',
+    'why.eyebrow': 'Kenapa Orang Percaya Kami',
+    'why.title': 'Bukan Soal Termurah atau Armada Terbanyak',
+    'why.subtitle': 'Yang bikin orang kembali cuma satu alasan: kalau mau perjalanan yang benar-benar berkesan, semua bilang "pakai Eleven Trans Holiday." Itu standar yang kami jaga di setiap detail perjalanan.',
+    'why.r1.title': 'Kami Dengar, Baru Kami Rancang',
+    'why.r1.desc': 'Setiap klien punya cerita berbeda. Kami gali dulu apa yang bikin perjalananmu berarti, baru kami susun jadi rencana perjalanan yang benar-benar personal, bukan paket template.',
+    'why.r2.title': 'Konsep yang Tidak Ada di Brosur Travel Lain',
+    'why.r2.desc': 'Kami sengaja rancang momen kejutan, spot foto, dan urutan acara yang membekas di ingatan bukan cuma itinerary yang itu-itu saja.',
+    'why.r3.title': 'Logistik Kami Urus, Kamu Tinggal Menikmati Momennya',
+    'why.r3.desc': 'Transportasi, venue, konsumsi, dokumentasi semua beres di belakang layar. Supaya kamu benar-benar hadir di momennya, bukan sibuk mikirin teknis.',
 
     /* ── Featured Experience ── */
     'featured.eyebrow': 'Paket Unggulan',
     'featured.title': 'Pengalaman Paling Populer',
-    'featured.subtitle': 'Dicoba ratusan peserta direkomendasikan semua.',
+    'featured.subtitle': 'Salah satu momen paling berkesan yang paling sering diceritakan ulang oleh peserta kami.',
     'featured.popular': '🔥 Most Popular',
     'featured.booking': 'Booking Sekarang',
     'featured.detail': 'Detail Lengkap',
@@ -73,8 +76,8 @@ export const UI = {
     'faq.a6': 'Cukup hubungi kami via WhatsApp, diskusikan kebutuhan trip, lalu kami kirimkan invoice. Pembayaran via transfer bank dengan DP 50% untuk konfirmasi booking.',
 
     /* ── CTA ── */
-    'cta.title': 'Siap Bikin Liburan Makin Asyik?',
-    'cta.subtitle': 'Konsultasi GRATIS, ceritakan rencana trip kamu, dan kami bantu wujudkan.',
+    'cta.title': 'Siap Ciptakan Momen yang Berkesan?',
+    'cta.subtitle': 'Konsultasi GRATIS, ceritakan rencana perjalananmu, dan kami rancang jadi momen yang gak akan kamu lupakan.',
     'cta.wa': 'Chat via WhatsApp',
     'cta.form': 'Isi Form Request',
 
@@ -261,12 +264,13 @@ export const UI = {
     'footer.aboutUs': 'Tentang Kami',
     'footer.contact': 'Kontak',
     'footer.contactUs': 'Hubungi Kami',
-    'footer.taglineSuffix': '. Kami menghadirkan pengalaman perjalanan yang menyenangkan, aman, dan tak terlupakan.',
+    'footer.tagline': 'Eleven Trans Holiday adalah tour planner yang merancang setiap perjalanan jadi momen yang berkesan',
+    'footer.taglineSuffix': '. Bukan soal harga termurah atau armada terbanyak, tapi soal cerita yang kamu bawa pulang.',
     'footer.rights': 'All rights reserved.',
-    'footer.motto': 'Bikin Liburan Makin Asyik 🎉',
+    'footer.motto': 'Merancang Momen yang Berkesan ✨',
 
     /* ── SEO Descriptions ── */
-    'seo.home': 'Eleven Trans Holiday: Travel with Fun! Private trip, family gathering, adventure trip & industrial visit terbaik di Bandung. Hubungi kami sekarang!',
+    'seo.home': 'Eleven Trans Holiday: tour planner yang merancang perjalananmu jadi momen yang benar-benar berkesan. Private trip, family gathering, adventure trip & industrial visit terbaik di Bandung. Hubungi kami sekarang!',
     'seo.about': 'Kenali Eleven Trans Holiday, tim berpengalaman di balik layanan travel terbaik di Bandung.',
     'seo.services': 'Private trip, family gathering, adventure trip & industrial visit, layanan travel lengkap dari Eleven Trans Holiday.',
     'seo.fleet': 'Armada kendaraan Eleven Trans Holiday: HiAce, Elf, Bus Medium, Big Bus, dan MPV. Terawat, nyaman, dan siap antar ke mana saja.',
@@ -295,11 +299,14 @@ export const UI = {
     'nav.calculator': 'Calculator',
     'nav.contact': 'Contact',
 
+    /* ── Brand ── */
+    'brand.tagline': 'Crafting Memorable Moments',
+
     /* ── Hero ── */
-    'hero.badge': '🎉 Travel with Fun',
-    'hero.title1': 'Make Your Trip',
-    'hero.title2': 'More Exciting',
-    'hero.subtitle': 'Private trips, family gatherings, adventure trips & industrial visits, all designed for an unforgettable experience. Safe, fun, and full of stories.',
+    'hero.badge': 'Memorable Moment Planner',
+    'hero.title1': 'Not Just a Trip,',
+    'hero.title2': 'A Moment Worth Remembering',
+    'hero.subtitle': 'Private trips, family gatherings, adventure trips & industrial visits — we plan every detail so each trip becomes a moment truly worth remembering, not just another day out.',
     'hero.cta': 'Chat via WhatsApp',
     'hero.cta2': 'View Packages',
     'hero.social': 'happy customers',
@@ -308,24 +315,24 @@ export const UI = {
     /* ── Services Section ── */
     'services.eyebrow': 'Our Services',
     'services.title': 'Experiences Designed Just for You',
-    'services.subtitle': 'From private trips to industrial visits, every journey is crafted with love and full attention.',
+    'services.subtitle': 'From private trips to industrial visits, every journey is designed to become a moment worth remembering, not just another outing.',
     'services.more': 'Learn More',
 
     /* ── Why Choose Us ── */
-    'why.eyebrow': 'Why Us?',
-    'why.title': 'A Travel Partner You Can Count On',
-    'why.subtitle': 'Hundreds of companies, communities, and families have trusted their journeys to Eleven Trans Holiday.',
-    'why.r1.title': 'Friendly & Personal Service',
-    'why.r1.desc': 'We\'re not your ordinary travel agency. We treat every client like a friend: casual communication, fast response, and always ready to help.',
-    'why.r2.title': 'Creative & Flexible Concepts',
-    'why.r2.desc': 'Tired of the same old trips? We design fresh event concepts that can be 100% customized to your wishes and budget.',
-    'why.r3.title': 'One-Stop Solution & Safe',
-    'why.r3.desc': 'From transportation, venue, catering, to documentation, we handle everything. Just come, enjoy, and go home with memories.',
+    'why.eyebrow': 'Why People Trust Us',
+    'why.title': 'It\'s Not About the Lowest Price or the Biggest Fleet',
+    'why.subtitle': 'There\'s one reason people keep coming back: when it comes to a truly memorable trip, everyone says "use Eleven Trans Holiday." That\'s the standard we hold in every detail.',
+    'why.r1.title': 'We Listen First, Then We Design',
+    'why.r1.desc': 'Every client has a different story. We dig into what would make your trip meaningful first, then turn it into a truly personal plan, not a template package.',
+    'why.r2.title': 'Concepts You Won\'t Find in Any Other Travel Brochure',
+    'why.r2.desc': 'We deliberately design surprise moments, photo spots, and event flow that stay in memory, not the same old itinerary everyone else runs.',
+    'why.r3.title': 'We Handle the Logistics, You Just Enjoy the Moment',
+    'why.r3.desc': 'Transportation, venue, meals, documentation, all handled behind the scenes. So you\'re fully present in the moment, not busy worrying about logistics.',
 
     /* ── Featured Experience ── */
     'featured.eyebrow': 'Featured Package',
     'featured.title': 'Most Popular Experience',
-    'featured.subtitle': 'Tried by hundreds of participants, recommended by all.',
+    'featured.subtitle': 'One of the most memorable moments our participants tell and retell.',
     'featured.popular': '🔥 Most Popular',
     'featured.booking': 'Book Now',
     'featured.detail': 'Full Details',
@@ -353,8 +360,8 @@ export const UI = {
     'faq.a6': 'Simply contact us via WhatsApp, discuss your trip needs, and we\'ll send you an invoice. Payment via bank transfer with 50% down payment to confirm booking.',
 
     /* ── CTA ── */
-    'cta.title': 'Ready to Make Your Trip More Exciting?',
-    'cta.subtitle': 'FREE consultation, tell us your trip plans, and we\'ll make it happen.',
+    'cta.title': 'Ready to Create a Moment Worth Remembering?',
+    'cta.subtitle': 'FREE consultation — tell us your trip plans, and we\'ll design it into a moment you won\'t forget.',
     'cta.wa': 'Chat via WhatsApp',
     'cta.form': 'Fill Request Form',
 
@@ -541,12 +548,13 @@ export const UI = {
     'footer.aboutUs': 'About Us',
     'footer.contact': 'Contact',
     'footer.contactUs': 'Contact Us',
-    'footer.taglineSuffix': '. We deliver enjoyable, safe, and unforgettable travel experiences.',
+    'footer.tagline': 'Eleven Trans Holiday is a tour planner that turns every trip into a moment worth remembering',
+    'footer.taglineSuffix': '. Not about the lowest price or the biggest fleet, but about the story you bring home.',
     'footer.rights': 'All rights reserved.',
-    'footer.motto': 'Make Your Trip More Exciting 🎉',
+    'footer.motto': 'Designing Moments Worth Remembering ✨',
 
     /* ── SEO Descriptions ── */
-    'seo.home': 'Eleven Trans Holiday: Travel with Fun! The best private trips, family gatherings, adventure trips & industrial visits in Bandung. Contact us now!',
+    'seo.home': 'Eleven Trans Holiday: the tour planner that turns your trip into a truly memorable moment. The best private trips, family gatherings, adventure trips & industrial visits in Bandung. Contact us now!',
     'seo.about': 'Get to know Eleven Trans Holiday, the experienced team behind the best travel services in Bandung.',
     'seo.services': 'Private trips, family gatherings, adventure trips & industrial visits, complete travel services from Eleven Trans Holiday.',
     'seo.fleet': 'Eleven Trans Holiday fleet: HiAce, Elf, Medium Bus, Big Bus, and MPV. Well-maintained, comfortable, and ready to take you anywhere.',

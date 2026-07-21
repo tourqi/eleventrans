@@ -3,7 +3,7 @@ import { SITE_URL } from '../data/constants';
 
 const SITE_NAME = 'Eleven Trans Holiday';
 const DEFAULT_DESCRIPTION =
-  'Eleven Trans Holiday: Travel with Fun! Private trip, family gathering, adventure trip & industrial visit terbaik di Bandung.';
+  'Eleven Trans Holiday: tour planner yang merancang perjalananmu jadi momen yang benar-benar berkesan. Private trip, family gathering, adventure trip & industrial visit terbaik di Bandung.';
 const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200';
 
 /**
@@ -21,7 +21,7 @@ export default function SEO({
   image = DEFAULT_IMAGE,
   path = '',
 }) {
-  const fullTitle = title ? `${title} | ${SITE_NAME}` : `${SITE_NAME} | Travel with Fun`;
+  const fullTitle = title ? `${title} | ${SITE_NAME}` : `${SITE_NAME} | Momen yang Berkesan`;
   const url = `${SITE_URL}${path}`;
 
   const jsonLd = {
