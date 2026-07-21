@@ -137,7 +137,8 @@ export default function CalculatorPage() {
 
     const subtotal = items.reduce((sum, i) => sum + i.amount, 0);
     const MARKUP_RATE = 0.3;
-    const total = Math.ceil(subtotal * (1 + MARKUP_RATE));
+    const ROUND_TO = 1000;
+    const total = Math.round((subtotal * (1 + MARKUP_RATE)) / ROUND_TO) * ROUND_TO;
     const perPax = pax > 0 ? Math.ceil(total / pax) : 0;
     return { items, total, perPax, pax };
   }, [

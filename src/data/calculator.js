@@ -27,10 +27,14 @@ export const PENGINAPAN_OPTIONS = [
  * zone menentukan harga armada yang dipakai (dalam kota / luar kota).
  */
 const LOKASI_META = {
-  'pangandaran-citumang': { minPax: 18, pricePerPax: 100000, zone: 'luar-kota' },
-  'ujung-genteng':        { minPax: 13, pricePerPax: 10000, zone: 'luar-kota' },
-  'pangalengan-rafting':  { minPax: 13, pricePerPax: 185000, zone: 'dalam-kota' },
-  'trip-ciwidey':         { minPax: 13, pricePerPax: 50000, zone: 'dalam-kota' },
+  'pangandaran-citumang':  { minPax: 18, pricePerPax: 100000, zone: 'luar-kota' },
+  'ujung-genteng':         { minPax: 13, pricePerPax: 10000, zone: 'luar-kota' },
+  'pangalengan-rafting':   { minPax: 13, pricePerPax: 185000, zone: 'dalam-kota' },
+  'trip-ciwidey':          { minPax: 13, pricePerPax: 50000, zone: 'dalam-kota' },
+  // Trip speed boat Komodo: harga per pax sudah all-in (boat, snack, makan, alat snorkeling, pick up & drop),
+  // jadi pricePerPax di sini di-backsolve dari harga jual flyer supaya hasil kalkulator (setelah +asuransi & markup 30%) tepat balik ke harga flyer.
+  'komodo-full-day-trip': { minPax: 1, pricePerPax: 1051923, zone: 'luar-kota' },
+  'komodo-sunset-trip':   { minPax: 1, pricePerPax: 898077, zone: 'luar-kota' },
 };
 
 // Jumlah hari sewa armada mengikuti durasi paket, contoh "2 hari 1 malam" → 2 hari.
