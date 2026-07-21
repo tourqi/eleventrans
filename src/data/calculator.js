@@ -7,11 +7,11 @@ import { PACKAGES } from './packages';
 export const ARMADA_OPTIONS = [
   { id: 'hiace',               name: 'Hiace 14 Seat',               capacity: '14 Seat',                 passengerSeat: 14, type: 'Minibus',          minPax: 14, priceDalamKota: 1500000, priceLuarKota: 1500000, isBus: false },
   { id: 'medium-bus-35',       name: 'Medium Bus 35 Seat',           capacity: '35 Seat',                passengerSeat: 35, type: 'Bus Sedang',        minPax: 35, priceDalamKota: 2100000, priceLuarKota: 2500000, isBus: true  },
-  { id: 'medium-bus-35-sr3',   name: 'Medium Bus 35 Seat SR3 2024',  capacity: '35 Seat',                passengerSeat: 35, type: 'Bus Sedang',        minPax: 35, priceDalamKota: 4000000, priceLuarKota: 4000000, isBus: true  },
-  { id: 'medium-bus-18-luxury',name: 'Medium Bus 18 Seat Luxury',    capacity: '18 Seat',                passengerSeat: 18, type: 'Bus Sedang Luxury', minPax: 18, priceDalamKota: 4500000, priceLuarKota: 4500000, isBus: true  },
+  { id: 'medium-bus-35-sr3',   name: 'Medium Bus 35 Seat SR3 2024',  capacity: '35 Seat',                passengerSeat: 35, type: 'Bus Sedang',        minPax: 35, priceDalamKota: 2400000, priceLuarKota: 3000000, isBus: true  },
+  { id: 'medium-bus-18-luxury',name: 'Medium Bus 18 Seat Luxury',    capacity: '18 Seat',                passengerSeat: 18, type: 'Bus Sedang Luxury', minPax: 18, priceDalamKota: 3800000, priceLuarKota: 3500000, isBus: true  },
   { id: 'big-bus-jb3',         name: 'Big Bus JB3 50 Seat',          capacity: '50 Seat',                passengerSeat: 50, type: 'Bus Besar',         minPax: 50, priceDalamKota: 3300000, priceLuarKota: 4000000, isBus: true  },
-  { id: 'big-bus-jb5',         name: 'Big Bus JB5 50 Seat',          capacity: '50 Seat',                passengerSeat: 50, type: 'Bus Besar',         minPax: 50, priceDalamKota: 6000000, priceLuarKota: 6000000, isBus: true  },
-  { id: 'luxury-bus-36',       name: 'Luxury Bus 36 Seat',           capacity: '36 Seat',                passengerSeat: 36, type: 'Bus Luxury',        minPax: 36, priceDalamKota: 7000000, priceLuarKota: 7000000, isBus: true  },
+  { id: 'big-bus-jb5',         name: 'Big Bus JB5 50 Seat',          capacity: '50 Seat',                passengerSeat: 50, type: 'Bus Besar',         minPax: 50, priceDalamKota: 4000000, priceLuarKota: 4600000, isBus: true  },
+  { id: 'luxury-bus-36',       name: 'Luxury Bus 36 Seat',           capacity: '36 Seat',                passengerSeat: 36, type: 'Bus Luxury',        minPax: 36, priceDalamKota: 5500000, priceLuarKota: 5500000, isBus: true  },
 ];
 
 /* ── Penginapan ── */
