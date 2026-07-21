@@ -1,25 +1,39 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Play } from 'lucide-react';
+import { X, Play, ChevronLeft, ChevronRight } from 'lucide-react';
 import SectionHeading from '../ui/SectionHeading';
 
 export default function GalleryGrid({ items, categories, title, subtitle }) {
   const [activeCategory, setActiveCategory] = useState('all');
-  const [lightbox, setLightbox] = useState(null);
-
-  useEffect(() => {
-    if (!lightbox) return;
-    const handleKey = (e) => {
-      if (e.key === 'Escape') setLightbox(null);
-    };
-    document.addEventListener('keydown', handleKey);
-    return () => document.removeEventListener('keydown', handleKey);
-  }, [lightbox]);
+  const [lightboxIndex, setLightboxIndex] = useState(null);
 
   const filtered =
     activeCategory === 'all'
       ? items
       : items.filter((item) => item.category === activeCategory);
+
+  const lightbox = lightboxIndex !== null ? filtered[lightboxIndex] : null;
+
+  const showPrev = () =>
+    setLightboxIndex((i) => (i === 0 ? filtered.length - 1 : i - 1));
+  const showNext = () =>
+    setLightboxIndex((i) => (i === filtered.length - 1 ? 0 : i + 1));
+
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+    const handleKey = (e) => {
+      if (e.key === 'Escape') setLightboxIndex(null);
+      if (e.key === 'ArrowLeft') showPrev();
+      if (e.key === 'ArrowRight') showNext();
+    };
+    document.addEventListener('keydown', handleKey);
+    return () => document.removeEventListener('keydown', handleKey);
+  }, [lightboxIndex, filtered.length]);
+
+  // Filter changed while lightbox was open — close it since the item may no longer exist there.
+  useEffect(() => {
+    setLightboxIndex(null);
+  }, [activeCategory]);
 
   return (
     <section className="py-20 bg-white">
@@ -50,7 +64,7 @@ export default function GalleryGrid({ items, categories, title, subtitle }) {
         {/* Grid */}
         <motion.div layout className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           <AnimatePresence>
-            {filtered.map((item) => (
+            {filtered.map((item, idx) => (
               <motion.div
                 key={item.id}
                 layout
@@ -59,7 +73,7 @@ export default function GalleryGrid({ items, categories, title, subtitle }) {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.3 }}
                 className="group relative cursor-pointer overflow-hidden rounded-xl aspect-square bg-gray-100"
-                onClick={() => setLightbox(item)}
+                onClick={() => setLightboxIndex(idx)}
               >
                 {item.type === 'video' ? (
                   <>
@@ -98,39 +112,71 @@ export default function GalleryGrid({ items, categories, title, subtitle }) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
-              onClick={() => setLightbox(null)}
+              onClick={() => setLightboxIndex(null)}
             >
               <button
-                onClick={() => setLightbox(null)}
-                className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors"
+                onClick={() => setLightboxIndex(null)}
+                className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors z-10"
                 aria-label="Close lightbox"
               >
                 <X className="w-8 h-8" />
               </button>
-              {lightbox.type === 'video' ? (
-                <motion.video
-                  initial={{ scale: 0.9 }}
-                  animate={{ scale: 1 }}
-                  exit={{ scale: 0.9 }}
-                  src={lightbox.src}
-                  controls
-                  autoPlay
-                  playsInline
-                  aria-label={lightbox.alt}
-                  className="max-w-full max-h-[85vh] rounded-lg"
-                  onClick={(e) => e.stopPropagation()}
-                />
-              ) : (
-                <motion.img
-                  initial={{ scale: 0.9 }}
-                  animate={{ scale: 1 }}
-                  exit={{ scale: 0.9 }}
-                  src={lightbox.src?.replace('w=600', 'w=1200')}
-                  alt={lightbox.alt}
-                  className="max-w-full max-h-[85vh] object-contain rounded-lg"
-                  onClick={(e) => e.stopPropagation()}
-                />
+
+              {filtered.length > 1 && (
+                <>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      showPrev();
+                    }}
+                    className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/90 hover:bg-white flex items-center justify-center shadow-lg transition-colors z-10"
+                    aria-label="Previous"
+                  >
+                    <ChevronLeft className="w-6 h-6 text-gray-800" />
+                  </button>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      showNext();
+                    }}
+                    className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/90 hover:bg-white flex items-center justify-center shadow-lg transition-colors z-10"
+                    aria-label="Next"
+                  >
+                    <ChevronRight className="w-6 h-6 text-gray-800" />
+                  </button>
+                </>
               )}
+
+              <AnimatePresence mode="wait">
+                {lightbox.type === 'video' ? (
+                  <motion.video
+                    key={lightbox.id}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.2 }}
+                    src={lightbox.src}
+                    controls
+                    autoPlay
+                    playsInline
+                    aria-label={lightbox.alt}
+                    className="max-w-full max-h-[85vh] rounded-lg"
+                    onClick={(e) => e.stopPropagation()}
+                  />
+                ) : (
+                  <motion.img
+                    key={lightbox.id}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.2 }}
+                    src={lightbox.src?.replace('w=600', 'w=1200')}
+                    alt={lightbox.alt}
+                    className="max-w-full max-h-[85vh] object-contain rounded-lg"
+                    onClick={(e) => e.stopPropagation()}
+                  />
+                )}
+              </AnimatePresence>
             </motion.div>
           )}
         </AnimatePresence>
