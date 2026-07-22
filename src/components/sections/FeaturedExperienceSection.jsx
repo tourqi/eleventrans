@@ -61,7 +61,7 @@ export default function FeaturedExperienceSection() {
                 </div>
                 <div className="flex items-center gap-2 text-sm text-gray-700">
                   <MapPin className="w-4 h-4 text-primary-500" />
-                  <span>{featured.meta.location?.split(',')[0]}</span>
+                  <span>{td(featured.meta.location)?.split(',')[0]}</span>
                 </div>
               </div>
 
@@ -76,7 +76,7 @@ export default function FeaturedExperienceSection() {
                 <Button
                   variant="whatsapp"
                   size="md"
-                  href={buildWhatsAppLink(featured.ctaPrefill)}
+                  href={buildWhatsAppLink(td(featured.ctaPrefill))}
                 >
                   <Phone className="w-4 h-4" />
                   {t('featured.booking')}

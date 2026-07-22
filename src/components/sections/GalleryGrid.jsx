@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Play, ChevronLeft, ChevronRight } from 'lucide-react';
 import SectionHeading from '../ui/SectionHeading';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 export default function GalleryGrid({ items, categories, title, subtitle }) {
+  const { td } = useLanguage();
   const [activeCategory, setActiveCategory] = useState('all');
   const [lightboxIndex, setLightboxIndex] = useState(null);
 
@@ -55,7 +57,7 @@ export default function GalleryGrid({ items, categories, title, subtitle }) {
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }`}
               >
-                {cat.label}
+                {td(cat.label)}
               </button>
             ))}
           </div>

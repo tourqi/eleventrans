@@ -118,7 +118,7 @@ function PackageDetailPage() {
           </div>
           <div className="flex items-center gap-2 text-white/70">
             <MapPin className="w-5 h-5 text-accent-300" />
-            <span>{pkg.meta.location}</span>
+            <span>{td(pkg.meta.location)}</span>
           </div>
           <div className="flex items-center gap-2 text-white/70">
             <Shield className="w-5 h-5 text-accent-300" />
@@ -130,7 +130,7 @@ function PackageDetailPage() {
           <Button
             variant="whatsapp"
             size="lg"
-            href={buildWhatsAppLink(pkg.ctaPrefill)}
+            href={buildWhatsAppLink(td(pkg.ctaPrefill))}
           >
             <Phone className="w-5 h-5" />
             {t('pkg.bookNow')}
@@ -301,8 +301,8 @@ function PackageDetailPage() {
                           {tier.tier}
                         </span>
                       </td>
-                      <td className="px-4 py-3 text-gray-700">{tier.hotel}</td>
-                      <td className="px-4 py-3 text-gray-700">{tier.vehicle}</td>
+                      <td className="px-4 py-3 text-gray-700">{td(tier.hotel)}</td>
+                      <td className="px-4 py-3 text-gray-700">{td(tier.vehicle)}</td>
                       <td className="px-4 py-3 text-right font-bold text-accent-600">
                         {formatRupiah(tier.price)}
                       </td>

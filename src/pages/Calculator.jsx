@@ -57,6 +57,10 @@ export default function CalculatorPage() {
   const selectedArmada = ARMADA_OPTIONS.find((a) => a.id === armada);
   const selectedPenginapan = PENGINAPAN_OPTIONS.find((p) => p.id === penginapan);
   const selectedLokasi = LOKASI_OPTIONS.find((l) => l.id === lokasi);
+  const isTicketOnly = selectedLokasi?.ticketOnly ?? false;
+  const isMakanLocked = Boolean(selectedLokasi?.fixedMeals);
+  const isNightsLocked = Boolean(selectedLokasi?.fixedNights);
+  const minPaxForLokasi = selectedLokasi?.minPax ?? 1;
 
   const isBus = selectedArmada?.isBus ?? false;
 
@@ -67,6 +71,7 @@ export default function CalculatorPage() {
   const kapasitasArmada = selectedArmada ? selectedArmada.passengerSeat * jumlahArmada : 0;
   const minArmadaDibutuhkan = selectedArmada ? Math.ceil(jumlahOrang / selectedArmada.passengerSeat) : 1;
   const armadaKurang = selectedArmada && jumlahOrang > kapasitasArmada;
+  const hasWarning = Boolean(armadaKurang || kamarKurang);
 
   // Filter kegiatan by selected lokasi
   const availableKegiatan = useMemo(
@@ -83,56 +88,60 @@ export default function CalculatorPage() {
     const malam = Math.max(jumlahMalam, 0);
     const items = [];
 
-    if (selectedArmada) {
+    if (selectedArmada && !isTicketOnly) {
       const unit = Math.max(jumlahArmada, 1);
       const hari = selectedLokasi?.armadaDays ?? 1;
       const zone = selectedLokasi?.zone ?? 'luar-kota';
       const hargaPerHari = zone === 'dalam-kota' ? selectedArmada.priceDalamKota : selectedArmada.priceLuarKota;
       items.push({
-        label: `Armada: ${selectedArmada.name} (${unit} unit × ${hari} hari)`,
+        label: `${t('calc.itemArmada')}: ${td(selectedArmada.name)} (${unit} ${t('calc.unitWord')} × ${hari} ${t('calc.dayWord')})`,
         amount: hargaPerHari * unit * hari,
       });
     }
-    if (selectedPenginapan && malam > 0) {
+    if (selectedPenginapan && malam > 0 && !isTicketOnly) {
       const kamar = Math.max(jumlahKamar, 1);
       const hotelTotal = selectedPenginapan.pricePerNight * malam * kamar;
       items.push({
-        label: `Penginapan: ${selectedPenginapan.label} (${malam} malam, ${kamar} kamar)`,
+        label: `${t('calc.itemHotel')}: ${td(selectedPenginapan.label)} (${malam} ${t('calc.nightWord')}, ${kamar} ${t('calc.roomWord')})`,
         amount: hotelTotal,
       });
     }
     if (selectedLokasi) {
       items.push({
-        label: `Lokasi: ${selectedLokasi.name}`,
+        label: `${t('calc.itemLocation')}: ${td(selectedLokasi.name)}`,
         amount: selectedLokasi.pricePerPax * pax,
       });
     }
-    MAKAN_OPTIONS.forEach((m) => {
-      const freq = makanSelections[m.id];
-      if (!freq) return;
-      items.push({
-        label: `Makan: ${m.label} (${freq}x)`,
-        amount: m.pricePerPax * pax * freq,
+    if (!isTicketOnly) {
+      MAKAN_OPTIONS.forEach((m) => {
+        const freq = makanSelections[m.id];
+        if (!freq) return;
+        items.push({
+          label: `${t('calc.itemMeal')}: ${td(m.label)} (${freq}x)`,
+          amount: m.pricePerPax * pax * freq,
+        });
       });
-    });
 
-    kegiatan.forEach((kid) => {
-      const k = KEGIATAN_OPTIONS.find((x) => x.id === kid);
-      if (k) items.push({ label: `Kegiatan: ${k.label}`, amount: k.pricePerPax * pax });
-    });
+      kegiatan.forEach((kid) => {
+        const k = KEGIATAN_OPTIONS.find((x) => x.id === kid);
+        if (k) items.push({ label: `${t('calc.itemActivity')}: ${td(k.label)}`, amount: k.pricePerPax * pax });
+      });
+    }
 
     additional.forEach((aid) => {
       const opt = ADDITIONAL_OPTIONS.find((x) => x.id === aid);
       if (!opt) return;
       if (opt.busOnly && !isBus) return;
       const amount = opt.perPax ? opt.price * pax : opt.price;
-      items.push({ label: opt.label, amount });
+      items.push({ label: td(opt.label), amount });
     });
 
-    items.push({ label: `${ASURANSI.label} (wajib)`, amount: ASURANSI.pricePerPax * pax });
+    if (!isTicketOnly) {
+      items.push({ label: `${td(ASURANSI.label)} (${t('calc.mandatoryWord')})`, amount: ASURANSI.pricePerPax * pax });
 
-    if (tourGuide) {
-      items.push({ label: TOUR_GUIDE.label, amount: TOUR_GUIDE.price });
+      if (tourGuide) {
+        items.push({ label: td(TOUR_GUIDE.label), amount: TOUR_GUIDE.price });
+      }
     }
 
     const subtotal = items.reduce((sum, i) => sum + i.amount, 0);
@@ -154,6 +163,9 @@ export default function CalculatorPage() {
     jumlahOrang,
     jumlahArmada,
     isBus,
+    isTicketOnly,
+    t,
+    td,
   ]);
 
   // Setiap kali pilihan berubah, sembunyikan estimasi sampai tombol "Hitung" ditekan lagi.
@@ -192,35 +204,36 @@ export default function CalculatorPage() {
 
   /* ── WhatsApp summary ── */
   const waMessage = useMemo(() => {
-    let msg = `Halo Eleven Trans Holiday! 👋\nSaya ingin estimasi biaya:\n\n`;
+    const locale = t('calc.waLocale');
+    let msg = `${t('calc.waGreeting')}\n\n`;
     if (tanggalKegiatan) {
-      const tglMulai = new Date(tanggalKegiatan).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+      const tglMulai = new Date(tanggalKegiatan).toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' });
       if (tanggalAkhir) {
-        const tglAkhir = new Date(tanggalAkhir).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
-        msg += `📅 Tanggal Rencana: ${tglMulai} s/d ${tglAkhir}\n`;
+        const tglAkhir = new Date(tanggalAkhir).toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' });
+        msg += `📅 ${t('calc.waDatePlan')}: ${tglMulai} ${t('calc.waDateTo')} ${tglAkhir}\n`;
       } else {
-        msg += `📅 Tanggal Rencana: ${tglMulai}\n`;
+        msg += `📅 ${t('calc.waDatePlan')}: ${tglMulai}\n`;
       }
     }
-    if (selectedArmada) msg += `🚐 Armada: ${selectedArmada.name} (${jumlahArmada} unit)\n`;
-    if (selectedPenginapan) msg += `🏨 Penginapan: ${selectedPenginapan.label} (${jumlahMalam} malam, ${jumlahKamar} kamar)\n`;
-    if (selectedLokasi) msg += `📍 Lokasi: ${selectedLokasi.name}\n`;
+    if (selectedArmada) msg += `🚐 ${t('calc.itemArmada')}: ${td(selectedArmada.name)} (${jumlahArmada} ${t('calc.unitWord')})\n`;
+    if (selectedPenginapan) msg += `🏨 ${t('calc.itemHotel')}: ${td(selectedPenginapan.label)} (${jumlahMalam} ${t('calc.nightWord')}, ${jumlahKamar} ${t('calc.roomWord')})\n`;
+    if (selectedLokasi) msg += `📍 ${t('calc.itemLocation')}: ${td(selectedLokasi.name)}\n`;
     const makanNames = MAKAN_OPTIONS.filter((m) => makanSelections[m.id]).map(
-      (m) => `${m.label} ${makanSelections[m.id]}x`,
+      (m) => `${td(m.label)} ${makanSelections[m.id]}x`,
     );
-    if (makanNames.length) msg += `🍽️ Makan: ${makanNames.join(', ')}\n`;
+    if (makanNames.length) msg += `🍽️ ${t('calc.itemMeal')}: ${makanNames.join(', ')}\n`;
     if (kegiatan.length) {
-      const names = kegiatan.map((id) => KEGIATAN_OPTIONS.find((k) => k.id === id)?.label).filter(Boolean);
-      msg += `🎯 Kegiatan: ${names.join(', ')}\n`;
+      const names = kegiatan.map((id) => td(KEGIATAN_OPTIONS.find((k) => k.id === id)?.label)).filter(Boolean);
+      msg += `🎯 ${t('calc.itemActivity')}: ${names.join(', ')}\n`;
     }
-    msg += `🛡️ Asuransi Perjalanan: wajib\n`;
-    if (tourGuide) msg += `🧭 Tour Guide: 1 orang\n`;
-    msg += `👥 Jumlah: ${jumlahOrang} orang\n`;
-    msg += `\n💰 Estimasi Total: ${formatRupiah(breakdown.total)}\n`;
-    msg += `💰 Per Orang: ${formatRupiah(breakdown.perPax)}\n`;
-    msg += `\nMohon info lebih lanjut. Terima kasih!`;
+    if (!isTicketOnly) msg += `🛡️ ${td(ASURANSI.label)}: ${t('calc.mandatoryWord')}\n`;
+    if (tourGuide) msg += `🧭 ${td(TOUR_GUIDE.label)}: 1 ${t('calc.personWord')}\n`;
+    msg += `👥 ${t('calc.waTotalPeople')}: ${jumlahOrang} ${t('calc.personWord')}\n`;
+    msg += `\n💰 ${t('calc.total')}: ${formatRupiah(breakdown.total)}\n`;
+    msg += `💰 ${t('calc.perPax')}: ${formatRupiah(breakdown.perPax)}\n`;
+    msg += `\n${t('calc.waClosing')}`;
     return msg;
-  }, [selectedArmada, selectedPenginapan, jumlahMalam, jumlahKamar, selectedLokasi, makanSelections, kegiatan, tourGuide, jumlahOrang, breakdown, tanggalKegiatan, tanggalAkhir]);
+  }, [selectedArmada, selectedPenginapan, jumlahMalam, jumlahKamar, selectedLokasi, isTicketOnly, makanSelections, kegiatan, tourGuide, jumlahOrang, breakdown, tanggalKegiatan, tanggalAkhir, t, td]);
 
   /* ── render ── */
   return (
@@ -301,24 +314,57 @@ export default function CalculatorPage() {
                 <select
                   value={lokasi}
                   onChange={(e) => {
+                    const newLokasi = LOKASI_OPTIONS.find((l) => l.id === e.target.value);
                     setLokasi(e.target.value);
                     setKegiatan([]); // reset kegiatan saat ganti lokasi
+                    if (newLokasi?.ticketOnly) {
+                      // Destinasi ticket-only: armada/hotel/makan/asuransi/tour guide tidak relevan.
+                      setArmada('');
+                      setJumlahArmada(1);
+                      setPenginapan('');
+                      setJumlahMalam(1);
+                      setJumlahKamar(1);
+                      setMakanSelections({});
+                      setTourGuide(false);
+                    } else if (newLokasi?.fixedMeals) {
+                      // Jumlah makan mengikuti paket & dikunci, tidak bisa diubah manual.
+                      setMakanSelections({ ...newLokasi.fixedMeals });
+                    } else {
+                      setMakanSelections({});
+                    }
+                    if (newLokasi?.fixedNights) {
+                      // Jumlah malam mengikuti durasi paket & dikunci.
+                      setJumlahMalam(newLokasi.fixedNights);
+                    }
+                    if (newLokasi?.minPax && jumlahOrang < newLokasi.minPax) {
+                      // Jumlah minimal peserta mengikuti paket.
+                      setJumlahOrang(newLokasi.minPax);
+                    }
                   }}
                   className={select}
                 >
                   <option value="">{t('calc.lokasiPlaceholder')}</option>
                   {LOKASI_OPTIONS.map((l) => (
                     <option key={l.id} value={l.id}>
-                      {l.name}, {l.location} ({l.duration})
+                      {td(l.name)}, {td(l.location)} ({td(l.duration)})
                     </option>
                   ))}
                 </select>
-                <div className="mt-3 flex gap-2 p-3 rounded-lg bg-green-50 border border-green-100">
-                  <Info className="w-4 h-4 text-green-600 shrink-0 mt-0.5" />
-                  <p className="text-xs text-green-700 leading-relaxed">
-                    Tiket masuk wisata <strong>sudah termasuk</strong> dalam paket wisata.
-                  </p>
-                </div>
+                {isTicketOnly ? (
+                  <div className="mt-3 flex gap-2 p-3 rounded-lg bg-amber-50 border border-amber-100">
+                    <Info className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                    <p className="text-xs text-amber-700 leading-relaxed">
+                      {t('calc.ticketOnlyNote')}
+                    </p>
+                  </div>
+                ) : (
+                  <div className="mt-3 flex gap-2 p-3 rounded-lg bg-green-50 border border-green-100">
+                    <Info className="w-4 h-4 text-green-600 shrink-0 mt-0.5" />
+                    <p className="text-xs text-green-700 leading-relaxed">
+                      {t('calc.ticketIncludedPrefix')}<strong>{t('calc.ticketIncludedBold')}</strong>{t('calc.ticketIncludedSuffix')}
+                    </p>
+                  </div>
+                )}
               </motion.div>
 
               {/* Jumlah Orang */}
@@ -337,16 +383,22 @@ export default function CalculatorPage() {
                 </label>
                 <input
                   type="number"
-                  min={1}
+                  min={minPaxForLokasi}
                   max={200}
                   value={jumlahOrang}
-                  onChange={(e) => setJumlahOrang(e.target.value === '' ? '' : Math.max(1, parseInt(e.target.value) || 1))}
-                  onBlur={(e) => setJumlahOrang(Math.max(1, parseInt(e.target.value) || 1))}
+                  onChange={(e) => setJumlahOrang(e.target.value === '' ? '' : Math.max(minPaxForLokasi, parseInt(e.target.value) || minPaxForLokasi))}
+                  onBlur={(e) => setJumlahOrang(Math.max(minPaxForLokasi, parseInt(e.target.value) || minPaxForLokasi))}
                   className={select}
                 />
+                {selectedLokasi && (
+                  <p className="text-xs text-gray-400 mt-1.5">
+                    {t('calc.minPaxNote')} {minPaxForLokasi} {t('calc.personWord')}
+                  </p>
+                )}
               </motion.div>
 
               {/* Armada */}
+              {!isTicketOnly && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -370,7 +422,7 @@ export default function CalculatorPage() {
                     </select>
                   </div>
                   <div>
-                    <label className={label}>Jumlah Unit Armada</label>
+                    <label className={label}>{t('calc.armadaUnitLabel')}</label>
                     <input
                       type="number"
                       min={1}
@@ -382,11 +434,11 @@ export default function CalculatorPage() {
                     />
                     {armadaKurang ? (
                       <p className="text-xs text-red-500 mt-1.5 font-medium">
-                        ⚠ Kapasitas penuh, butuh minimal {minArmadaDibutuhkan} unit untuk {jumlahOrang} orang.
+                        ⚠ {t('calc.armadaFullWarning1')} {minArmadaDibutuhkan} {t('calc.armadaFullWarning2')} {jumlahOrang} {t('calc.armadaFullWarning3')}
                       </p>
                     ) : selectedArmada ? (
                       <p className="text-xs text-gray-400 mt-1.5">
-                        Kapasitas: {kapasitasArmada} penumpang ({jumlahArmada} × {selectedArmada.passengerSeat} seat)
+                        {t('calc.armadaCapacityInfo')}: {kapasitasArmada} {t('calc.passengerWord')} ({jumlahArmada} × {selectedArmada.passengerSeat} seat)
                       </p>
                     ) : null}
                   </div>
@@ -395,30 +447,32 @@ export default function CalculatorPage() {
                   <div className="flex gap-2 p-3 rounded-lg bg-green-50 border border-green-100">
                     <Info className="w-4 h-4 text-green-600 shrink-0 mt-0.5" />
                     <div>
-                      <p className="text-xs font-semibold text-green-700 mb-1">Sudah termasuk:</p>
+                      <p className="text-xs font-semibold text-green-700 mb-1">{t('calc.includedTitle')}</p>
                       <ul className="text-xs text-green-700 space-y-0.5">
-                        <li>✓ Unit</li>
-                        <li>✓ Supir</li>
-                        <li>✓ BBM</li>
+                        <li>✓ {t('calc.includeUnit')}</li>
+                        <li>✓ {t('calc.includeDriver')}</li>
+                        <li>✓ {t('calc.includeFuel')}</li>
                       </ul>
                     </div>
                   </div>
                   <div className="flex gap-2 p-3 rounded-lg bg-amber-50 border border-amber-100">
                     <Info className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
                     <div>
-                      <p className="text-xs font-semibold text-amber-700 mb-1">Belum termasuk:</p>
+                      <p className="text-xs font-semibold text-amber-700 mb-1">{t('calc.notIncludedTitle')}</p>
                       <ul className="text-xs text-amber-700 space-y-0.5">
-                        <li>✗ Tol</li>
-                        <li>✗ Parkir</li>
-                        <li>✗ Makan supir & kondektur</li>
-                        <li>✗ Tips supir & kondektur</li>
+                        <li>✗ {t('calc.excludeToll')}</li>
+                        <li>✗ {t('calc.excludeParking')}</li>
+                        <li>✗ {t('calc.excludeDriverMeal')}</li>
+                        <li>✗ {t('calc.excludeDriverTips')}</li>
                       </ul>
                     </div>
                   </div>
                 </div>
               </motion.div>
+              )}
 
               {/* Penginapan */}
+              {!isTicketOnly && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -440,7 +494,7 @@ export default function CalculatorPage() {
                       <option value="">{t('calc.hotelPlaceholder')}</option>
                       {PENGINAPAN_OPTIONS.map((p) => (
                         <option key={p.id} value={p.id}>
-                          {p.label}
+                          {td(p.label)}
                         </option>
                       ))}
                     </select>
@@ -452,10 +506,14 @@ export default function CalculatorPage() {
                       min={0}
                       max={14}
                       value={jumlahMalam}
+                      disabled={isNightsLocked}
                       onChange={(e) => setJumlahMalam(e.target.value === '' ? '' : Math.max(0, parseInt(e.target.value) || 0))}
                       onBlur={(e) => setJumlahMalam(Math.max(0, parseInt(e.target.value) || 0))}
-                      className={select}
+                      className={`${select} disabled:opacity-50 disabled:cursor-not-allowed`}
                     />
+                    {isNightsLocked && (
+                      <p className="text-xs text-gray-400 mt-1.5">{t('calc.nightsLockedNote')}</p>
+                    )}
                   </div>
                   <div>
                     <label className={label}>{t('calc.roomLabel')}</label>
@@ -470,7 +528,7 @@ export default function CalculatorPage() {
                     />
                     {kamarKurang ? (
                       <p className="text-xs text-red-500 mt-1.5 font-medium">
-                        ⚠ Maks. 4 orang/kamar, butuh minimal {minKamarDibutuhkan} kamar untuk {jumlahOrang} orang.
+                        ⚠ {t('calc.roomWarning1')} {minKamarDibutuhkan} {t('calc.roomWarning2')} {jumlahOrang} {t('calc.roomWarning3')}
                       </p>
                     ) : (
                       <p className="text-xs text-gray-400 mt-1.5">{t('calc.roomHint')}</p>
@@ -478,8 +536,10 @@ export default function CalculatorPage() {
                   </div>
                 </div>
               </motion.div>
+              )}
 
               {/* Makan */}
+              {!isTicketOnly && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -490,6 +550,14 @@ export default function CalculatorPage() {
                   <UtensilsCrossed className="w-5 h-5 text-primary-600" />
                   <h3 className="text-lg font-bold text-gray-900">{t('calc.makanTitle')}</h3>
                 </div>
+                {isMakanLocked && (
+                  <div className="mb-3 flex gap-2 p-3 rounded-lg bg-green-50 border border-green-100">
+                    <Info className="w-4 h-4 text-green-600 shrink-0 mt-0.5" />
+                    <p className="text-xs text-green-700 leading-relaxed">
+                      {t('calc.makanLockedNote')}
+                    </p>
+                  </div>
+                )}
                 <div className="space-y-3">
                   {MAKAN_OPTIONS.map((m) => {
                     const freq = makanSelections[m.id];
@@ -501,18 +569,19 @@ export default function CalculatorPage() {
                           checked ? 'border-primary-500 bg-primary-50' : 'border-gray-200'
                         }`}
                       >
-                        <label className="flex items-center gap-3 flex-1 cursor-pointer">
+                        <label className={`flex items-center gap-3 flex-1 ${isMakanLocked ? 'cursor-not-allowed' : 'cursor-pointer'}`}>
                           <input
                             type="checkbox"
                             checked={checked}
+                            disabled={isMakanLocked}
                             onChange={() => toggleMakan(m.id)}
                             className="accent-primary-600 w-4 h-4"
                           />
-                          <span className="text-sm font-medium text-gray-800">{m.label}</span>
+                          <span className="text-sm font-medium text-gray-800">{td(m.label)}</span>
                         </label>
                         <select
                           value={freq || 1}
-                          disabled={!checked}
+                          disabled={!checked || isMakanLocked}
                           onChange={(e) => setMakanFreq(m.id, parseInt(e.target.value))}
                           className={`${select} w-32 disabled:opacity-50`}
                         >
@@ -527,8 +596,10 @@ export default function CalculatorPage() {
                   })}
                 </div>
               </motion.div>
+              )}
 
               {/* Kegiatan */}
+              {!isTicketOnly && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -560,13 +631,15 @@ export default function CalculatorPage() {
                         onChange={() => toggleKegiatan(k.id)}
                         className="accent-primary-600 w-4 h-4"
                       />
-                      <span className="flex-1 text-sm font-medium text-gray-800">{k.label}</span>
+                      <span className="flex-1 text-sm font-medium text-gray-800">{td(k.label)}</span>
                     </label>
                   ))}
                 </div>
               </motion.div>
+              )}
 
               {/* Asuransi Perjalanan (wajib) */}
+              {!isTicketOnly && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -575,7 +648,7 @@ export default function CalculatorPage() {
               >
                 <div className="flex items-center gap-3 mb-4">
                   <Info className="w-5 h-5 text-primary-600" />
-                  <h3 className="text-lg font-bold text-gray-900">Asuransi Perjalanan</h3>
+                  <h3 className="text-lg font-bold text-gray-900">{td(ASURANSI.label)}</h3>
                 </div>
                 <label className="flex items-center gap-3 p-3 rounded-lg border border-primary-500 bg-primary-50 cursor-not-allowed">
                   <input
@@ -584,12 +657,14 @@ export default function CalculatorPage() {
                     disabled
                     className="accent-primary-600 w-4 h-4"
                   />
-                  <span className="flex-1 text-sm font-medium text-gray-800">{ASURANSI.label}</span>
+                  <span className="flex-1 text-sm font-medium text-gray-800">{td(ASURANSI.label)}</span>
                 </label>
-                <p className="text-xs text-gray-500 mt-2">{ASURANSI.description}</p>
+                <p className="text-xs text-gray-500 mt-2">{td(ASURANSI.description)}</p>
               </motion.div>
+              )}
 
               {/* Tour Guide (opsional) */}
+              {!isTicketOnly && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -598,7 +673,7 @@ export default function CalculatorPage() {
               >
                 <div className="flex items-center gap-3 mb-4">
                   <Users className="w-5 h-5 text-primary-600" />
-                  <h3 className="text-lg font-bold text-gray-900">Tour Guide</h3>
+                  <h3 className="text-lg font-bold text-gray-900">{td(TOUR_GUIDE.label)}</h3>
                 </div>
                 <label
                   className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition ${
@@ -611,10 +686,11 @@ export default function CalculatorPage() {
                     onChange={() => setTourGuide((v) => !v)}
                     className="accent-primary-600 w-4 h-4"
                   />
-                  <span className="flex-1 text-sm font-medium text-gray-800">{TOUR_GUIDE.label}</span>
+                  <span className="flex-1 text-sm font-medium text-gray-800">{td(TOUR_GUIDE.label)}</span>
                 </label>
-                <p className="text-xs text-gray-500 mt-2">{TOUR_GUIDE.description}</p>
+                <p className="text-xs text-gray-500 mt-2">{td(TOUR_GUIDE.description)}</p>
               </motion.div>
+              )}
 
             </div>
 
@@ -665,23 +741,31 @@ export default function CalculatorPage() {
                           <Button
                             variant="primary"
                             size="lg"
-                            onClick={() => setCalculated(true)}
-                            className="w-full justify-center"
+                            disabled={hasWarning}
+                            onClick={() => !hasWarning && setCalculated(true)}
+                            className={`w-full justify-center ${hasWarning ? 'opacity-50 cursor-not-allowed pointer-events-none' : ''}`}
                           >
-                            Klik untuk Hitung
+                            {t('calc.hitungButton')}
                           </Button>
+                          {hasWarning && (
+                            <p className="text-xs text-red-500 mt-2 text-center font-medium">
+                              {t('calc.hitungDisabledWarning')}
+                            </p>
+                          )}
                         </div>
                       )}
                     </>
                   )}
 
                   <div className="mt-4 space-y-1.5">
-                    <div className="flex gap-1.5 items-start">
-                      <Info className="w-3.5 h-3.5 text-green-500 shrink-0 mt-0.5" />
-                      <p className="text-[11px] text-green-600 leading-relaxed">
-                        Harga sudah termasuk asuransi perjalanan & makan tour leader.
-                      </p>
-                    </div>
+                    {!isTicketOnly && (
+                      <div className="flex gap-1.5 items-start">
+                        <Info className="w-3.5 h-3.5 text-green-500 shrink-0 mt-0.5" />
+                        <p className="text-[11px] text-green-600 leading-relaxed">
+                          {t('calc.insuranceIncludedNote')}
+                        </p>
+                      </div>
+                    )}
                     <p className="text-[11px] text-gray-400 leading-relaxed">
                       {t('calc.note')}
                     </p>

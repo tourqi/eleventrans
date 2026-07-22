@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 export default function Timeline({ steps }) {
+  const { td } = useLanguage();
   if (!steps || steps.length === 0) return null;
 
   return (
@@ -28,7 +30,7 @@ export default function Timeline({ steps }) {
             {/* Content */}
             <div className="bg-white rounded-xl p-5 shadow-md flex-1 hover:shadow-lg transition-shadow">
               <div className="flex items-center gap-3 mb-2">
-                <h4 className="text-lg font-bold text-gray-900">{step.title}</h4>
+                <h4 className="text-lg font-bold text-gray-900">{td(step.title)}</h4>
                 {step.time && (
                   <span className="text-xs bg-primary-100 text-primary-700 px-2 py-0.5 rounded-full font-medium">
                     {step.time}
@@ -36,7 +38,7 @@ export default function Timeline({ steps }) {
                 )}
               </div>
               {step.description && (
-                <p className="text-gray-600 leading-relaxed text-sm">{step.description}</p>
+                <p className="text-gray-600 leading-relaxed text-sm">{td(step.description)}</p>
               )}
             </div>
           </motion.li>

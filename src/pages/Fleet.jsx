@@ -74,7 +74,7 @@ export default function Fleet() {
                         key={f}
                         className="text-xs bg-primary-50 text-primary-700 px-2 py-1 rounded-md"
                       >
-                        {f}
+                        {td(f)}
                       </span>
                     ))}
                   </div>

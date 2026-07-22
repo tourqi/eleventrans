@@ -27,14 +27,18 @@ export const PENGINAPAN_OPTIONS = [
  * zone menentukan harga armada yang dipakai (dalam kota / luar kota).
  */
 const LOKASI_META = {
-  'pangandaran-citumang':  { minPax: 18, pricePerPax: 100000, zone: 'luar-kota' },
-  'ujung-genteng':         { minPax: 13, pricePerPax: 10000, zone: 'luar-kota' },
+  // fixedMeals: jumlah makan mengikuti menu yang sudah termasuk dalam paket destinasi ini,
+  // jadi dikunci (tidak bisa diubah) di kalkulator supaya harga tidak salah hitung.
+  // fixedNights: jumlah malam penginapan mengikuti durasi paket, juga dikunci.
+  'pangandaran-citumang':  { minPax: 18, pricePerPax: 100000, zone: 'luar-kota', fixedMeals: { sarapan: 2, 'makan-siang': 2, 'makan-malam': 1 }, fixedNights: 1 },
+  'ujung-genteng':         { minPax: 13, pricePerPax: 10000, zone: 'luar-kota', fixedMeals: { sarapan: 3, 'makan-siang': 3, 'makan-malam': 2 }, fixedNights: 2 },
   'pangalengan-rafting':   { minPax: 13, pricePerPax: 185000, zone: 'dalam-kota' },
   'trip-ciwidey':          { minPax: 13, pricePerPax: 50000, zone: 'dalam-kota' },
-  // Trip speed boat Komodo: harga per pax sudah all-in (boat, snack, makan, alat snorkeling, pick up & drop),
-  // jadi pricePerPax di sini di-backsolve dari harga jual flyer supaya hasil kalkulator (setelah +asuransi & markup 30%) tepat balik ke harga flyer.
-  'komodo-full-day-trip': { minPax: 1, pricePerPax: 1051923, zone: 'luar-kota' },
-  'komodo-sunset-trip':   { minPax: 1, pricePerPax: 898077, zone: 'luar-kota' },
+  // Trip speed boat Komodo: harga per pax sudah all-in (boat, snack, makan, alat snorkeling, pick up & drop).
+  // ticketOnly: destinasi ini hanya menjual tiket trip, tanpa armada/hotel/makan/aktivitas/asuransi/tour guide dari kalkulator,
+  // jadi pricePerPax di-backsolve supaya pricePerPax × markup 30% = harga jual flyer (1,4jt full day / 1,2jt half day).
+  'komodo-full-day-trip': { minPax: 1, pricePerPax: 1076923, zone: 'luar-kota', ticketOnly: true },
+  'komodo-sunset-trip':   { minPax: 1, pricePerPax: 923077, zone: 'luar-kota', ticketOnly: true },
 };
 
 // Jumlah hari sewa armada mengikuti durasi paket, contoh "2 hari 1 malam" → 2 hari.
@@ -53,6 +57,9 @@ export const LOKASI_OPTIONS = PACKAGES.map((p) => ({
   zone: LOKASI_META[p.id]?.zone ?? 'luar-kota',
   armadaDays: parseArmadaDays(p.meta.duration),
   pricingTiers: p.pricingTiers ?? [],
+  ticketOnly: LOKASI_META[p.id]?.ticketOnly ?? false,
+  fixedMeals: LOKASI_META[p.id]?.fixedMeals ?? null,
+  fixedNights: LOKASI_META[p.id]?.fixedNights ?? null,
 }));
 
 /* ── Makan ── */

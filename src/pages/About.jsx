@@ -152,7 +152,7 @@ export default function About() {
                   </div>
                 )}
                 <h4 className="font-bold text-gray-900">{member.name}</h4>
-                <p className="text-sm text-accent-600 font-medium mb-2">{member.role}</p>
+                <p className="text-sm text-accent-600 font-medium mb-2">{td(member.role)}</p>
                 <p className="text-sm text-gray-500">{td(member.desc)}</p>
               </motion.div>
             ))}
