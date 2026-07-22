@@ -30,7 +30,7 @@ const LOKASI_META = {
   // fixedMeals: jumlah makan mengikuti menu yang sudah termasuk dalam paket destinasi ini,
   // jadi dikunci (tidak bisa diubah) di kalkulator supaya harga tidak salah hitung.
   // fixedNights: jumlah malam penginapan mengikuti durasi paket, juga dikunci.
-  'pangandaran-citumang':  { minPax: 18, pricePerPax: 100000, zone: 'luar-kota', fixedMeals: { sarapan: 2, 'makan-siang': 2, 'makan-malam': 1 }, fixedNights: 1 },
+  'pangandaran-citumang':  { minPax: 50, pricePerPax: 100000, zone: 'luar-kota', fixedMeals: { sarapan: 2, 'makan-siang': 1, 'makan-malam': 1 }, fixedNights: 1 },
   'ujung-genteng':         { minPax: 13, pricePerPax: 10000, zone: 'luar-kota', fixedMeals: { sarapan: 3, 'makan-siang': 3, 'makan-malam': 2 }, fixedNights: 2 },
   'pangalengan-rafting':   { minPax: 13, pricePerPax: 185000, zone: 'dalam-kota' },
   'trip-ciwidey':          { minPax: 13, pricePerPax: 50000, zone: 'dalam-kota' },

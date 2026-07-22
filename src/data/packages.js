@@ -42,7 +42,7 @@ export const PACKAGES = [
       'Tips driver sudah termasuk',
       'Toll & parkir sudah termasuk',
     ],
-    priceFrom: 652600,
+    priceFrom: 613600,
     priceCurrency: 'IDR',
     priceUnit: '/orang',
     priceNote: 'Harga tergantung paket & jumlah peserta. Hubungi kami untuk penawaran terbaik.',
@@ -56,7 +56,7 @@ export const PACKAGES = [
       'Halo Eleven Trans Holiday! 👋 Saya tertarik dengan paket Trip Pangandaran + Citumang. Bisa minta info lengkap & harga? Terima kasih!',
     meta: {
       duration: '2 hari 1 malam',
-      groupSize: 'Min. 18 orang',
+      groupSize: 'Min. 50 orang',
       difficulty: 'Mudah-Menengah',
       location: 'Pangandaran, Jawa Barat',
       includes: 'Transportasi, hotel, makan 5x, tiket wisata',
