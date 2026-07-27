@@ -30,10 +30,10 @@ const LOKASI_META = {
   // fixedMeals: jumlah makan mengikuti menu yang sudah termasuk dalam paket destinasi ini,
   // jadi dikunci (tidak bisa diubah) di kalkulator supaya harga tidak salah hitung.
   // fixedNights: jumlah malam penginapan mengikuti durasi paket, juga dikunci.
-  'pangandaran-citumang':  { minPax: 50, pricePerPax: 100000, zone: 'luar-kota', fixedMeals: { sarapan: 2, 'makan-siang': 1, 'makan-malam': 1 }, fixedNights: 1 },
-  'ujung-genteng':         { minPax: 13, pricePerPax: 10000, zone: 'luar-kota', fixedMeals: { sarapan: 3, 'makan-siang': 3, 'makan-malam': 2 }, fixedNights: 2 },
-  'pangalengan-rafting':   { minPax: 13, pricePerPax: 185000, zone: 'dalam-kota' },
-  'trip-ciwidey':          { minPax: 13, pricePerPax: 50000, zone: 'dalam-kota' },
+  'pangandaran-citumang':  { minPax: 1, pricePerPax: 100000, zone: 'luar-kota', fixedMeals: { sarapan: 2, 'makan-siang': 1, 'makan-malam': 1 }, fixedNights: 1 },
+  'ujung-genteng':         { minPax: 1, pricePerPax: 10000, zone: 'luar-kota', fixedMeals: { sarapan: 3, 'makan-siang': 3, 'makan-malam': 2 }, fixedNights: 2 },
+  'pangalengan-rafting':   { minPax: 1, pricePerPax: 185000, zone: 'dalam-kota' },
+  'trip-ciwidey':          { minPax: 1, pricePerPax: 50000, zone: 'dalam-kota' },
   // Trip speed boat Komodo: harga per pax sudah all-in (boat, snack, makan, alat snorkeling, pick up & drop).
   // ticketOnly: destinasi ini hanya menjual tiket trip, tanpa armada/hotel/makan/aktivitas/asuransi/tour guide dari kalkulator,
   // jadi pricePerPax di-backsolve supaya pricePerPax × markup 30% = harga jual flyer (1,4jt full day / 1,2jt half day).

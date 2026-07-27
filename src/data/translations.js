@@ -16,7 +16,7 @@ export const UI = {
     'nav.contact': 'Kontak',
 
     /* ── Brand ── */
-    'brand.tagline': 'Merancang Momen Berkesan',
+    'brand.tagline': 'Travel with fun',
 
     /* ── Hero ── */
     'hero.badge': 'Tour Planner Momen Berkesan',
@@ -312,7 +312,7 @@ export const UI = {
     'footer.tagline': 'Eleven Trans Holiday adalah tour planner yang merancang setiap perjalanan jadi momen yang berkesan',
     'footer.taglineSuffix': '. Bukan soal harga termurah atau armada terbanyak, tapi soal cerita yang kamu bawa pulang.',
     'footer.rights': 'All rights reserved.',
-    'footer.motto': 'Merancang Momen yang Berkesan ✨',
+    'footer.motto': 'Travel with fun ✨',
 
     /* ── SEO Descriptions ── */
     'seo.home': 'Eleven Trans Holiday adalah penyedia jasa tour & travel terpercaya di Bandung. Melayani paket wisata, sewa Hiace, outing kantor, study tour, family trip, dan custom tour ke seluruh Indonesia.',
@@ -345,7 +345,7 @@ export const UI = {
     'nav.contact': 'Contact',
 
     /* ── Brand ── */
-    'brand.tagline': 'Crafting Memorable Moments',
+    'brand.tagline': 'Travel with fun',
 
     /* ── Hero ── */
     'hero.badge': 'Memorable Moment Planner',
@@ -641,7 +641,7 @@ export const UI = {
     'footer.tagline': 'Eleven Trans Holiday is a tour planner that turns every trip into a moment worth remembering',
     'footer.taglineSuffix': '. Not about the lowest price or the biggest fleet, but about the story you bring home.',
     'footer.rights': 'All rights reserved.',
-    'footer.motto': 'Designing Moments Worth Remembering ✨',
+    'footer.motto': 'Travel with fun ✨',
 
     /* ── SEO Descriptions ── */
     'seo.home': 'Eleven Trans Holiday is a trusted tour & travel provider in Bandung, offering tour packages, HiAce rental, office outings, study tours, family trips, and custom tours across Indonesia.',
