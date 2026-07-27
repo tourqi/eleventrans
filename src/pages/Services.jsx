@@ -19,9 +19,18 @@ function ServicesList() {
   return (
     <>
       <SEO
-        title={t('servicesPage.eyebrow')}
+        title="Paket Wisata Bandung"
         description={t('seo.services')}
         path="/services"
+        keywords={[
+          'Paket Wisata Bandung',
+          'Tour Bandung',
+          'Travel Bandung',
+          'Outing Kantor Bandung',
+          'Study Tour Bandung',
+          'Open Trip Bandung',
+          'Private Trip Bandung',
+        ]}
       />
       <PageHero>
         <span className="text-accent-300 font-semibold text-xs uppercase tracking-wider">

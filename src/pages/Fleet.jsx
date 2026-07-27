@@ -15,9 +15,15 @@ export default function Fleet() {
   return (
     <>
       <SEO
-        title={t('fleet.eyebrow')}
+        title="Sewa Hiace Bandung"
         description={t('seo.fleet')}
         path="/fleet"
+        keywords={[
+          'Sewa Hiace Bandung',
+          'Sewa Elf Bandung',
+          'Tour Bandung',
+          'Travel Bandung',
+        ]}
       />
       {/* Hero */}
       <PageHero>

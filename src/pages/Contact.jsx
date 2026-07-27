@@ -45,6 +45,7 @@ export default function Contact() {
         title={t('contact.eyebrow')}
         description={t('seo.contact')}
         path="/contact"
+        keywords={['Kontak Eleven Trans Holiday', 'Tour Bandung', 'Travel Bandung']}
       />
       <PageHero>
         <span className="text-accent-300 font-semibold text-xs uppercase tracking-wider">

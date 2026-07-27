@@ -15,6 +15,7 @@ export default function About() {
         title={t('about.eyebrow')}
         description={t('seo.about')}
         path="/about"
+        keywords={['Tour Bandung', 'Travel Bandung', 'Eleven Trans Holiday']}
       />
       {/* Hero */}
       <PageHero>

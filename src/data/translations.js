@@ -315,7 +315,7 @@ export const UI = {
     'footer.motto': 'Merancang Momen yang Berkesan ✨',
 
     /* ── SEO Descriptions ── */
-    'seo.home': 'Eleven Trans Holiday: tour planner yang merancang perjalananmu jadi momen yang benar-benar berkesan. Private trip, family gathering, adventure trip & industrial visit terbaik di Bandung. Hubungi kami sekarang!',
+    'seo.home': 'Eleven Trans Holiday adalah penyedia jasa tour & travel terpercaya di Bandung. Melayani paket wisata, sewa Hiace, outing kantor, study tour, family trip, dan custom tour ke seluruh Indonesia.',
     'seo.about': 'Kenali Eleven Trans Holiday, tim berpengalaman di balik layanan travel terbaik di Bandung.',
     'seo.services': 'Private trip, family gathering, adventure trip & industrial visit, layanan travel lengkap dari Eleven Trans Holiday.',
     'seo.fleet': 'Armada kendaraan Eleven Trans Holiday: HiAce, Elf, Bus Medium, Big Bus, dan MPV. Terawat, nyaman, dan siap antar ke mana saja.',
@@ -644,7 +644,7 @@ export const UI = {
     'footer.motto': 'Designing Moments Worth Remembering ✨',
 
     /* ── SEO Descriptions ── */
-    'seo.home': 'Eleven Trans Holiday: the tour planner that turns your trip into a truly memorable moment. The best private trips, family gatherings, adventure trips & industrial visits in Bandung. Contact us now!',
+    'seo.home': 'Eleven Trans Holiday is a trusted tour & travel provider in Bandung, offering tour packages, HiAce rental, office outings, study tours, family trips, and custom tours across Indonesia.',
     'seo.about': 'Get to know Eleven Trans Holiday, the experienced team behind the best travel services in Bandung.',
     'seo.services': 'Private trips, family gatherings, adventure trips & industrial visits, complete travel services from Eleven Trans Holiday.',
     'seo.fleet': 'Eleven Trans Holiday fleet: HiAce, Elf, Medium Bus, Big Bus, and MPV. Well-maintained, comfortable, and ready to take you anywhere.',

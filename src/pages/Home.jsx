@@ -17,9 +17,23 @@ export default function Home() {
   return (
     <>
       <SEO
-        title={null}
+        title="Eleven Trans Holiday | Tour & Travel Bandung, Sewa Hiace, Paket Wisata Bandung"
         description={t('seo.home')}
         path="/"
+        keywords={[
+          'Tour Bandung',
+          'Travel Bandung',
+          'Paket Wisata Bandung',
+          'Sewa Hiace Bandung',
+          'Sewa Elf Bandung',
+          'Outing Kantor Bandung',
+          'Study Tour Bandung',
+          'Open Trip Bandung',
+          'Private Trip Bandung',
+          'Tour Pangandaran',
+          'Tour Ciwidey',
+          'Tour Lembang',
+        ]}
       />
       <HeroSection />
       <ServicesSection />

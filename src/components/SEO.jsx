@@ -14,15 +14,22 @@ const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1506905925346-21bda4d32
  * @param {string} [props.description] — Meta description
  * @param {string} [props.image]       — OG image URL
  * @param {string} [props.path]        — Canonical path e.g. "/about"
+ * @param {string|string[]} [props.keywords] — Meta keywords (comma string or array)
  */
 export default function SEO({
   title,
   description = DEFAULT_DESCRIPTION,
   image = DEFAULT_IMAGE,
   path = '',
+  keywords,
 }) {
-  const fullTitle = title ? `${title} | ${SITE_NAME}` : `${SITE_NAME} | Momen yang Berkesan`;
+  const fullTitle = !title
+    ? `${SITE_NAME} | Momen yang Berkesan`
+    : title.includes(SITE_NAME)
+      ? title
+      : `${title} | ${SITE_NAME}`;
   const url = `${SITE_URL}${path}`;
+  const keywordsContent = Array.isArray(keywords) ? keywords.join(', ') : keywords;
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -52,6 +59,7 @@ export default function SEO({
     <Helmet>
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
+      {keywordsContent && <meta name="keywords" content={keywordsContent} />}
 
       {/* Open Graph */}
       <meta property="og:type" content="website" />
