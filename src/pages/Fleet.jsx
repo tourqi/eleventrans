@@ -52,7 +52,7 @@ export default function Fleet() {
                 <div className="relative h-48">
                   <img
                     src={vehicle.image}
-                    alt={vehicle.name}
+                    alt={`Sewa ${vehicle.name} Bandung - ${td(vehicle.capacity)}`}
                     className="w-full h-full object-cover"
                     loading="lazy"
                   />

@@ -23,8 +23,10 @@ export default function Footer() {
       title: t('footer.company'),
       links: [
         { label: t('footer.aboutUs'), to: '/about' },
+        { label: t('nav.packages'), to: '/packages' },
         { label: t('nav.fleet'), to: '/fleet' },
         { label: 'Gallery', to: '/gallery' },
+        { label: t('nav.calculator'), to: '/calculator' },
         { label: t('footer.contact'), to: '/contact' },
       ],
     },

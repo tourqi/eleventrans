@@ -13,6 +13,7 @@ import {
   Tag,
 } from 'lucide-react';
 import { getPackageBySlug, PACKAGES } from '../data/packages';
+import { getServiceBySlug } from '../data/services';
 import Button from '../components/ui/Button';
 import Badge from '../components/ui/Badge';
 import SectionHeading from '../components/ui/SectionHeading';
@@ -23,6 +24,7 @@ import PageHero from '../components/sections/PageHero';
 import SEO from '../components/SEO';
 import { buildWhatsAppLink, formatRupiah } from '../utils/helpers';
 import { useLanguage } from '../contexts/LanguageContext';
+import { SITE_URL } from '../data/constants';
 
 /* Packages list */
 function PackagesList() {
@@ -30,7 +32,7 @@ function PackagesList() {
   return (
     <>
       <SEO
-        title={t('pkg.eyebrow')}
+        title={t('seo.packagesTitle')}
         description={t('seo.packages')}
         path="/packages"
       />
@@ -80,6 +82,39 @@ function PackageDetailPage() {
   }
 
   const otherPackages = PACKAGES.filter((p) => p.id !== pkg.id).slice(0, 2);
+  const relatedService = pkg.relatedService ? getServiceBySlug(pkg.relatedService) : null;
+
+  const touristTripSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'TouristTrip',
+    name: td(pkg.title),
+    description: td(pkg.excerpt),
+    image: pkg.images,
+    touristType: td(pkg.meta.groupSize),
+    provider: {
+      '@type': 'TravelAgency',
+      name: 'Eleven Trans Holiday',
+      url: SITE_URL,
+    },
+    itinerary: {
+      '@type': 'ItemList',
+      itemListElement: pkg.itinerary.map((step, idx) => ({
+        '@type': 'ListItem',
+        position: idx + 1,
+        name: td(step.title),
+        description: td(step.description),
+      })),
+    },
+    ...(pkg.priceFrom && {
+      offers: {
+        '@type': 'Offer',
+        price: pkg.priceFrom,
+        priceCurrency: pkg.priceCurrency || 'IDR',
+        availability: 'https://schema.org/InStock',
+        url: `${SITE_URL}/packages/${pkg.slug}`,
+      },
+    }),
+  };
 
   return (
     <>
@@ -88,6 +123,7 @@ function PackageDetailPage() {
         description={td(pkg.excerpt)}
         image={pkg.images[0]}
         path={`/packages/${pkg.slug}`}
+        structuredData={touristTripSchema}
       />
       {/* Hero */}
       <PageHero backgroundImage={pkg.images[0]}>
@@ -105,6 +141,15 @@ function PackageDetailPage() {
           {td(pkg.title)}
         </h1>
         <p className="text-base text-white/80 leading-relaxed mb-6">{td(pkg.excerpt)}</p>
+
+        {relatedService && (
+          <Link
+            to={`/services/${relatedService.slug}`}
+            className="inline-flex items-center gap-1 text-sm text-white/70 hover:text-white mb-6 -mt-3 transition-colors"
+          >
+            {t('pkg.partOf')} <span className="underline">{td(relatedService.title)}</span> →
+          </Link>
+        )}
 
         {/* Quick facts */}
         <div className="flex flex-wrap gap-5 mb-6 text-sm">

@@ -9,7 +9,11 @@ export default function ServiceCard({ service }) {
   return (
     <Card className="group">
       <Link to={`/services/${service.slug}`}>
-        <CardImage src={service.heroImage} alt={service.title} className="h-48" />
+        <CardImage
+          src={service.heroImage}
+          alt={`${td(service.title)} Bandung - Eleven Trans Holiday`}
+          className="h-48"
+        />
         <CardBody>
           <Badge variant="default" className="mb-2">
             {td(service.targets[0])}

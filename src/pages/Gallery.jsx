@@ -11,7 +11,7 @@ export default function Gallery() {
   return (
     <>
       <SEO
-        title={t('gallery.eyebrow')}
+        title={t('seo.galleryTitle')}
         description={t('seo.gallery')}
         path="/gallery"
       />

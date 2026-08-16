@@ -23,6 +23,10 @@ export const SERVICES = [
     ],
     targets: ['Keluarga', 'Pasangan', 'Grup kecil (2-10 orang)'],
     icon: 'Compass',
+    seoTitle: 'Private Trip Bandung - Sewa Hiace & Mobil Wisata Sesuai Jadwalmu',
+    seoDescription:
+      'Private trip Bandung eksklusif dari Eleven Trans Holiday: sewa Hiace/mobil wisata, itinerary custom, driver berpengalaman. Cocok untuk keluarga. Chat yuk!',
+    seoKeywords: ['Private Trip Bandung', 'Sewa Mobil Wisata Bandung', 'Sewa Hiace Bandung', 'Trip Bandung', 'Paket Wisata Bandung'],
     heroImage: '/categories/private-trip.jpeg',
     gallery: [
       'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600',
@@ -46,6 +50,10 @@ export const SERVICES = [
     ],
     targets: ['Perusahaan', 'Keluarga besar', 'Komunitas'],
     icon: 'Users',
+    seoTitle: 'Paket Family Gathering Bandung - Acara Kebersamaan Tak Terlupakan',
+    seoDescription:
+      'Cari tempat family gathering Bandung? Eleven Trans Holiday siapkan konsep acara, venue, games & dokumentasi lengkap untuk perusahaan. Chat sekarang!',
+    seoKeywords: ['Paket Family Gathering Bandung', 'Tempat Family Gathering Bandung', 'Outing Kantor Bandung'],
     heroImage: '/categories/family-trip.JPG',
     gallery: [
       'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600',
@@ -69,6 +77,10 @@ export const SERVICES = [
     ],
     targets: ['Tim perusahaan', 'Komunitas', 'Sekolah & kampus'],
     icon: 'Mountain',
+    seoTitle: 'Adventure Trip & Outbound Bandung - Rafting, Team Building Seru',
+    seoDescription:
+      'Adventure trip Bandung dari Eleven Trans Holiday: rafting & outbound dengan pemandu bersertifikat, cocok untuk team building. Aman & seru, hubungi kami!',
+    seoKeywords: ['Adventure Trip Bandung', 'Outbound Bandung', 'Rafting Bandung', 'Team Building Bandung'],
     heroImage: '/categories/adventure.jpg',
     gallery: [
       'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=600',
@@ -92,6 +104,10 @@ export const SERVICES = [
     ],
     targets: ['Mahasiswa', 'Sekolah', 'Organisasi kampus'],
     icon: 'Building2',
+    seoTitle: 'Industrial Visit Bandung - Kunjungan Industri untuk Sekolah & Kampus',
+    seoDescription:
+      'Program industrial visit / kunjungan industri Bandung dari Eleven Trans Holiday: akses pabrik ternama, transportasi & logistik terurus. Chat WhatsApp!',
+    seoKeywords: ['Industrial Visit Bandung', 'Kunjungan Industri Bandung', 'Study Tour Bandung'],
     heroImage: '/categories/industrial-visit.jpg',
     gallery: [
       'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=600',

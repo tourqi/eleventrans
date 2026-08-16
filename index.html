@@ -1,11 +1,24 @@
 <!doctype html>
 <html lang="id">
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3EHR3GXVFY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-3EHR3GXVFY');
+    </script>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/logo.png" />
     <link rel="apple-touch-icon" href="/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Eleven Trans Holiday: tour planner yang merancang perjalananmu jadi momen yang benar-benar berkesan. Private trip, family gathering, adventure trip & industrial visit di Indonesia." />
+    <!-- No static <meta name="description"> here on purpose: every route sets its own via
+         react-helmet-async (src/components/SEO.jsx). A static one here would sit alongside
+         the per-page tag and search engines/crawlers reading the raw DOM tend to pick
+         whichever meta[name=description] comes first — silently overriding every page's
+         real description with this generic fallback. -->
     <title>Eleven Trans Holiday | Momen yang Berkesan</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

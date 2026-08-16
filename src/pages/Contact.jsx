@@ -42,7 +42,7 @@ export default function Contact() {
   return (
     <>
       <SEO
-        title={t('contact.eyebrow')}
+        title={t('seo.contactTitle')}
         description={t('seo.contact')}
         path="/contact"
         keywords={['Kontak Eleven Trans Holiday', 'Tour Bandung', 'Travel Bandung']}

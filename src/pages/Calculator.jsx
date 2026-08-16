@@ -239,7 +239,7 @@ export default function CalculatorPage() {
   return (
     <>
       <SEO
-        title={t('calc.eyebrow')}
+        title={t('seo.calculatorTitle')}
         description={t('seo.calculator')}
         path="/calculator"
       />

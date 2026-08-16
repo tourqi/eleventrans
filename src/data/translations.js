@@ -118,6 +118,9 @@ export const UI = {
     'servicesPage.suitableFor': 'Cocok untuk:',
     'servicesPage.interested': 'Tertarik',
     'servicesPage.interestedSub': 'Ceritakan rencana kamu kami bantu wujudkan.',
+    'servicesPage.relatedEyebrow': 'Contoh Paket',
+    'servicesPage.relatedTitle': 'Paket Terkait',
+    'servicesPage.relatedSub': 'Beberapa contoh itinerary dan harga yang bisa kamu pilih.',
 
     /* ── Fleet Page ── */
     'fleet.eyebrow': 'Armada',
@@ -290,6 +293,7 @@ export const UI = {
     'pkg.thPrice': 'Harga/pax',
     'pkg.thMinPax': 'Min. Pax',
     'pkg.orang': 'orang',
+    'pkg.partOf': 'Bagian dari layanan',
     'pkg.otherEyebrow': 'Paket Lainnya',
     'pkg.otherTitle': 'Mungkin Kamu Juga Suka',
     'pkg.noMatchTitle': 'Tidak menemukan paket yang cocok?',
@@ -316,13 +320,19 @@ export const UI = {
 
     /* ── SEO Descriptions ── */
     'seo.home': 'Eleven Trans Holiday adalah penyedia jasa tour & travel terpercaya di Bandung. Melayani paket wisata, sewa Hiace, outing kantor, study tour, family trip, dan custom tour ke seluruh Indonesia.',
-    'seo.about': 'Kenali Eleven Trans Holiday, tim berpengalaman di balik layanan travel terbaik di Bandung.',
-    'seo.services': 'Private trip, family gathering, adventure trip & industrial visit, layanan travel lengkap dari Eleven Trans Holiday.',
+    'seo.aboutTitle': 'Tentang Eleven Trans Holiday - Tim Travel Terpercaya di Bandung',
+    'seo.about': 'Eleven Trans Holiday adalah tim travel berpengalaman di Bandung, melayani private trip, family gathering, adventure trip & industrial visit. Chat kami sekarang!',
+    'seo.servicesTitle': 'Paket Wisata Bandung - Private Trip, Family Gathering & Adventure',
+    'seo.services': 'Pilih paket wisata Bandung sesuai kebutuhan: private trip, family gathering, adventure trip & industrial visit. Armada nyaman, chat kami sekarang!',
     'seo.fleet': 'Armada kendaraan Eleven Trans Holiday: HiAce, Elf, Bus Medium, Big Bus, dan MPV. Terawat, nyaman, dan siap antar ke mana saja.',
-    'seo.gallery': 'Galeri foto trip dan keseruan bersama Eleven Trans Holiday: rafting, gathering, city tour, dan banyak lagi.',
-    'seo.contact': 'Hubungi Eleven Trans Holiday via WhatsApp, telepon, atau email. Konsultasi gratis untuk trip impianmu!',
-    'seo.calculator': 'Hitung estimasi biaya trip bersama Eleven Trans Holiday. Pilih armada, hotel, destinasi, dan aktivitas.',
-    'seo.packages': 'Pilih paket wisata terbaik dari Eleven Trans Holiday.',
+    'seo.galleryTitle': 'Galeri Foto & Video Trip - Eleven Trans Holiday',
+    'seo.gallery': 'Lihat momen keseruan trip bersama Eleven Trans Holiday: body rafting Citumang, family gathering, adventure trip & city tour Bandung. Rencanakan tripmu sekarang!',
+    'seo.contactTitle': 'Kontak & Konsultasi Gratis - Eleven Trans Holiday Bandung',
+    'seo.contact': 'Hubungi Eleven Trans Holiday via WhatsApp untuk konsultasi gratis paket wisata Bandung, sewa Hiace, atau family gathering. Respon cepat, chat sekarang!',
+    'seo.calculatorTitle': 'Kalkulator Estimasi Biaya Trip - Eleven Trans Holiday',
+    'seo.calculator': 'Hitung estimasi biaya trip Bandung dalam hitungan detik: pilih armada, hotel, destinasi & aktivitas. Dapatkan penawaran akurat sekarang!',
+    'seo.packagesTitle': 'Paket Wisata Bandung - Body Rafting, Kawah Putih, hingga Komodo',
+    'seo.packages': 'Pilih paket wisata terbaik dari Eleven Trans Holiday: body rafting Citumang, Kawah Putih Ciwidey, Ujung Genteng, hingga trip Komodo Island. Cek harga & jadwal!',
     'seo.notFound': 'Halaman yang kamu cari tidak ditemukan.',
 
     /* ── Misc ── */
@@ -447,6 +457,9 @@ export const UI = {
     'servicesPage.suitableFor': 'Suitable for:',
     'servicesPage.interested': 'Interested in',
     'servicesPage.interestedSub': 'Tell us your plans, we\'ll help make it happen.',
+    'servicesPage.relatedEyebrow': 'Sample Packages',
+    'servicesPage.relatedTitle': 'Related Packages',
+    'servicesPage.relatedSub': 'A few sample itineraries and prices you can choose from.',
 
     /* ── Fleet Page ── */
     'fleet.eyebrow': 'Fleet',
@@ -619,6 +632,7 @@ export const UI = {
     'pkg.thPrice': 'Price/pax',
     'pkg.thMinPax': 'Min. Pax',
     'pkg.orang': 'people',
+    'pkg.partOf': 'Part of',
     'pkg.otherEyebrow': 'Other Packages',
     'pkg.otherTitle': 'You Might Also Like',
     'pkg.noMatchTitle': 'Can\'t find the right package?',
@@ -645,13 +659,19 @@ export const UI = {
 
     /* ── SEO Descriptions ── */
     'seo.home': 'Eleven Trans Holiday is a trusted tour & travel provider in Bandung, offering tour packages, HiAce rental, office outings, study tours, family trips, and custom tours across Indonesia.',
-    'seo.about': 'Get to know Eleven Trans Holiday, the experienced team behind the best travel services in Bandung.',
-    'seo.services': 'Private trips, family gatherings, adventure trips & industrial visits, complete travel services from Eleven Trans Holiday.',
+    'seo.aboutTitle': 'About Eleven Trans Holiday - Trusted Travel Team in Bandung',
+    'seo.about': 'Eleven Trans Holiday is an experienced travel team in Bandung, offering private trips, family gatherings, adventure trips & industrial visits. Chat with us now!',
+    'seo.servicesTitle': 'Bandung Tour Packages - Private Trip, Family Gathering & Adventure',
+    'seo.services': 'Choose a Bandung tour package that fits your needs: private trip, family gathering, adventure trip & industrial visit. Comfortable fleet, chat with us now!',
     'seo.fleet': 'Eleven Trans Holiday fleet: HiAce, Elf, Medium Bus, Big Bus, and MPV. Well-maintained, comfortable, and ready to take you anywhere.',
-    'seo.gallery': 'Trip photo gallery and fun moments with Eleven Trans Holiday: rafting, gatherings, city tours, and more.',
-    'seo.contact': 'Contact Eleven Trans Holiday via WhatsApp, phone, or email. Free consultation for your dream trip!',
-    'seo.calculator': 'Calculate your trip cost estimate with Eleven Trans Holiday. Choose fleet, hotel, destination, and activities.',
-    'seo.packages': 'Choose the best tour packages from Eleven Trans Holiday.',
+    'seo.galleryTitle': 'Trip Photo & Video Gallery - Eleven Trans Holiday',
+    'seo.gallery': 'See the fun moments from trips with Eleven Trans Holiday: Citumang body rafting, family gatherings, adventure trips & Bandung city tours. Plan your trip now!',
+    'seo.contactTitle': 'Contact & Free Consultation - Eleven Trans Holiday Bandung',
+    'seo.contact': 'Contact Eleven Trans Holiday via WhatsApp for a free consultation on Bandung tour packages, HiAce rental, or family gatherings. Fast response, chat now!',
+    'seo.calculatorTitle': 'Trip Cost Calculator - Eleven Trans Holiday',
+    'seo.calculator': 'Calculate your Bandung trip cost in seconds: choose fleet, hotel, destination & activities. Get an accurate quote now!',
+    'seo.packagesTitle': 'Bandung Tour Packages - Body Rafting, Kawah Putih to Komodo',
+    'seo.packages': 'Choose the best tour packages from Eleven Trans Holiday: Citumang rafting, Kawah Putih Ciwidey, Ujung Genteng, to Komodo Island. Check price & schedule!',
     'seo.notFound': 'The page you are looking for was not found.',
 
     /* ── Misc ── */

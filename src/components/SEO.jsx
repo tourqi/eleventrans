@@ -15,6 +15,7 @@ const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1506905925346-21bda4d32
  * @param {string} [props.image]       — OG image URL
  * @param {string} [props.path]        — Canonical path e.g. "/about"
  * @param {string|string[]} [props.keywords] — Meta keywords (comma string or array)
+ * @param {Object|Object[]} [props.structuredData] — Extra JSON-LD object(s) for this page (e.g. TouristTrip, Service)
  */
 export default function SEO({
   title,
@@ -22,6 +23,7 @@ export default function SEO({
   image = DEFAULT_IMAGE,
   path = '',
   keywords,
+  structuredData,
 }) {
   const fullTitle = !title
     ? `${SITE_NAME} | Momen yang Berkesan`
@@ -82,6 +84,10 @@ export default function SEO({
       {path === '/' && (
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       )}
+      {structuredData &&
+        (Array.isArray(structuredData) ? structuredData : [structuredData]).map((data, idx) => (
+          <script key={idx} type="application/ld+json">{JSON.stringify(data)}</script>
+        ))}
     </Helmet>
   );
 }

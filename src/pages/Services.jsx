@@ -3,8 +3,10 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Phone, CheckCircle, ChevronLeft } from 'lucide-react';
 import { SERVICES, SERVICE_ICONS } from '../data/services';
 import { getServiceBySlug } from '../data/services';
+import { PACKAGES } from '../data/packages';
 import SectionHeading from '../components/ui/SectionHeading';
 import ServiceCard from '../components/sections/ServiceCard';
+import PackageCard from '../components/sections/PackageCard';
 import Button from '../components/ui/Button';
 import Badge from '../components/ui/Badge';
 import CTASection from '../components/sections/CTASection';
@@ -12,6 +14,7 @@ import PageHero from '../components/sections/PageHero';
 import SEO from '../components/SEO';
 import { buildWhatsAppLink } from '../utils/helpers';
 import { useLanguage } from '../contexts/LanguageContext';
+import { SITE_URL } from '../data/constants';
 
 /* Service listing page (no slug) */
 function ServicesList() {
@@ -19,7 +22,7 @@ function ServicesList() {
   return (
     <>
       <SEO
-        title="Paket Wisata Bandung"
+        title={t('seo.servicesTitle')}
         description={t('seo.services')}
         path="/services"
         keywords={[
@@ -77,14 +80,39 @@ function ServiceDetail() {
   }
 
   const Icon = SERVICE_ICONS[service.icon];
+  const relatedPackages = PACKAGES.filter((p) => p.relatedService === service.slug);
+
+  const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: td(service.title),
+    serviceType: td(service.title),
+    description: td(service.description),
+    provider: {
+      '@type': 'TravelAgency',
+      name: 'Eleven Trans Holiday',
+      url: SITE_URL,
+    },
+    areaServed: {
+      '@type': 'City',
+      name: 'Bandung',
+    },
+    audience: {
+      '@type': 'Audience',
+      audienceType: service.targets.map((tgt) => td(tgt)).join(', '),
+    },
+    url: `${SITE_URL}/services/${service.slug}`,
+  };
 
   return (
     <>
       <SEO
-        title={td(service.title)}
-        description={td(service.short)}
+        title={service.seoTitle}
+        description={service.seoDescription}
         image={service.heroImage}
         path={`/services/${service.slug}`}
+        keywords={service.seoKeywords}
+        structuredData={serviceSchema}
       />
       {/* Hero */}
       <PageHero backgroundImage={service.heroImage}>
@@ -136,7 +164,7 @@ function ServiceDetail() {
             <div className="rounded-2xl overflow-hidden shadow-xl">
               <img
                 src={service.heroImage}
-                alt={service.title}
+                alt={`${td(service.title)} Bandung - ${td(service.tagline)}`}
                 className="w-full h-80 lg:h-[400px] object-cover"
                 loading="lazy"
               />
@@ -144,6 +172,24 @@ function ServiceDetail() {
           </div>
         </div>
       </section>
+
+      {/* Related packages — concrete itinerary/price examples for this service */}
+      {relatedPackages.length > 0 && (
+        <section className="py-20 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <SectionHeading
+              eyebrow={t('servicesPage.relatedEyebrow')}
+              title={t('servicesPage.relatedTitle')}
+              subtitle={t('servicesPage.relatedSub')}
+            />
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {relatedPackages.map((pkg) => (
+                <PackageCard key={pkg.id} pkg={pkg} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <CTASection
         title={`${t('servicesPage.interested')} ${td(service.title)}?`}

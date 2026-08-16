@@ -12,7 +12,7 @@ export default function About() {
   return (
     <>
       <SEO
-        title={t('about.eyebrow')}
+        title={t('seo.aboutTitle')}
         description={t('seo.about')}
         path="/about"
         keywords={['Tour Bandung', 'Travel Bandung', 'Eleven Trans Holiday']}

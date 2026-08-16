@@ -11,7 +11,11 @@ export default function PackageCard({ pkg }) {
     <Card className="group">
       <Link to={`/packages/${pkg.slug}`}>
         <div className="relative">
-          <CardImage src={pkg.images[0]} alt={pkg.title} className="h-52" />
+          <CardImage
+            src={pkg.images[0]}
+            alt={`${td(pkg.title)}${pkg.meta?.location ? ` - ${pkg.meta.location}` : ''}`}
+            className="h-52"
+          />
           {pkg.featured && (
             <div className="absolute top-3 left-3">
               <Badge variant="accent">🔥 Popular</Badge>
